@@ -31,7 +31,8 @@ int coneNum = 0;
 
 #define liftStillSpeed 15
 
-#define barStillSpeed 10
+#define barStillUp 20
+#define barStillDown 10
 
 float liftOffset = sin((lowLift - liftPara) / radToPot);
 
