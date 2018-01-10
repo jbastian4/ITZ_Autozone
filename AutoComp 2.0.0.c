@@ -70,11 +70,9 @@ void pre_auton()
 
 task autonomous()
 {
-	//driveEncoderPID = false;
 	startTask(unityDrive);
 	startTask(barController);
   startTask(liftController);
-  //startTask(autoStack);
   startTask(goalController);
   manual = false;
   SensorValue[lEnc] = 0;
@@ -89,12 +87,6 @@ task autonomous()
   wait1Msec(300);
   SensorScale[gyro] = 150; //Tunes the gyro value, tuned to 180 degrees (150)
   SensorScale[otherGyro] = 150;
-
-  /*unityStraight(50);
-  //wait1Msec(5000);
-  unityTurn(1800,1);
-  //setRMotors(90);
-  wait1Msec(10000);//*/
 
 	if (SensorValue[lPot]<1300)
 	{
@@ -156,18 +148,14 @@ task usercontrol()
 {
   startTask(barController);
   startTask(liftController);
-  //startTask(autoStack);
   startTask(liftBtnTracker);
   startTask(barBtnTracker);
   barRequest(back);
-  //liftRequest(lowLift);
   startTask(userDrive);
   manual = false;
   liftRequestedValue=1100;
   while(true)
   {
-  	/*datalogAddValueWithTimeStamp(0, SensorValue(gyro));
-  	datalogAddValueWithTimeStamp(1, SensorValue(otherGyro));*/
   	//#region manual control
     if(vexRT[Btn8L] == 1 &&  vexRT[Btn8D] == 1 && enableBarPID == false) //turn manual on or off
       enableBarPID = true;
@@ -193,44 +181,15 @@ task usercontrol()
 		//#endregion
 
 		//#region misc control
-   /* else //pid lift control
-    {
-      if(vexRT[Btn5U] == 1)
-        stacking = true;
-      if(vexRT[Btn5D] == 1)
-        intStack = true;
-      else if(vexRT[Btn7R] == 1)
-        coneNum = 0;
-      else if(vexRT[Btn7L] == 1)
-      {
-        coneNum++;
-        while(vexRT[Btn7L] ==1) {}
-      }
-    }
-		*/
     if (skillsFlip==1)
     {
-    /*if(vexRT[Btn6U] == 1 && stacking == false && intStack == false) //intake control
-      setIntakeMotors(intakeUp);
-    else if(vexRT[Btn6D] == 1 && stacking == false && intStack == false)
-      setIntakeMotors(intakeDown);
-    else if(stacking == false && intStack == false)
-      setIntakeMotors(intakeStill);
-    */}
-    /*if(vexRT[Btn8D]==1) //barbar control
-      barRequest(drop, false);
-    if(vexRT[Btn8R]==1)
-      barRequest(low, false);
-    if(vexRT[Btn8U]==1)
-      barRequest(norm, false);
-    if(vexRT[Btn8L]==1)
-      barRequest(back, false);*/
-      //manualBar(); //temporary bar code
-      if (skillsFlip==1)
+
+    }
+
       {
     if(vexRT[Btn7U] == 1) //Mobile goal control
       setGoalMotors(127);
-		else if(vexRT[Btn7D] == 1 /*&& SensorValue[GoalPot] >= 2875*/)
+		else if(vexRT[Btn7D] == 1)
       setGoalMotors(-127);
     else if(vexRT[Btn7R] == 1)
     	setGoalMotors(-20);
@@ -241,7 +200,7 @@ task usercontrol()
       {
     if(vexRT[Btn6U] == 1) //Mobile goal control
       setGoalMotors(127);
-		else if(vexRT[Btn6D] == 1 /*&& SensorValue[GoalPot] >= 2875*/)
+		else if(vexRT[Btn6D] == 1)
       setGoalMotors(-127);
     else
     	setGoalMotors(0);
