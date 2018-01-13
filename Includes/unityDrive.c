@@ -15,8 +15,7 @@ float wheelDiameter = 4;
 
 int dontHog = 25; //don't hog cpu wait time
 
-int waitTime = 2000; //Time to wait for drivestraight completion
-int stopError = 1; //allowed variation distance for drivestraight stop (inches)
+int stopError = 10; //allowed variation distance for drivestraight stop (inches)
 
 int driveStraightError = 50;
 
@@ -56,16 +55,6 @@ bool isDriving = false; //records if the drivestraight is actually running;
 int countsToInches(float value) //converts drive encoder counts into inches
 {
   return (value * 360)/(PI * wheelDiameter);
-}
-
-bool driveCompletion() //determines when the drivestraight tasks have reached the desired values
-{
-	int counts = countsToInches(abs(SensorValue[lEncPort]) + abs(SensorValue[rEncPort]))/2 - driveModifier;
-
-  if (abs(counts) > stopError)
-    clearTimer(T1);
-
-  return time1(T1) >= waitTime;
 }
 
 //drive ramp values
@@ -116,26 +105,17 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
   funcDriveModifier = abs(distance); //sets drive distance
   funcDirection = direction; //set drive direction
 
-  //waitForCompletion = wait; //allows waiting for drive to complete
-
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = true; //sets PID tasks to run drivestraight
 
   if(waity)
   {
-    /*float errorVal = countsToInches(abs(SensorValue[lEncPort]) + abs(SensorValue[rEncPort]))/2 - driveModifier;
-    if(errorVal < 0)
-      errorVal = -errorVal;
-    while(errorVal > stopError) //allows waiting for drive to complete
-    {
-      wait1Msec(dontHog);
-    }*/
     int ticks = abs(countsToInches(distance));
-  	while(abs(SensorValue[lEnc]) <= ticks - 10){}
+  	while(abs(SensorValue[lEnc]) <= ticks - stopError){}
     wait1Msec(200);
   }
 }
-void unityTurn(int degrees, int direction /*, waitForCompletion = false*/)
+void unityTurn(int degrees, int direction)
 {
   funcDriveMode = 1; //turn
   funcDriveModifier = degrees; //sets number of degrees to turn
@@ -143,11 +123,6 @@ void unityTurn(int degrees, int direction /*, waitForCompletion = false*/)
 
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = false; //sets PID tasks to not run drivestraight
-
-  /*while(waitForCompletion) //allows waiting for drive to complete
-  {
-    wait1Msec(dontHog);
-  }*/
 }
 //#endregion
 //#region set motor functions
@@ -163,7 +138,7 @@ void setRDriveMotors(int power)
 }
 //#endregion
 //#region Ramp Functions
-void leftDriveRamp(int leftPowerReq)
+void leftDriveRamp(int leftPowerReq) //ramping
 {
 if(leftPower >= 30)
 {
@@ -220,7 +195,7 @@ setLDriveMotors(leftPower);
 wait1Msec(rampInterval);
 }
 
-void rightDriveRamp(int rightPowerReq)
+void rightDriveRamp(int rightPowerReq) //ramping
 {
   if(rightPower >= 30)
   {

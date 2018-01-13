@@ -5,10 +5,10 @@
 #include "/Includes/Variables.c"
 #include "/Includes/Functions.c"
 
-//#region blue
-void bLGoalScore()
+//#region right
+void rGoalScore()
 {
-  liftRequest(liftPara);
+  liftRequest(para);
   goalRequest(out);
   unityStraight(57,true);
   goalRequest(in,true);
@@ -16,7 +16,7 @@ void bLGoalScore()
   //liftRequest(low);
   wait1Msec(500);
   wait1Msec(500);
-  //liftRequest(liftPara);
+  //liftRequest(para);
   unityStraight(-58);
   wait1Msec(3000);
   unityTurn(1700,-1); //correcting for gyro inaccuracies, should be 1800
@@ -26,9 +26,9 @@ void bLGoalScore()
   wait1Msec(50);
   unityStraight(-20, true);
 }
-void bLPairWithE()
+void rPairWithE()
 {
-  liftRequest(liftPara);
+  liftRequest(para);
   goalRequest(out);
   wait1Msec(500);
   unityStraight(57,true);
@@ -37,7 +37,7 @@ void bLPairWithE()
   liftRequest(low);
   wait1Msec(500);
   wait1Msec(500);
-  liftRequest(liftPara);
+  liftRequest(para);
   unityStraight(-44,true);
   wait1Msec(2000);
   unityTurn(1200,1); //correcting for gyro inaccuracies, should be 1800
@@ -52,18 +52,18 @@ void bLPairWithE()
   unityStraight(70,true);
 }
 //#endregion
-//#region right
-void rLGoalScore()
+//#region left
+void lGoalScore()
 {
-  liftRequest(liftPara);
+  liftRequest(para);
   goalRequest(out);
   unityStraight(57,true);
   goalRequest(in,true);
-  ////barRequest(drop);
+  //barRequest(drop);
   liftRequest(low);
   wait1Msec(500);
   wait1Msec(500);
-  liftRequest(liftPara);
+  liftRequest(para);
   unityStraight(-58);
   wait1Msec(3000);
   unityTurn(1700,1); //correcting for gyro inaccuracies, should be 1800
@@ -73,9 +73,9 @@ void rLGoalScore()
   wait1Msec(50);
   unityStraight(-20, true);
 }
-void rLPairWithE()
+void lPairWithE()
 {
-  liftRequest(liftPara);
+  liftRequest(para);
   goalRequest(out);
   wait1Msec(1000);
   unityStraight(55,true);
@@ -84,7 +84,7 @@ void rLPairWithE()
   liftRequest(low);
   wait1Msec(1000);
   wait1Msec(500);
-  liftRequest(liftPara);
+  liftRequest(para);
   unityStraight(-42,true);
   wait1Msec(2000);
   unityTurn(1200,1); //correcting for gyro inaccuracies, should be 1800
@@ -106,7 +106,7 @@ void testAuton()
 //#region skills
 void skills()
 {
-  liftRequest(liftGoal);              //THIS WORKS, SO WE'RE SKIPPING TESTING IT FOR NOW
+  liftRequest(goal);
   goalRequest(out);           //go for first mgl
   unityStraight(10,true);
   goalRequest(out, true);

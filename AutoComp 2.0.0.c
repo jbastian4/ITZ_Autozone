@@ -1,10 +1,8 @@
-#pragma config(Sensor, in1,    barPot,         sensorPotentiometer)
 #pragma config(Sensor, in2,    liftPot,        sensorPotentiometer)
-#pragma config(Sensor, in3,    otherGyro,      sensorGyro)
+#pragma config(Sensor, in3,    gyro,           sensorGyro)
 #pragma config(Sensor, in4,    GoalPot,        sensorPotentiometer)
 #pragma config(Sensor, in5,    lPot,           sensorPotentiometer)
 #pragma config(Sensor, in6,    rPot,           sensorPotentiometer)
-#pragma config(Sensor, in7,    gyro,           sensorGyro)
 #pragma config(Sensor, dgtl1,  lEnc,           sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  rEnc,           sensorQuadEncoder)
 #pragma config(Motor,  port1,           rfDriveMot,    tmotorVex393_HBridge, openLoop, reversed)
@@ -49,7 +47,6 @@
 void pre_auton()
 {
   bStopTasksBetweenModes = true;
-  barRequestedValue = SensorValue(barPot);
   liftRequestedValue = SensorValue(liftPot);
   goalRequestedValue = SensorValue(GoalPot);
 
@@ -70,30 +67,28 @@ void pre_auton()
 
 task autonomous()
 {
+  //#region initialization
 	startTask(unityDrive);
-	startTask(barController);
   startTask(liftController);
   startTask(goalController);
-  manual = false;
   SensorValue[lEnc] = 0;
   SensorValue[rEnc] = 0;
 
   //fix the freaking gyro
   SensorType[gyro] = sensorNone;
-  SensorType[otherGyro] = sensorNone;
   wait1Msec(300);
   SensorType[gyro] = sensorGyro;
-  SensorType[otherGyro] = sensorGyro;
   wait1Msec(300);
   SensorScale[gyro] = 150; //Tunes the gyro value, tuned to 180 degrees (150)
-  SensorScale[otherGyro] = 150;
+  //#endregion
 
+  //#region left routines
 	if (SensorValue[lPot]<1300)
 	{
-		if(SensorValue[rPot]<300)//Score a mobile goal w/ preload starting on the left
+		if(SensorValue[rPot]<300)//Mobile goal in 20 and preload
 		{
 			//pot 1-pot 1
-			bLGoalScore();
+			lGoalScore();
 		}
 		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800)//nothing
 		{
@@ -103,37 +98,42 @@ task autonomous()
 		{
 			//pot 1-pot 3
 		}
-	if(SensorValue[rPot]>3700)//nothing
+	if(SensorValue[rPot]>3700)//Mobile goal in 10 and preload
 		{
 			//pot 1-pot 4
-			bLPairWithE();
+			lPairWithE();
 		}
 	}
+  //#endregion
+
+  //#region right routines
 	if (SensorValue[lPot]>2500)
 	{
-		if(SensorValue[rPot]<300) //Skills (or lack thereof)
+		if(SensorValue[rPot]<300) //Mobile goal in 20 and preload
 		{
 			//pot 3-pot1
-			rLGoalScore();
-			//skills();
+			rGoalScore();
 		}
-		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //nothing
+		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //Skills (or lack thereof)
 		{
 				//pot 3-pot2
+        skills();
 		}
 		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
 		{
 			//pot 3-pot3
 	}
-	if(SensorValue[rPot]>3700) //nothing
+	if(SensorValue[rPot]>3700) //Mobile goal in 10 and preload
 		{
 			//pot 3-pot4
-			rLPairWithE();
+			rPairWithE();
 		}
-	}//*/
+	}
+  //#endregion
 }
 //#endregion
 
+//#region user control
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
@@ -146,25 +146,39 @@ task autonomous()
 
 task usercontrol()
 {
-  startTask(barController);
   startTask(liftController);
   startTask(liftBtnTracker);
   startTask(barBtnTracker);
-  barRequest(back);
   startTask(userDrive);
-  manual = false;
-  liftRequestedValue=1100;
   while(true)
   {
-  	//#region manual control
-    if(vexRT[Btn8L] == 1 &&  vexRT[Btn8D] == 1 && enableBarPID == false) //turn manual on or off
-      enableBarPID = true;
-    else if(vexRT[Btn8L] == 1 && vexRT[Btn8D] == 1 && enableBarPID == true)
-      enableBarPID = false;
-    while(vexRT[Btn8L] == 1){}  //this will eventually get changed back to manual
-
-    if(skillsFlip==1) //manual lift control
+  	//#region skill flip
+    if(skillsFlip)
     {
+      //<editor-fold lift
+      startTask(liftController);
+      liftRequest(para);
+      //</editor-fold>
+
+      //<editor-fold goal
+      if(vexRT[Btn6U] == 1)
+        setGoalMotors(127);
+  		else if(vexRT[Btn6D] == 1)
+        setGoalMotors(-127);
+      else
+      	setGoalMotors(0);
+      //</editor-fold>
+
+      //<editor-fold bar
+      setBarMotors(barStillUp);
+      //</editor-fold>
+		}
+		//#endregion
+
+		//#region no skill flip
+    else if(!skillsFlip)
+    {
+      //<editor-fold lift
       stopTask(liftController);
       if(vexRT[Btn5U] == 1)
 			  setLiftMotors(127);
@@ -172,65 +186,46 @@ task usercontrol()
 			  setLiftMotors(-127);
       else
         setLiftMotors(liftStillSpeed * lastLiftBtnPressed);
+      //</editor-fold>
 
-		}
-    else
-    {
-      startTask(liftController);
-    }
-		//#endregion
+      //<editor-fold goal
+      if(vexRT[Btn7U] == 1)
+        setGoalMotors(127);
+    	else if(vexRT[Btn7D] == 1)
+        setGoalMotors(-127);
+      else if(vexRT[Btn7R] == 1)
+      	setGoalMotors(-20);
+      else
+      	setGoalMotors(0);
+      //</editor-fold>
 
-		//#region misc control
-    if (skillsFlip==1)
-    {
-
-    }
-
-      {
-    if(vexRT[Btn7U] == 1) //Mobile goal control
-      setGoalMotors(127);
-		else if(vexRT[Btn7D] == 1)
-      setGoalMotors(-127);
-    else if(vexRT[Btn7R] == 1)
-    	setGoalMotors(-20);
-    else
-    	setGoalMotors(0);
-      }
-      if (skillsFlip==0)
-      {
-    if(vexRT[Btn6U] == 1) //Mobile goal control
-      setGoalMotors(127);
-		else if(vexRT[Btn6D] == 1)
-      setGoalMotors(-127);
-    else
-    	setGoalMotors(0);
-      }
-
-      if(vexRT[Btn6U] == 1) //4 bar control
+      //<editor-fold bar
+      if(vexRT[Btn6U] == 1)
       setBarMotors(127);
 			else if(vexRT[Btn6D] == 1)
       setBarMotors(-127);
     	else
-      setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown)
+      setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
+      //</editor-fold>
+    }
+    //#endregion
 
-      if(vexRT[Btn7L]==0)
+    //#region flip toggle
+      if(vexRT[Btn7L]==0) //If the button is pressed...
       {
         waitVar=1;
       }
-      if (vexRT[Btn7L]==1 && skillsFlip==1 && waitVar==1)
+      if (vexRT[Btn7L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
 	    {
-		      skillsFlip=0;
-          waitVar=0;
+		     skillsFlip = false;
+        waitVar=0;
 	    }
-	    else if (vexRT[Btn7L]==1 && skillsFlip==0 && waitVar==1)
+	    else if (vexRT[Btn7L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
 	    {
-	       skillsFlip=1;
+	       skillsFlip = true;
          waitVar=0;
 	    }
-
-	    /*if(vexRT[Btn7R] == 1)
-	    	autoGoal();*/
-
     //#endregion
     }
 }
+//#endregion
