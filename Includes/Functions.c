@@ -67,9 +67,9 @@ task liftBtnTracker()
 {
 	while(true)
 	{
-			if(vexRT[Btn5U] == 1)
+			if(vexRT[Btn5U] == 1||vexRT[Btn5UXmtr2] == 1)
 				lastLiftBtnPressed = 1;
-			if(vexRT[Btn5D] == 1)
+			if(vexRT[Btn5D] == 1 ||vexRT[Btn5DXmtr2] == 1 )
 				lastLiftBtnPressed = -1;
 		wait1Msec(25);
 	}
@@ -79,9 +79,9 @@ task barBtnTracker()
 {
 	while(true)
 	{
-			if(vexRT[Btn6U] == 1)
+			if(vexRT[Btn6U] == 1||vexRT[Btn6UXmtr2] == 1)
 				lastBarBtnPressed = 1;
-			if(vexRT[Btn6D] == 1)
+			if(vexRT[Btn6D] == 1||vexRT[Btn6DXmtr2] == 1)
 				lastBarBtnPressed = -1;
 		EndTimeSlice();
 	}

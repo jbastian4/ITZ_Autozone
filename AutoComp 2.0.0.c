@@ -176,7 +176,7 @@ task usercontrol()
 		//#endregion
 
 		//#region no skill flip
-    else if(!skillsFlip)
+    else
     {
       //<editor-fold lift
       stopTask(liftController);
@@ -184,6 +184,10 @@ task usercontrol()
 			  setLiftMotors(127);
       else if(vexRT[Btn5D] == 1)
 			  setLiftMotors(-127);
+      else if(vexRT[Btn5UXmtr2] == 1)
+          setLiftMotors(127);
+      else if(vexRT[Btn5DXmtr2] == 1)
+          setLiftMotors(-127);
       else
         setLiftMotors(liftStillSpeed * lastLiftBtnPressed);
       //</editor-fold>
@@ -203,6 +207,10 @@ task usercontrol()
       if(vexRT[Btn6U] == 1)
       setBarMotors(127);
 			else if(vexRT[Btn6D] == 1)
+      setBarMotors(-127);
+      else if(vexRT[Btn6UXmtr2] == 1)
+      setBarMotors(127);
+      else if(vexRT[Btn6DXmtr2] == 1)
       setBarMotors(-127);
     	else
       setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
