@@ -55,23 +55,40 @@ void rPairWithE()
 //#region left
 void lGoalScore()
 {
+  setBarMotors(20);
   liftRequest(para);
   goalRequest(out);
   unityStraight(57,true);
   goalRequest(in,true);
   //barRequest(drop);
+  /*wait1Msec(2000);
+  stopTask(liftController);
+  setLiftMotors(-127);
+  wait1Msec(500);
+  setLiftMotors(-20);
+  wait1Msec(2000);
+  setBarMotors(-127)
+  wait1Msec(500);
+  setBarMotors(0);
+  wait1Msec(500);
+  //startTask(liftController);
+  liftRequest(para);*/
   liftRequest(low);
-  wait1Msec(500);
-  wait1Msec(500);
-  liftRequest(para);
-  unityStraight(-58);
+  wait1Msec(1000);
+  stopTask(liftController);
+  setLiftMotors(-30);
+  barRequest(down);
+  wait1Msec(1000);
+  setLiftMotors(0);
+  /*wait1Msec(500000);
+  unityStraight(-50);
   wait1Msec(3000);
-  unityTurn(1700,1); //correcting for gyro inaccuracies, should be 1800
+  unityTurn(2300,1); //correcting for gyro inaccuracies, should be 1800
   wait1Msec(2000);
   unityStraight(23,true);
   goalRequest(out,true);
   wait1Msec(50);
-  unityStraight(-20, true);
+  unityStraight(-20, true);*/
 }
 void lPairWithE()
 {
