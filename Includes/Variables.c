@@ -13,8 +13,10 @@ int barVal[] = {127, -127};
 #define liftStillSpeed 15
 
 #define barStillUp 20
-#define barStillDown 10
+#define barStillDown -15
 #define autoBarTime 750
+
+#define intakeStill 15
 
 //#region drive ramp values
 int lPower = 0;

@@ -63,6 +63,7 @@ task liftController()
 		// send to motor
 
 		motor[ lLiftMot ] = liftDrive;
+		motor[ mLiftMot ] = liftDrive;
 		motor[ rLiftMot ] = liftDrive;
 		lastliftError = liftError;
 
@@ -101,8 +102,7 @@ task goalController()
 
 		// send to motor
 
-		motor[ rGoalMot ] = goalDrive;
-		motor[ lGoalMot ] = goalDrive;
+		motor[ goalMot ] = goalDrive;
 		lastgoalError = goalError;
 
 		// Don't hog cpu

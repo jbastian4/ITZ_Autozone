@@ -21,6 +21,7 @@ void setRMotors(int power)
 void setLiftMotors(int power)
 {
 	motor[rLiftMot] = power;
+	motor[mLiftMot] = power;
 	motor[lLiftMot] = power;
 }
 
@@ -36,8 +37,7 @@ void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifie
 //#region bar functions
 void setBarMotors(int power)
 {
-	motor[lBarMot] = power;
-	motor[rBarMot] = power;
+	motor[barMot] = power;
 }
 void barRequest(barSpeed speed)
 {
@@ -47,11 +47,19 @@ void barRequest(barSpeed speed)
 }
 //#endregion
 
+//#region intake functions
+
+void setIntakeMotors(int power)
+{
+	motor[intakeMot] = power;
+}
+
+//#endregion
+
 //#region goal functions
 void setGoalMotors(int power)
 {
-	motor[lGoalMot] = power;
-	motor[rGoalMot] = power;
+	motor[goalMot] = power;
 }
 
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0)
@@ -79,9 +87,9 @@ task barBtnTracker()
 {
 	while(true)
 	{
-			if(vexRT[Btn6U] == 1||vexRT[Btn6UXmtr2] == 1)
+			if(vexRT[Btn8D] == 1||vexRT[Btn6UXmtr2] == 1)
 				lastBarBtnPressed = 1;
-			if(vexRT[Btn6D] == 1||vexRT[Btn6DXmtr2] == 1)
+			if(vexRT[Btn8R] == 1||vexRT[Btn6DXmtr2] == 1)
 				lastBarBtnPressed = -1;
 		EndTimeSlice();
 	}
