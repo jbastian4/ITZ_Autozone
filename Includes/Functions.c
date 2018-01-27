@@ -95,12 +95,32 @@ task barBtnTracker()
 	}
 }
 
+int AAmainL;
+int AApartL;
+int AAmainR;
+int AApartR;
+
 task userDrive()
 {
 	while(true)
 	{
-		lPowerReq = vexRT[Ch3];
-		rPowerReq = vexRT[Ch2];
+		AAmainL = vexRT[Ch3];
+		AApartL = vexRT[Ch3Xmtr2];
+		AAmainR = vexRT[Ch2];
+		AApartR = vexRT[Ch2Xmtr2];
+
+		if(vexRT[Ch3] <= 5 && vexRT[Ch3] >= -5)
+			lPowerReq = vexRT[Ch3Xmtr2];
+		else
+			lPowerReq = vexRT[Ch3];
+
+		if(vexRT[Ch2] <= 5 && vexRT[Ch2] >= -5)
+			rPowerReq = vexRT[Ch2Xmtr2];
+		else
+			rPowerReq = vexRT[Ch2];
+
+		//lPowerReq = vexRT[Ch3];
+		//rPowerReq = vexRT[Ch2];
 
 		if(lPower >= 30)
 		{

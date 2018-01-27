@@ -16,7 +16,7 @@ int barVal[] = {127, -127};
 #define barStillDown -15
 #define autoBarTime 750
 
-#define intakeStill 15
+#define intakeStill 20
 
 //#region drive ramp values
 int lPower = 0;

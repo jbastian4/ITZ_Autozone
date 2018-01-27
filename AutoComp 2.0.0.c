@@ -199,6 +199,16 @@ task usercontrol()
         setGoalMotors(-127);
       else if(vexRT[Btn7R] == 1)
       	setGoalMotors(-20);
+     	else if(vexRT[Btn7L] == 1)
+     		setGoalMotors(35);
+      else if(vexRT[Btn7UXmtr2] == 1)
+        setGoalMotors(127);
+      else if(vexRT[Btn7DXmtr2] == 1)
+        setGoalMotors(-127);
+      else if(vexRT[Btn7RXmtr2] == 1)
+      	setGoalMotors(-20);
+      else if(vexRT[Btn7LXmtr2] == 1)
+      	setGoalMotors(35);
       else
       	setGoalMotors(0);
       //</editor-fold>
@@ -236,12 +246,12 @@ task usercontrol()
       {
         waitVar=1;
       }
-      if (vexRT[Btn7L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
+      if (vexRT[Btn8L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
 	    {
 		     skillsFlip = false;
         waitVar=0;
 	    }
-	    else if (vexRT[Btn7L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
+	    else if (vexRT[Btn8L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
 	    {
 	       skillsFlip = true;
          waitVar=0;

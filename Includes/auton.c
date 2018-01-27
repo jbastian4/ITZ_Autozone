@@ -8,7 +8,27 @@
 //#region right
 void rGoalScore()
 {
+  setIntakeMotors(intakeStill);
+  setBarMotors(20);
   liftRequest(para);
+  setGoalMotors(-127);
+  unityStraight(57);
+  wait1Msec(1500);
+  setGoalMotors(-35);
+  wait1Msec(1000);
+  setGoalMotors(100);
+  wait1Msec(1500);
+  setGoalMotors(35);
+  wait1Msec(500);
+  setGoalMotors(0);
+  liftRequest(low);
+  wait1Msec(500);
+  setIntakeMotors(-127);
+  wait1Msec(1500);
+  setIntakeMotors(0);
+
+
+  /*liftRequest(para);
   goalRequest(out);
   unityStraight(57,true);
   goalRequest(in,true);
@@ -24,7 +44,7 @@ void rGoalScore()
   unityStraight(23,true);
   goalRequest(out,true);
   wait1Msec(50);
-  unityStraight(-20, true);
+  unityStraight(-20, true);*/
 }
 void rPairWithE()
 {
@@ -58,8 +78,22 @@ void lGoalScore()
   setBarMotors(20);
   liftRequest(para);
   goalRequest(out);
+  wait1Msec(750);
+  stopTask(goalController);
+  setGoalMotors(0);
   unityStraight(57,true);
-  goalRequest(in,true);
+  //goalRequest(in/*,true*/);
+  //stopTask(goalController);
+  setGoalMotors(-127);
+  //goalRequestedValue = -250;
+  wait1Msec(1500);
+  //liftRequest(low);
+  liftRequestedValue = 750;
+  wait1Msec(500);
+  setIntakeMotors(-127);
+  liftRequestedValue = 1120;
+  wait1Msec(1500);
+  setIntakeMotors(0);
   //barRequest(drop);
   /*wait1Msec(2000);
   stopTask(liftController);
@@ -73,7 +107,7 @@ void lGoalScore()
   wait1Msec(500);
   //startTask(liftController);
   liftRequest(para);*/
-  liftRequest(low);
+  /*liftRequest(low);
   wait1Msec(1000);
   stopTask(liftController);
   setLiftMotors(-30);
