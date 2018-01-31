@@ -19,6 +19,9 @@ int stopError = 10; //allowed variation distance for drivestraight stop (inches)
 
 int driveStraightError = 50;
 
+int gyroCoeff = 1;
+int gyroDriveCoeff = -1;
+
 //Encoder PID Values
 static float  lEnc_Kp = 0.45;
 static float  lEnc_Kd = 0.03;
@@ -369,7 +372,7 @@ task gyroController()
     if(gyroPID == true)
     {
 		// Read the sensor value and scale
-		gyroCurrentValue = abs(SensorValue[gyroPort]);
+		gyroCurrentValue = gyroCoeff * abs(SensorValue[gyroPort]);
 
 		// calculate error
 		gyroError =  gyroRequestedValue - gyroCurrentValue;
@@ -390,8 +393,8 @@ task gyroController()
 
 		// send to motor
 
-		leftDriveRamp(direction * gyroDrive);
-		rightDriveRamp(-direction * gyroDrive);
+		leftDriveRamp(direction * gyroDrive * gyroDriveCoeff);
+		rightDriveRamp(-direction * gyroDrive * gyroDriveCoeff);
 
 		lastGyroError = gyroError;
 

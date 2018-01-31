@@ -17,6 +17,8 @@ float  liftDrive;
 
 static int waitLiftError = 20;
 
+//////////////////////////////////////////////////////
+
 static float  goal_Kp = 0.3;
 static float  goalRequestedValue;
 static float  goal_Kd = 0.1;
@@ -31,6 +33,23 @@ float  goalError;
 float  goalDrive;
 
 static int waitgoalError = 20;
+
+//////////////////////////////////////////////////////
+
+static float  bar_Kp = 0.3;
+static float  barRequestedValue;
+static float  bar_Kd = 1.5;
+
+float barD;
+float barP;
+float lastbarError;
+float barDF;
+
+float  barSensorCurrentValue;
+float  barError;
+float  barDrive;
+
+static int waitbarError = 20;
 //#endregion
 
 
@@ -102,13 +121,51 @@ task goalController()
 
 		// send to motor
 
-		motor[ goalMot ] = goalDrive;
+		motor[ goalMot ] = -goalDrive;
 		lastgoalError = goalError;
 
 		// Don't hog cpu
 		wait1Msec( 25 );
 	}
 }
+//#endregion
+
+//#region bar
+task barController()
+{
+
+	while( true )
+	{
+		// Read the sensor value and scale
+		barSensorCurrentValue = SensorValue[ barPot ];
+
+		// calculate error
+		barError =  barRequestedValue - barSensorCurrentValue;
+
+		// calculate drive
+		barP = (bar_Kp * barError);
+
+		barD = barError - lastbarError;
+		barDF = (bar_Kd * barD);
+
+		barDrive = barP + barDF;
+
+		// limit drive
+		if( barDrive > 127 )
+			barDrive = 127;
+		if( barDrive < (-127) )
+			barDrive = (-127);
+
+		// send to motor
+
+		motor[ barMot ] = -barDrive;
+		lastbarError = barError;
+
+		// Don't hog cpu
+		wait1Msec( 25 );
+	}
+}
+
 //#endregion
 
 #endif

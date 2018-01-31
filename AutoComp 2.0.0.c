@@ -3,6 +3,7 @@
 #pragma config(Sensor, in4,    GoalPot,        sensorPotentiometer)
 #pragma config(Sensor, in5,    lPot,           sensorPotentiometer)
 #pragma config(Sensor, in6,    rPot,           sensorPotentiometer)
+#pragma config(Sensor, in7,    barPot,         sensorPotentiometer)
 #pragma config(Sensor, dgtl1,  lEnc,           sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  rEnc,           sensorQuadEncoder)
 #pragma config(Motor,  port1,           rfDriveMot,    tmotorVex393_HBridge, openLoop, reversed)
@@ -71,15 +72,16 @@ task autonomous()
 	startTask(unityDrive);
   startTask(liftController);
   startTask(goalController);
+  startTask(barController);
   SensorValue[lEnc] = 0;
   SensorValue[rEnc] = 0;
 
   //fix the freaking gyro
   SensorType[gyro] = sensorNone;
-  wait1Msec(300);
+  wait1Msec(500);
   SensorType[gyro] = sensorGyro;
-  wait1Msec(300);
-  SensorScale[gyro] = 150; //Tunes the gyro value, tuned to 180 degrees (150)
+  wait1Msec(500);
+  SensorScale[gyro] = 215; //Tunes the gyro value, can be tuned to 90 degrees (215) OR 180 degrees (160)
   //#endregion
 
   //#region left routines
@@ -89,6 +91,7 @@ task autonomous()
 		{
 			//pot 1-pot 1
 			lGoalScore();
+
 		}
 		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800)//nothing
 		{

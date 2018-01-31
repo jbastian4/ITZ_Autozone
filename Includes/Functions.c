@@ -39,11 +39,17 @@ void setBarMotors(int power)
 {
 	motor[barMot] = power;
 }
-void barRequest(barSpeed speed)
+/*void barRequest(barSpeed speed)
 {
   setBarMotors(barVal[speed]);
 	wait1Msec(autoBarTime);
 	setBarMotors(0);
+}*/
+void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier = 0)
+{
+	barRequestedValue = barVal[bar] + modifier;
+	while( barSensorCurrentValue >= barRequestedValue + waitbarError
+		|| barSensorCurrentValue <= barRequestedValue - waitbarError && nowWaitJustASecondThere){}
 }
 //#endregion
 

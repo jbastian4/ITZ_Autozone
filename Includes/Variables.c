@@ -2,13 +2,13 @@
 #define Variables
 
 enum liftPos {low, goal, para, high};
-int liftVal[] = {750, 1020, 1120, 1760};
+int liftVal[] = {750, 1020, 1120, 1840};
 
 enum goalPos {out, in};
-int goalVal[] = {2760, 45};
+int goalVal[] = {400, 2800};
 
-enum barSpeed {drop, down};
-int barVal[] = {127, -127};
+enum barPos {drop, down};
+int barVal[] = {600, 2330};
 
 #define liftStillSpeed 15
 
