@@ -8,7 +8,7 @@ enum goalPos {out, in};
 int goalVal[] = {400, 2800};
 
 enum barPos {drop, down};
-int barVal[] = {700, 2000};
+int barVal[] = {350, 2000};
 
 #define liftStillSpeed 15
 
