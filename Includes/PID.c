@@ -19,7 +19,7 @@ static int waitLiftError = 20;
 
 //////////////////////////////////////////////////////
 
-static float  goal_Kp = 0.3;
+static float  goal_Kp = 0.25;
 static float  goalRequestedValue;
 static float  goal_Kd = 0.1;
 
@@ -36,9 +36,9 @@ static int waitgoalError = 20;
 
 //////////////////////////////////////////////////////
 
-static float  bar_Kp = 0.3;
+static float  bar_Kp = 0.5;
 static float  barRequestedValue;
-static float  bar_Kd = 1.5;
+static float  bar_Kd =.2;
 
 float barD;
 float barP;

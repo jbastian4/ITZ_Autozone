@@ -47,7 +47,9 @@ void setBarMotors(int power)
 }*/
 void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
+
 	barRequestedValue = barVal[bar] + modifier;
+while(nowWaitJustASecondThere)
 	while( barSensorCurrentValue >= barRequestedValue + waitbarError
 		|| barSensorCurrentValue <= barRequestedValue - waitbarError && nowWaitJustASecondThere){}
 }

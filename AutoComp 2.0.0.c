@@ -153,6 +153,8 @@ task usercontrol()
   startTask(liftBtnTracker);
   startTask(barBtnTracker);
   startTask(userDrive);
+  startTask(barController);
+  barRequest(drop);
   while(true)
   {
   	//#region skill flip
@@ -195,6 +197,37 @@ task usercontrol()
         setLiftMotors(liftStillSpeed * lastLiftBtnPressed);
       //</editor-fold>
 
+
+
+      //<editor-fold intake
+      if(vexRT[Btn6U] == 1)
+      setIntakeMotors(127);
+			else if(vexRT[Btn6D] == 1)
+      setIntakeMotors(-127);
+      else if(vexRT[Btn8RXmtr2] == 1)
+      setIntakeMotors(127);
+      else if(vexRT[Btn8DXmtr2] == 1)
+      setIntakeMotors(-127);
+    	else
+      setIntakeMotors(intakeStill);
+      //</editor-fold>
+
+      //<editor-fold bar
+      	if(vexRT[Btn8D] == 1)
+   	    //setBarMotors(127);
+     		barRequest(drop,false);
+				else if(vexRT[Btn8R] == 1)
+   	    //setBarMotors(-127);
+				barRequest(down);
+   	    else if(vexRT[Btn6UXmtr2] == 1)
+   	    {}
+  	    //setBarMotors(127);
+  	    else if(vexRT[Btn6DXmtr2] == 1)
+  	    {}
+  	    //setBarMotors(-127);
+     	 //	else
+     	 	//setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
+      //</editor-fold>
       //<editor-fold goal
       if(vexRT[Btn7U] == 1)
         setGoalMotors(127);
@@ -216,36 +249,15 @@ task usercontrol()
       	setGoalMotors(0);
       //</editor-fold>
 
-      //<editor-fold bar
-      	if(vexRT[Btn8D] == 1)
-   	    setBarMotors(127);
-				else if(vexRT[Btn8R] == 1)
-   	    setBarMotors(-127);
-   	    else if(vexRT[Btn6UXmtr2] == 1)
-  	    setBarMotors(127);
-  	    else if(vexRT[Btn6DXmtr2] == 1)
-  	    setBarMotors(-127);
-     	 	else
-     	 	setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
-      //</editor-fold>
 
-      //<editor-fold intake
-      if(vexRT[Btn6U] == 1)
-      setIntakeMotors(127);
-			else if(vexRT[Btn6D] == 1)
-      setIntakeMotors(-127);
-      else if(vexRT[Btn8RXmtr2] == 1)
-      setIntakeMotors(127);
-      else if(vexRT[Btn8DXmtr2] == 1)
-      setIntakeMotors(-127);
-    	else
-      setIntakeMotors(intakeStill);
-      //</editor-fold>
-    }
+
+
+
+  }
     //#endregion
 
     //#region flip toggle
-      if(vexRT[Btn7L]==0) //If the button is pressed...
+      if(vexRT[Btn8L]==0) //If the button is pressed...
       {
         waitVar=1;
       }
