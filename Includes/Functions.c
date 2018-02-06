@@ -73,8 +73,9 @@ void setGoalMotors(int power)
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
 	goalRequestedValue = goalVal[goal] + modifier;
+	if (nowWaitJustASecondThere)
 	while( goalSensorCurrentValue >= goalRequestedValue + waitgoalError
-		|| goalSensorCurrentValue <= goalRequestedValue - waitgoalError && nowWaitJustASecondThere){}
+		|| goalSensorCurrentValue <= goalRequestedValue - waitgoalError ){}
 }
 //#endregion
 

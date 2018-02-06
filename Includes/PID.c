@@ -2,7 +2,7 @@
 #define PID
 
 //#region vars
-static float  lift_Kp = 0.3;
+static float  lift_Kp = 0.5;
 static float  liftRequestedValue;
 static float  lift_Kd = 1.5;
 
@@ -15,7 +15,7 @@ float  liftSensorCurrentValue;
 float  liftError;
 float  liftDrive;
 
-static int waitLiftError = 20;
+static int waitLiftError = 50;
 
 //////////////////////////////////////////////////////
 
@@ -32,7 +32,7 @@ float  goalSensorCurrentValue;
 float  goalError;
 float  goalDrive;
 
-static int waitgoalError = 20;
+static int waitgoalError = 100;
 
 //////////////////////////////////////////////////////
 

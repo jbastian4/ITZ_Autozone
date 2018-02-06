@@ -157,22 +157,32 @@ void testAuton()
 //#region skills
 void skills()
 {
+  setIntakeMotors(15);
   liftRequest(goal);
   goalRequest(out);           //go for first mgl
-  unityStraight(10,true);
-  goalRequest(out, true);
-  unityStraight(30,true);
-  goalRequest(in,true);
-  unityStraight(-32,true);
-  unityTurn(1300,-1);
-  wait1Msec(1800);
-  unityStraight(16,true);
-  unityTurn(1400,-1);
-  wait1Msec(1800);
-  unityStraight(20,true);
+  unityStraight(25,true);
   goalRequest(out,true);
-  unityStraight(-18,true);
-  goalRequest(in);
+  unityStraight(8,true);
+  barRequestedValue=drop;
+  goalRequest(in,true);
+  unityStraight(-30);
+  liftRequest(low,true);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  liftRequest(goal);
+  setIntakeMotors(0);
+  wait1Msec(1000);
+  unityTurn(980,1);
+  wait1Msec(1600);
+  unityStraight(15,true);
+  unityTurn(980,1);
+  wait1Msec(1600);
+  unityStraight(16,true);
+  unityStraight(8);
+  goalRequest(out);
+  wait1Msec(750);
+  unityStraight(-20,true);
+/*goalRequest(in);
   unityTurn(1300,-1);
   wait1Msec(1800);
   unityStraight(15,true);
@@ -201,7 +211,7 @@ void skills()
   unityTurn(1400,-1);
   wait1Msec(1800);
   unityStraight(-15);
-  wait1Msec(1500);
+  wait1Msec(1500);*/
 }
 //#endregion
 #endif
