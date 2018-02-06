@@ -159,59 +159,87 @@ void skills()
 {
   setIntakeMotors(15);
   liftRequest(goal);
-  goalRequest(out);           //go for first mgl
-  unityStraight(25,true);
+/*  goalRequest(out);           //go for first mgl
+  unityStraight(15,true);
   goalRequest(out,true);
-  unityStraight(8,true);
+  unityStraight(20,true);
   barRequestedValue=drop;
   goalRequest(in,true);
-  unityStraight(-30);
+  unityStraight(-31);
   liftRequest(low,true);
   setIntakeMotors(-127);
   wait1Msec(200);
   liftRequest(goal);
   setIntakeMotors(0);
   wait1Msec(1000);
-  unityTurn(980,1);
+  unityTurn(970,1);
   wait1Msec(1600);
   unityStraight(15,true);
-  unityTurn(980,1);
+  unityTurn(970,1);
   wait1Msec(1600);
-  unityStraight(16,true);
-  unityStraight(8);
-  goalRequest(out);
-  wait1Msec(750);
-  unityStraight(-20,true);
-/*goalRequest(in);
-  unityTurn(1300,-1);
-  wait1Msec(1800);
-  unityStraight(15,true);
-  unityTurn(1400,-1);
-  wait1Msec(1800);
-  unityStraight(-15);
-  wait1Msec(500);
-  driveEncoderPID = false;
-  wait1Msec(1000);
-  goalRequest(out);    //Go for second mgl
-  unityStraight(60,true);
-  goalRequest(in,true);
-  unityStraight(30);
-  unityTurn(1300,-1);
-  wait1Msec(1800);
-  unityStraight(16,true);
-  unityTurn(1500,1);
-  wait1Msec(1800);
   unityStraight(20,true);
-  goalRequest(out,true);
-  unityStraight(-18,true);
+  unityStraight(10);
+  goalRequest(out);
+  wait1Msec(1000);
+                            // score first 10 pt goal
+  unityStraight(-22);
+  wait1Msec(350);
   goalRequest(in);
-  unityTurn(1300,-1);
-  wait1Msec(1800);
+  wait1Msec(1500);
+  unityTurn(890,1);
+  wait1Msec(1600);
   unityStraight(15,true);
-  unityTurn(1400,-1);
-  wait1Msec(1800);
-  unityStraight(-15);
-  wait1Msec(1500);*/
+  unityTurn(890,1);
+  wait1Msec(1600);
+  unityStraight(-20); //recon to bar
+  wait1Msec(1200);*/
+  goalRequest(out);
+  unityStraight(68,true);
+  goalRequest(in)
+  unityStraight(38,true);
+  wait1Msec(1250);
+  unityTurn(970,1);
+  wait1Msec(1600);
+  unityStraight(20,true);
+  unityTurn(1000,-1);
+  wait1Msec(1600);
+  unityStraight(15,true);
+  unityStraight(5);
+  goalRequest(out);
+  wait1Msec(1000);
+                                    // score second 20pt goal
+  unityStraight(-22);
+  wait1Msec(350);
+  goalRequest(in);
+  wait1Msec(1500);
+  unityTurn(890,1);
+  wait1Msec(1600);
+  unityStraight(20,true);
+  unityTurn(890,1);
+  wait1Msec(1600);
+  unityStraight(-20); //recon to bar
+  wait1Msec(1000);
+  goalRequest(out);
+  unityStraight(15,true);
+  goalRequest(out,true);
+  unityStraight(20,true);
+  goalRequest(in,true);
+  unityStraight(-31,true);
+  unityTurn(1940,1);
+  wait1Msec(2000);
+  unityStraight(5,true);
+  goalRequest(out);
+  unityStraight(-10,true);
+  unityTurn(1940,1);
+  unityStraight(-12);
+  wait1Msec(750);
+  unityStraight(68,true);
+  goalRequest(in);
+  unityStraight(42,true);
+  goalRequest(out,true);
+  unityStraight(-10);
+
+
 }
 //#endregion
 #endif

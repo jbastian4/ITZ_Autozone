@@ -220,10 +220,10 @@ task usercontrol()
    	    //setBarMotors(-127);
 				barRequest(down);
    	    else if(vexRT[Btn6UXmtr2] == 1)
-   	    {}
+   	    {     		barRequest(drop,false);}
   	    //setBarMotors(127);
   	    else if(vexRT[Btn6DXmtr2] == 1)
-  	    {}
+  	    {				barRequest(down);}
   	    //setBarMotors(-127);
      	 //	else
      	 	//setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
