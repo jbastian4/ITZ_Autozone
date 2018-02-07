@@ -15,7 +15,7 @@ float  liftSensorCurrentValue;
 float  liftError;
 float  liftDrive;
 
-static int waitLiftError = 50;
+static int waitLiftError = 80; //was 50
 
 //////////////////////////////////////////////////////
 

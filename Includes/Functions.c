@@ -15,6 +15,20 @@ void setRMotors(int power)
 	motor[rfDriveMot] = power;
 	motor[rbDriveMot] = power;
 }
+void setDriveMotors(int power)
+{
+	setLMotors(power);
+	setRMotors(power);
+}
+void wellIReckon(int power, int time)
+{
+	enableEverything = false;
+	gyroPID = false;
+	setDriveMotors(power);
+	wait1Msec(time);
+	setDriveMotors(0);
+	enableEverything = true;
+}
 //#endregion
 
 //#region lift functions

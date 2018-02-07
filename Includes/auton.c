@@ -159,43 +159,41 @@ void skills()
 {
   setIntakeMotors(15);
   liftRequest(goal);
-/*  goalRequest(out);           //go for first mgl
+  goalRequest(out);           //go for first mgl
   unityStraight(15,true);
   goalRequest(out,true);
   unityStraight(20,true);
   barRequestedValue=drop;
   goalRequest(in,true);
-  unityStraight(-31);
+  unityStraight(-33);
   liftRequest(low,true);
   setIntakeMotors(-127);
   wait1Msec(200);
   liftRequest(goal);
   setIntakeMotors(0);
   wait1Msec(1000);
-  unityTurn(970,1);
+  unityTurn(1000,1);
   wait1Msec(1600);
-  unityStraight(15,true);
-  unityTurn(970,1);
+  unityStraight(14,true);
+  unityTurn(1050,1);
   wait1Msec(1600);
-  unityStraight(20,true);
-  unityStraight(10);
+  unityStraight(12,true);
   goalRequest(out);
-  wait1Msec(1000);
-                            // score first 10 pt goal
-  unityStraight(-22);
+  wellIReckon(100,1250);
+                            // score first 20 pt goal
+  unityStraight(-20);
   wait1Msec(350);
   goalRequest(in);
   wait1Msec(1500);
-  unityTurn(890,1);
+  unityTurn(920,1);
   wait1Msec(1600);
-  unityStraight(15,true);
-  unityTurn(890,1);
+  unityStraight(19,true);
+  unityTurn(940,1);
   wait1Msec(1600);
-  unityStraight(-20); //recon to bar
-  wait1Msec(1200);*/
+  wellIReckon(-50,1500); //reckon to bar
   goalRequest(out);
   unityStraight(68,true);
-  goalRequest(in)
+  goalRequest(in);
   unityStraight(38,true);
   wait1Msec(1250);
   unityTurn(970,1);
@@ -203,10 +201,10 @@ void skills()
   unityStraight(20,true);
   unityTurn(1000,-1);
   wait1Msec(1600);
-  unityStraight(15,true);
-  unityStraight(5);
+  wait1Msec(1600);
+  unityStraight(12,true);
   goalRequest(out);
-  wait1Msec(1000);
+  wellIReckon(100,1250);
                                     // score second 20pt goal
   unityStraight(-22);
   wait1Msec(350);
@@ -214,11 +212,10 @@ void skills()
   wait1Msec(1500);
   unityTurn(890,1);
   wait1Msec(1600);
-  unityStraight(20,true);
+  unityStraight(25,true);
   unityTurn(890,1);
   wait1Msec(1600);
-  unityStraight(-20); //recon to bar
-  wait1Msec(1000);
+  wellIReckon(-50,2000); //reckon to bar
   goalRequest(out);
   unityStraight(15,true);
   goalRequest(out,true);
@@ -231,13 +228,13 @@ void skills()
   goalRequest(out);
   unityStraight(-10,true);
   unityTurn(1940,1);
-  unityStraight(-12);
+  /*unityStraight(-12);
   wait1Msec(750);
   unityStraight(68,true);
   goalRequest(in);
   unityStraight(42,true);
   goalRequest(out,true);
-  unityStraight(-10);
+  unityStraight(-10);*/
 
 
 }

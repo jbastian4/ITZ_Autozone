@@ -81,7 +81,7 @@ task autonomous()
   wait1Msec(500);
   SensorType[gyro] = sensorGyro;
   wait1Msec(500);
-  SensorScale[gyro] = 215; //Tunes the gyro value, can be tuned to 90 degrees (215) OR 180 degrees (160)
+  SensorScale[gyro] = 205; //Tunes the gyro value, can be tuned to 90 degrees (215) OR 180 degrees (160)
   //#endregion
 
   //#region left routines

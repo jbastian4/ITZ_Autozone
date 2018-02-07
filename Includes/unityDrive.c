@@ -15,7 +15,8 @@ float wheelDiameter = 4;
 
 int dontHog = 25; //don't hog cpu wait time
 
-int stopError = 10; //allowed variation distance for drivestraight stop (inches)
+int stopError = 20; //allowed variation distance for drivestraight stop (inches)
+int stopTime = 350;
 
 int driveStraightError = 50;
 
@@ -35,8 +36,8 @@ static float  gyro_Kd = 0.2;
 
 //Drive ramp values
 int rampInterval = 1;
-int normalRampSpeed = 7;
-int highRampSpeed = 30;
+int normalRampSpeed = 9; //was 7
+int highRampSpeed = 35; //was 30
 int nullPower = 10;
 //#endregion
 
@@ -52,6 +53,7 @@ bool newDriveCommand = false; //signals to the task when a new drive command has
 bool driveEncoderPID = true; //enables/disables encoder pid
 bool gyroPID = false; //enables/disables gyro pid
 bool waitForCompletion = false; //enables the voids to wait for drive completion
+bool enableEverything = true;
 
 bool isDriving = false; //records if the drivestraight is actually running;
 
@@ -115,7 +117,7 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
   {
     int ticks = abs(countsToInches(distance));
   	while(abs(SensorValue[lEnc]) <= ticks - stopError){}
-    wait1Msec(200);
+    wait1Msec(stopTime);
   }
 }
 void unityTurn(int degrees, int direction)
@@ -193,7 +195,8 @@ if(abs(leftPowerReq) < nullPower)
 	leftPower = 0;
 }
 
-setLDriveMotors(leftPower);
+if(enableEverything)
+  setLDriveMotors(leftPower);
 
 wait1Msec(rampInterval);
 }
@@ -250,7 +253,8 @@ void rightDriveRamp(int rightPowerReq) //ramping
   	rightPower = 0;
   }
 
-  setRDriveMotors(rightPower);
+  if(enableEverything)
+    setRDriveMotors(rightPower);
 
   wait1Msec(rampInterval);
 }
