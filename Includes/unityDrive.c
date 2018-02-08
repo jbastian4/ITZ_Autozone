@@ -31,8 +31,8 @@ static float  rEnc_Kp = 0.45;
 static float  rEnc_Kd = 0.03;
 
 //Gyro PID Values
-static float  gyro_Kp = 0.08;
-static float  gyro_Kd = 0.2;
+static float  gyro_Kp = 0.35; //.08
+static float  gyro_Kd = 1.8; //.2
 
 //Drive ramp values
 int rampInterval = 1;
@@ -98,6 +98,7 @@ float gyroDF;
 float  gyroCurrentValue;
 float  gyroError;
 float  gyroDrive;
+float  waitGyroError = 50;
 //#endregion
 //</editor-fold>
 
@@ -120,7 +121,7 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
     wait1Msec(stopTime);
   }
 }
-void unityTurn(int degrees, int direction)
+void unityTurn(int degrees, int direction,bool waity=false)
 {
   funcDriveMode = 1; //turn
   funcDriveModifier = degrees; //sets number of degrees to turn
@@ -128,6 +129,7 @@ void unityTurn(int degrees, int direction)
 
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = false; //sets PID tasks to not run drivestraight
+
 }
 //#endregion
 //#region set motor functions

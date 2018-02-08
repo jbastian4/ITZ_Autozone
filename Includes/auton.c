@@ -27,7 +27,6 @@ void rGoalScore()
   wait1Msec(1500);
   setIntakeMotors(0);
 
-
   /*liftRequest(para);
   goalRequest(out);
   unityStraight(57,true);
@@ -46,6 +45,7 @@ void rGoalScore()
   wait1Msec(50);
   unityStraight(-20, true);*/
 }
+
 void rPairWithE()
 {
   liftRequest(para);
@@ -71,7 +71,34 @@ void rPairWithE()
   wait1Msec(2000);
   unityStraight(70,true);
 }
+
+void r5PointZone()
+{
+  setIntakeMotors(15);
+  liftRequest(goal);
+  goalRequest(out);           //go for first mgl
+  unityStraight(40,true);
+  goalRequest(out,true);
+  unityStraight(15,true);
+  barRequestedValue=drop;
+  goalRequest(in,true);
+  unityStraight(-42);
+  liftRequest(low,true);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  liftRequest(goal);
+  setIntakeMotors(0);
+  wait1Msec(1000);
+  unityTurn(1300,-1);
+  wait1Msec(1600);
+  goalRequest(out,true);
+  unityStraight(-48,true);
+  unityTurn(1200,-1);
+  wait1Msec(1500);
+  unityStraight(15,true);
+}
 //#endregion
+
 //#region left
 void lGoalScore()
 {
@@ -124,7 +151,8 @@ void lGoalScore()
   wait1Msec(50);
   unityStraight(-20, true);*/
 }
-void lconescore()
+
+void lConeScore()
 {
   setIntakeMotors(15);
   liftRequest(goal);
@@ -160,15 +188,9 @@ void lconescore()
   barRequest(drop,true);
   liftRequest(goal,true);
   setIntakeMotors(-127);
+}
 
-}
-void testAuton()
-{
-  while(1==1)
-  {}
-}
-//#endregion
-void left5ptzone()
+void l5PointZone()
 {
   setIntakeMotors(15);
   liftRequest(goal);
@@ -193,32 +215,15 @@ void left5ptzone()
   wait1Msec(1500);
   unityStraight(15,true);
 }
-void right5ptzone()
-{
-  setIntakeMotors(15);
-  liftRequest(goal);
-  goalRequest(out);           //go for first mgl
-  unityStraight(40,true);
-  goalRequest(out,true);
-  unityStraight(15,true);
-  barRequestedValue=drop;
-  goalRequest(in,true);
-  unityStraight(-42);
-  liftRequest(low,true);
-  setIntakeMotors(-127);
-  wait1Msec(200);
-  liftRequest(goal);
-  setIntakeMotors(0);
-  wait1Msec(1000);
-  unityTurn(1300,-1);
-  wait1Msec(1600);
-  goalRequest(out,true);
-  unityStraight(-48,true);
-  unityTurn(1200,-1);
-  wait1Msec(1500);
-  unityStraight(15,true);
 
+void testAuton()
+{
+ unityTurn(900,-1);
+
+ unityStraight(10,true);
 }
+//#endregion
+
 //#region skills
 void skills()
 {
@@ -228,7 +233,7 @@ void skills()
   unityStraight(15,true);
   goalRequest(out,true);
   unityStraight(20,true);
-  barRequestedValue=drop;
+  barRequest(drop);
   goalRequest(in,true);
   unityStraight(-33);
   liftRequest(low,true);
@@ -237,10 +242,10 @@ void skills()
   liftRequest(goal);
   setIntakeMotors(0);
   wait1Msec(1000);
-  unityTurn(1000,1);
+  unityTurn(900,1);
   wait1Msec(1600);
   unityStraight(14,true);
-  unityTurn(1050,1);
+  unityTurn(900,1);
   wait1Msec(1600);
   unityStraight(12,true);
   goalRequest(out);
@@ -250,10 +255,10 @@ void skills()
   wait1Msec(350);
   goalRequest(in);
   wait1Msec(1500);
-  unityTurn(920,1);
+  unityTurn(900,1);
   wait1Msec(1600);
   unityStraight(19,true);
-  unityTurn(940,1);
+  unityTurn(900,1);
   wait1Msec(1600);
   wellIReckon(-50,1500); //reckon to bar
   goalRequest(out);
@@ -261,10 +266,10 @@ void skills()
   goalRequest(in);
   unityStraight(38,true);
   wait1Msec(1250);
-  unityTurn(970,1);
+  unityTurn(900,1);
   wait1Msec(1600);
   unityStraight(20,true);
-  unityTurn(1000,-1);
+  unityTurn(900,-1);
   wait1Msec(1600);
   wait1Msec(1600);
   unityStraight(12,true);
@@ -275,13 +280,13 @@ void skills()
   wait1Msec(350);
   goalRequest(in);
   wait1Msec(1500);
-  unityTurn(890,1);
+  unityTurn(900,1);
   wait1Msec(1600);
   unityStraight(25,true);
-  unityTurn(890,1);
+  unityTurn(900,1);
   wait1Msec(1600);
   wellIReckon(-50,2000); //reckon to bar
-  goalRequest(out);
+  /*goalRequest(out);
   unityStraight(15,true);
   goalRequest(out,true);
   unityStraight(20,true);
@@ -293,7 +298,7 @@ void skills()
   goalRequest(out);
   unityStraight(-10,true);
   unityTurn(1940,1);
-  /*unityStraight(-12);
+  unityStraight(-12);
   wait1Msec(750);
   unityStraight(68,true);
   goalRequest(in);

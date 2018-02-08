@@ -80,8 +80,9 @@ task autonomous()
   SensorType[gyro] = sensorNone;
   wait1Msec(500);
   SensorType[gyro] = sensorGyro;
-  wait1Msec(500);
-  SensorScale[gyro] = 205; //Tunes the gyro value, can be tuned to 90 degrees (215) OR 180 degrees (160)
+  wait1Msec(250);
+  SensorScale[gyro] = 147; //Tunes the gyro value, can be tuned to 90 degrees (147) OR 180 degrees (160)
+  wait1Msec(250);
   //#endregion
 
   //#region left routines
@@ -96,17 +97,17 @@ task autonomous()
 		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800)//nothing
 		{
 			//pot 1-pot2
-		left5ptzone();
+		    l5PointZone();
 		}
 		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
 		{
 			//pot 1-pot 3
-		testAuton();
+		    testAuton();
 		}
 	if(SensorValue[rPot]>3700)//Mobile goal in 10 and preload
 		{
 			//pot 1-pot 4
-			lconescore();
+			lConeScore();
 		}
 	}
   //#endregion
@@ -117,17 +118,17 @@ task autonomous()
 		if(SensorValue[rPot]<300) //Mobile goal in 20 and preload
 		{
 			//pot 3-pot1
-			rGoalScore();
+			   rGoalScore();
 		}
 		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //Skills (or lack thereof)
 		{
-				//pot 3-pot2
-        right5ptzone();
+			//pot 3-pot2
+        r5PointZone();
 		}
 		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
 		{
 			//pot 3-pot3
-		skills();
+		    skills();
 	}
 	if(SensorValue[rPot]>3700) //Mobile goal in 10 and preload
 		{
