@@ -96,15 +96,17 @@ task autonomous()
 		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800)//nothing
 		{
 			//pot 1-pot2
+		left5ptzone();
 		}
 		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
 		{
 			//pot 1-pot 3
+		testAuton();
 		}
 	if(SensorValue[rPot]>3700)//Mobile goal in 10 and preload
 		{
 			//pot 1-pot 4
-			lPairWithE();
+			lconescore();
 		}
 	}
   //#endregion
@@ -120,11 +122,12 @@ task autonomous()
 		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //Skills (or lack thereof)
 		{
 				//pot 3-pot2
-        skills();
+        right5ptzone();
 		}
 		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
 		{
 			//pot 3-pot3
+		skills();
 	}
 	if(SensorValue[rPot]>3700) //Mobile goal in 10 and preload
 		{

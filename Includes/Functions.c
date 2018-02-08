@@ -63,9 +63,9 @@ void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier =
 {
 
 	barRequestedValue = barVal[bar] + modifier;
-while(nowWaitJustASecondThere)
+if(nowWaitJustASecondThere)
 	while( barSensorCurrentValue >= barRequestedValue + waitbarError
-		|| barSensorCurrentValue <= barRequestedValue - waitbarError && nowWaitJustASecondThere){}
+		|| barSensorCurrentValue <= barRequestedValue - waitbarError ){}
 }
 //#endregion
 

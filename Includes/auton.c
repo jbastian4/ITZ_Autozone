@@ -124,36 +124,101 @@ void lGoalScore()
   wait1Msec(50);
   unityStraight(-20, true);*/
 }
-void lPairWithE()
+void lconescore()
 {
-  liftRequest(para);
-  goalRequest(out);
-  wait1Msec(1000);
-  unityStraight(55,true);
-  goalRequest(in,true);
-  //barRequest(drop);
-  liftRequest(low);
-  wait1Msec(1000);
-  wait1Msec(500);
-  liftRequest(para);
-  unityStraight(-42,true);
-  wait1Msec(2000);
-  unityTurn(1200,1); //correcting for gyro inaccuracies, should be 1800
-  wait1Msec(2000);
-  unityStraight(10);
+  setIntakeMotors(15);
+  liftRequest(goal);
+  goalRequest(out);           //go for first mgl
+  unityStraight(35,true);
   goalRequest(out,true);
-  wait1Msec(50);
-  unityStraight(-10, true);
-  goalRequest(in);
-  unityTurn(2450, -1);
-  wait1Msec(2000);
-  unityStraight(70,true);
+  unityStraight(15,true);
+  barRequestedValue=drop;
+  goalRequest(in,true);
+  unityStraight(8);
+  liftRequest(low,true);
+  setIntakeMotors(-127);
+  wait1Msec(500);
+  liftRequest(goal,true);
+  barRequest(down,true);
+  setIntakeMotors(127);
+  liftRequest(low,false,50);
+  wait1Msec(750);
+  setIntakeMotors(15);
+  liftRequest(goal);
+  barRequest(drop,true);
+  liftRequest(goal,true,-60)
+  setIntakeMotors(-127);
+  wait1Msec(300);
+  unityStraight(4);
+  liftRequest(para,true);
+  barRequest(down,true);
+  setIntakeMotors(127);
+  liftRequest(low,true);
+  wait1Msec(500);
+  setIntakeMotors(15);
+  liftRequest(para,true);
+  barRequest(drop,true);
+  liftRequest(goal,true);
+  setIntakeMotors(-127);
+
 }
 void testAuton()
 {
-  unityStraight(8,true);
+  while(1==1)
+  {}
 }
 //#endregion
+void left5ptzone()
+{
+  setIntakeMotors(15);
+  liftRequest(goal);
+  goalRequest(out);           //go for first mgl
+  unityStraight(35,true);
+  goalRequest(out,true);
+  unityStraight(15,true);
+  barRequestedValue=drop;
+  goalRequest(in,true);
+  unityStraight(-37);
+  liftRequest(low,true);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  liftRequest(goal);
+  setIntakeMotors(0);
+  wait1Msec(1000);
+  unityTurn(1300,1);
+  wait1Msec(1600);
+  goalRequest(out,true);
+  unityStraight(-48,true);
+  unityTurn(950,1);
+  wait1Msec(1500);
+  unityStraight(15,true);
+}
+void right5ptzone()
+{
+  setIntakeMotors(15);
+  liftRequest(goal);
+  goalRequest(out);           //go for first mgl
+  unityStraight(40,true);
+  goalRequest(out,true);
+  unityStraight(15,true);
+  barRequestedValue=drop;
+  goalRequest(in,true);
+  unityStraight(-42);
+  liftRequest(low,true);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  liftRequest(goal);
+  setIntakeMotors(0);
+  wait1Msec(1000);
+  unityTurn(1300,-1);
+  wait1Msec(1600);
+  goalRequest(out,true);
+  unityStraight(-48,true);
+  unityTurn(1200,-1);
+  wait1Msec(1500);
+  unityStraight(15,true);
+
+}
 //#region skills
 void skills()
 {
