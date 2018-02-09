@@ -246,7 +246,7 @@ void skills()
   setIntakeMotors(15);
   liftRequest(goal);
   goalRequest(out);           //go for first mgl
-  unityStraight(10,true);
+  unityStraight(12,true);
   goalRequest(out,true);
   unityStraight(26,true);
   barRequest(drop);
@@ -259,13 +259,13 @@ void skills()
   setIntakeMotors(0);
   wait1Msec(1000);
   unityTurn(900,1);
-  wait1Msec(1000);
-  unityStraight(14,true);
+  wait1Msec(750);
+  unityStraight(16,true);
   unityTurn(900,1);
   wait1Msec(1000);
-  unityStraight(12,true);
+  unityStraight(16,true);
   goalRequest(out);
-  wellIReckon(100,1250);
+  wellIReckon(100,750);
                             // score first 20 pt goal
   unityStraight(-20);
   wait1Msec(350);
@@ -273,11 +273,12 @@ void skills()
   wait1Msec(1500);
   unityTurn(900,1);
   wait1Msec(1600);
-  unityStraight(16,true);
+  unityStraight(13,true);
   unityTurn(880,1);
   wait1Msec(1600);
-  wellIReckon(-40,1300); //reckon to bar
+  wellIReckon(-42,1100); //reckon to bar
   goalRequest(out);
+  wellIReckon(20,100);
   unityStraight(68,true);
   goalRequest(in);
   unityStraight(38,true);
@@ -300,8 +301,9 @@ void skills()
   unityStraight(15,true);
   unityTurn(900,1);
   wait1Msec(1600);
-  wellIReckon(-50,2000); //reckon to bar
+  wellIReckon(-40,2000); //reckon to bar
   goalRequest(out);
+  wellIReckon(15,100); ///////////////FURTHEST TUNE
   unityStraight(15,true);
   goalRequest(out,true);
   unityStraight(20,true);
