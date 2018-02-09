@@ -93,7 +93,7 @@ void r5PointZone()
   wait1Msec(1600);
   goalRequest(out,true);
   unityStraight(-48,true);
-  unityTurn(1200,-1);
+  unityTurn(1090,-1);
   wait1Msec(1500);
   unityStraight(15,true);
 }
@@ -162,32 +162,48 @@ void lConeScore()
   unityStraight(15,true);
   barRequestedValue=drop;
   goalRequest(in,true);
-  unityStraight(8);
+  unityStraight(7);
   liftRequest(low,true);
-  setIntakeMotors(-127);
+  setIntakeMotors(-127);  //drop fisrt cone
   wait1Msec(500);
   liftRequest(goal,true);
   barRequest(down,true);
   setIntakeMotors(127);
   liftRequest(low,false,50);
   wait1Msec(750);
-  setIntakeMotors(15);
+  setIntakeMotors(30);
   liftRequest(goal);
   barRequest(drop,true);
-  liftRequest(goal,true,-60)
+  liftRequest(low,true,80) // drop second cone
   setIntakeMotors(-127);
   wait1Msec(300);
-  unityStraight(4);
+  unityStraight(8);
   liftRequest(para,true);
   barRequest(down,true);
   setIntakeMotors(127);
   liftRequest(low,true);
   wait1Msec(500);
-  setIntakeMotors(15);
+  setIntakeMotors(30);
   liftRequest(para,true);
   barRequest(drop,true);
-  liftRequest(goal,true);
+  liftRequest(low,true,100);
   setIntakeMotors(-127);
+  wait1Msec(500);
+  liftRequest(para);
+  unityStraight(4);
+  liftRequest(para,true);
+  barRequest(down,true);
+  setIntakeMotors(127);
+  liftRequest(low,true,150);
+  wait1Msec(500);
+  unityStraight(-3,true);
+  setIntakeMotors(30);
+  liftRequest(para,true);
+  barRequest(drop,true);
+  liftRequest(low,true,100);
+  setIntakeMotors(-127);
+  wait1Msec(500);
+  liftRequest(para);
 }
 
 void l5PointZone()
@@ -230,9 +246,9 @@ void skills()
   setIntakeMotors(15);
   liftRequest(goal);
   goalRequest(out);           //go for first mgl
-  unityStraight(15,true);
+  unityStraight(10,true);
   goalRequest(out,true);
-  unityStraight(20,true);
+  unityStraight(26,true);
   barRequest(drop);
   goalRequest(in,true);
   unityStraight(-33);
@@ -243,10 +259,10 @@ void skills()
   setIntakeMotors(0);
   wait1Msec(1000);
   unityTurn(900,1);
-  wait1Msec(1600);
+  wait1Msec(1000);
   unityStraight(14,true);
   unityTurn(900,1);
-  wait1Msec(1600);
+  wait1Msec(1000);
   unityStraight(12,true);
   goalRequest(out);
   wellIReckon(100,1250);
@@ -257,21 +273,20 @@ void skills()
   wait1Msec(1500);
   unityTurn(900,1);
   wait1Msec(1600);
-  unityStraight(19,true);
-  unityTurn(900,1);
+  unityStraight(16,true);
+  unityTurn(880,1);
   wait1Msec(1600);
-  wellIReckon(-50,1500); //reckon to bar
+  wellIReckon(-40,1300); //reckon to bar
   goalRequest(out);
   unityStraight(68,true);
   goalRequest(in);
   unityStraight(38,true);
   wait1Msec(1250);
   unityTurn(900,1);
-  wait1Msec(1600);
-  unityStraight(20,true);
+  wait1Msec(1000);
+  unityStraight(17,true);
   unityTurn(900,-1);
-  wait1Msec(1600);
-  wait1Msec(1600);
+  wait1Msec(1000);
   unityStraight(12,true);
   goalRequest(out);
   wellIReckon(100,1250);
@@ -282,11 +297,11 @@ void skills()
   wait1Msec(1500);
   unityTurn(900,1);
   wait1Msec(1600);
-  unityStraight(25,true);
+  unityStraight(15,true);
   unityTurn(900,1);
   wait1Msec(1600);
   wellIReckon(-50,2000); //reckon to bar
-  /*goalRequest(out);
+  goalRequest(out);
   unityStraight(15,true);
   goalRequest(out,true);
   unityStraight(20,true);
@@ -304,7 +319,7 @@ void skills()
   goalRequest(in);
   unityStraight(42,true);
   goalRequest(out,true);
-  unityStraight(-10);*/
+  unityStraight(-10);
 
 
 }
