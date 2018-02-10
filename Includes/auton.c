@@ -234,8 +234,8 @@ void l5PointZone()
 
 void testAuton()
 {
-  goalRequestedValue=1000;
-  liftRequestedValue=1200
+  goalRequest(middle);
+  liftRequestedValue=1200:
   while(true)
   {}
 }

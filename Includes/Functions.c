@@ -71,6 +71,7 @@ if(nowWaitJustASecondThere)
 
 	}
 }
+
 //#endregion
 
 //#region intake functions
@@ -88,7 +89,7 @@ void setGoalMotors(int power)
 	motor[goalMot] = power;
 }
 
-void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0)
+void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, bool goalPID=true)
 {
 	goalRequestedValue = goalVal[goal] + modifier;
 	if (nowWaitJustASecondThere)
