@@ -21,7 +21,7 @@ static int waitLiftError = 80; //was 50
 
 static float  goal_Kp = 0.25;
 static float  goalRequestedValue;
-static float  goal_Kd = 0.1;
+static float  goal_Kd = 0.2;
 
 float goalD;
 float goalP;

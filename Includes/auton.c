@@ -234,9 +234,10 @@ void l5PointZone()
 
 void testAuton()
 {
- unityTurn(900,-1);
-
- unityStraight(10,true);
+  goalRequestedValue=1000;
+  liftRequestedValue=1200
+  while(true)
+  {}
 }
 //#endregion
 
@@ -266,15 +267,16 @@ void skills()
   unityStraight(16,true);
   goalRequest(out);
   wellIReckon(100,750);
+  goalRequest(out,true,160)
                             // score first 20 pt goal
-  unityStraight(-20);
+  unityStraight(-17);
   wait1Msec(350);
   goalRequest(in);
   wait1Msec(1500);
   unityTurn(900,1);
   wait1Msec(1600);
-  unityStraight(13,true);
-  unityTurn(880,1);
+  unityStraight(16,true);
+  unityTurn(860,1);
   wait1Msec(1600);
   wellIReckon(-42,1100); //reckon to bar
   goalRequest(out);
@@ -298,28 +300,30 @@ void skills()
   wait1Msec(1500);
   unityTurn(900,1);
   wait1Msec(1600);
-  unityStraight(15,true);
+  unityStraight(14,true);
   unityTurn(900,1);
   wait1Msec(1600);
   wellIReckon(-40,2000); //reckon to bar
   goalRequest(out);
-  wellIReckon(15,100); ///////////////FURTHEST TUNE
+  wellIReckon(15,100);
   unityStraight(15,true);
   goalRequest(out,true);
   unityStraight(20,true);
   goalRequest(in,true);
   unityStraight(-31,true);
-  unityTurn(1940,1);
+  unityTurn(1780,1);
   wait1Msec(2000);
-  unityStraight(5,true);
-  goalRequest(out);
+  wellIReckon(40,750)
+  goalRequest(out,true);
   unityStraight(-10,true);
-  unityTurn(1940,1);
-  unityStraight(-12);
-  wait1Msec(750);
-  unityStraight(68,true);
-  goalRequest(in);
-  unityStraight(42,true);
+  goalRequest(out,true);
+  goalRequest(middle,true);
+  unityTurn(1800,-1);
+  wait1Msec(1300);
+  goalRequest(out,true);
+  unityStraight(60,true);
+  goalRequest(middle,true);
+  unityStraight(70,true);
   goalRequest(out,true);
   unityStraight(-10);
 
