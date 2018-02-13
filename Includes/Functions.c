@@ -87,6 +87,7 @@ void setIntakeMotors(int power)
 void setGoalMotors(int power)
 {
 	motor[goalMot] = power;
+	//motor[mLiftMot] = power;
 }
 
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, bool goalPID=true)
