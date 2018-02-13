@@ -174,6 +174,10 @@ task usercontrol()
         setGoalMotors(127);
   		else if(vexRT[Btn6D] == 1)
         setGoalMotors(-127);
+      else if(vexRT[Btn5D] == 1)
+      	setGoalMotors(-20);
+     	else if(vexRT[Btn5U] == 1)
+     		setGoalMotors(35);
       else
       	setGoalMotors(0);
       //</editor-fold>
@@ -261,20 +265,31 @@ task usercontrol()
     //#endregion
 
     //#region flip toggle
-      if(vexRT[Btn8L]==0) //If the button is pressed...
-      {
-        waitVar=1;
-      }
-      if (vexRT[Btn8L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
-	    {
-		     skillsFlip = false;
-        waitVar=0;
-	    }
-	    else if (vexRT[Btn8L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
-	    {
-	       skillsFlip = true;
-         waitVar=0;
-	    }
+    if(vexRT[Btn8L]==0&&vexRT[Btn7LXmtr2]==0) //If the button is pressed...
+    {
+      waitVar=1;
+    }
+    if (vexRT[Btn8L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
+    {
+       skillsFlip = false;
+      waitVar=0;
+    }
+    else if (vexRT[Btn8L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
+    {
+       skillsFlip = true;
+       waitVar=0;
+    }
+
+    if (vexRT[Btn7LXmtr2] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
+    {
+       skillsFlip = false;
+      waitVar=0;
+    }
+    else if (vexRT[Btn7LXmtr2]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
+    {
+       skillsFlip = true;
+       waitVar=0;
+    }
     //#endregion
     }
 }

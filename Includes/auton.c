@@ -174,7 +174,7 @@ void lConeScore()
   setIntakeMotors(30);
   liftRequest(goal);
   barRequest(drop,true);
-  liftRequest(low,true,80) // drop second cone
+  liftRequest(low,true,80); // drop second cone
   setIntakeMotors(-127);
   wait1Msec(300);
   unityStraight(8);
