@@ -89,7 +89,7 @@ void setGoalMotors(int power)
 	motor[goalMot] = power;
 }
 
-void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, bool goalPID=true)
+void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
 	goalRequestedValue = goalVal[goal] + modifier;
 	if (nowWaitJustASecondThere)
