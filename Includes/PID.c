@@ -22,7 +22,7 @@ static int longWaitLiftError = 150;
 
 static float  goal_Kp = 0.25;
 static float  goalRequestedValue;
-static float  goal_Kd = 0.1;
+static float  goal_Kd = 0.2;
 
 float goalD;
 float goalP;
@@ -32,9 +32,10 @@ float goalDF;
 float  goalSensorCurrentValue;
 float  goalError;
 float  goalDrive;
-
 static int shortWaitGoalError = 70;
 static int longWaitGoalError = 150;
+
+bool goalPID;
 
 //////////////////////////////////////////////////////
 
@@ -102,33 +103,55 @@ task goalController()
 
 	while( true )
 	{
-		// Read the sensor value and scale
-		goalSensorCurrentValue = SensorValue[ GoalPot ];
 
-		// calculate error
-		goalError =  goalRequestedValue - goalSensorCurrentValue;
+			// Read the sensor value and scale
+			goalSensorCurrentValue = SensorValue[ GoalPot ];
 
-		// calculate drive
-		goalP = (goal_Kp * goalError);
+			// calculate error
+			goalError =  goalRequestedValue - goalSensorCurrentValue;
 
-		goalD = goalError - lastgoalError;
-		goalDF = (goal_Kd * goalD);
+			// calculate drive
+			goalP = (goal_Kp * goalError);
 
-		goalDrive = goalP + goalDF;
+			goalD = goalError - lastgoalError;
+			goalDF = (goal_Kd * goalD);
 
-		// limit drive
-		if( goalDrive > 127 )
-			goalDrive = 127;
-		if( goalDrive < (-127) )
-			goalDrive = (-127);
+			goalDrive = goalP + goalDF;
 
-		// send to motor
+			// limit drive
+			if( goalDrive > 127 )
+				goalDrive = 127;
+			if( goalDrive < (-127) )
+				goalDrive = (-127);
 
-		motor[ goalMot ] = -goalDrive;
-		lastgoalError = goalError;
+			// send to motor
 
-		// Don't hog cpu
-		wait1Msec( 25 );
+			motor[ goalMot ] = -goalDrive;
+			lastgoalError = goalError;
+
+			// Don't hog cpu
+			wait1Msec( 25 );
+
+		/*if(goalPID==false)
+		{
+			goalSensorCurrentValue = SensorValue[ GoalPot ];
+
+			// calculate error
+			goalError =  goalRequestedValue - goalSensorCurrentValue;
+			if(goalSensorCurrentValue <= goalRequestedValue + waitgoalError
+				&& goalSensorCurrentValue <= goalRequestedValue - waitgoalError)
+				{
+					motor[ goalMot ] =0;
+				}
+			else if (goalSensorCurrentValue > goalRequestedValue)
+			 {
+				 motor[ goalMot ] =127;
+			 }
+			 else if (goalSensorCurrentValue < goalRequestedValue)
+ 			 {
+ 				 motor[ goalMot ] =-127;
+ 			 }
+		}*/
 	}
 }
 //#endregion

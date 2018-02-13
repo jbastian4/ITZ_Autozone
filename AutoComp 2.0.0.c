@@ -222,19 +222,19 @@ task usercontrol()
 
       //<editor-fold bar
       	if(vexRT[Btn8D] == 1)
-   	    //setBarMotors(127);
-     		barRequest(drop,false);
+   	    setBarMotors(127);
+     		//barRequest(drop,false);
 				else if(vexRT[Btn8R] == 1)
-   	    //setBarMotors(-127);
-				barRequest(down);
+   	    setBarMotors(-127);
+				//barRequest(down);
    	    else if(vexRT[Btn6UXmtr2] == 1)
-   	    {     		barRequest(drop,false);}
-  	    //setBarMotors(127);
+   	    setBarMotors(127);
+   	    //barRequest(drop,false);
   	    else if(vexRT[Btn6DXmtr2] == 1)
-  	    {				barRequest(down);}
-  	    //setBarMotors(-127);
-     	 //	else
-     	 	//setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
+  	    	setBarMotors(-127);
+  	    	//barRequest(down);
+     	 	else
+     	 		setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
       //</editor-fold>
       //<editor-fold goal
       if(vexRT[Btn7U] == 1)

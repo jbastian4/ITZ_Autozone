@@ -84,6 +84,7 @@ void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier =
 		|| barSensorCurrentValue <= barRequestedValue - longWaitBarError)
 		&& timer >= 0 && time(timers[bar] >= timer))){}
 }
+
 //#endregion
 
 //#region intake functions
