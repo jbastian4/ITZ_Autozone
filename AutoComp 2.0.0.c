@@ -222,19 +222,19 @@ task usercontrol()
 
       //<editor-fold bar
       	if(vexRT[Btn8D] == 1)
-   	    //setBarMotors(127);
-     		barRequest(drop,false);
+   	    setBarMotors(127);
+     		//barRequest(drop,false);
 				else if(vexRT[Btn8R] == 1)
-   	    //setBarMotors(-127);
-				barRequest(down);
+   	    setBarMotors(-127);
+				//barRequest(down);
    	    else if(vexRT[Btn6UXmtr2] == 1)
-   	    {     		barRequest(drop,false);}
-  	    //setBarMotors(127);
+   	    setBarMotors(127);
+   	    //barRequest(drop,false);
   	    else if(vexRT[Btn6DXmtr2] == 1)
-  	    {				barRequest(down);}
-  	    //setBarMotors(-127);
-     	 //	else
-     	 	//setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
+  	    	setBarMotors(-127);
+  	    	//barRequest(down);
+     	 	else
+     	 		setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);
       //</editor-fold>
       //<editor-fold goal
       if(vexRT[Btn7U] == 1)
@@ -265,31 +265,31 @@ task usercontrol()
     //#endregion
 
     //#region flip toggle
-      if(vexRT[Btn8L]==0&&vexRT[Btn7LXmtr2]==0) //If the button is pressed...
-      {
-        waitVar=1;
-      }
-      if (vexRT[Btn8L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
-	    {
-		     skillsFlip = false;
-        waitVar=0;
-	    }
-	    else if (vexRT[Btn8L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
-	    {
-	       skillsFlip = true;
-         waitVar=0;
-	    }
+    if(vexRT[Btn8L]==0&&vexRT[Btn7LXmtr2]==0) //If the button is pressed...
+    {
+      waitVar=1;
+    }
+    if (vexRT[Btn8L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
+    {
+       skillsFlip = false;
+      waitVar=0;
+    }
+    else if (vexRT[Btn8L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
+    {
+       skillsFlip = true;
+       waitVar=0;
+    }
 
-      if (vexRT[Btn7LXmtr2] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
-	    {
-		     skillsFlip = false;
-        waitVar=0;
-	    }
-	    else if (vexRT[Btn7LXmtr2]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
-	    {
-	       skillsFlip = true;
-         waitVar=0;
-	    }
+    if (vexRT[Btn7LXmtr2] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
+    {
+       skillsFlip = false;
+      waitVar=0;
+    }
+    else if (vexRT[Btn7LXmtr2]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
+    {
+       skillsFlip = true;
+       waitVar=0;
+    }
     //#endregion
     }
 }

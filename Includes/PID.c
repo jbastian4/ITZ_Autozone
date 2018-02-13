@@ -15,7 +15,8 @@ float  liftSensorCurrentValue;
 float  liftError;
 float  liftDrive;
 
-static int waitLiftError = 80; //was 50
+static int shortWaitLiftError = 70;
+static int longWaitLiftError = 150;
 
 //////////////////////////////////////////////////////
 
@@ -31,8 +32,9 @@ float goalDF;
 float  goalSensorCurrentValue;
 float  goalError;
 float  goalDrive;
+static int shortWaitGoalError = 70;
+static int longWaitGoalError = 150;
 
-static int waitgoalError = 100;
 bool goalPID;
 
 //////////////////////////////////////////////////////
@@ -50,7 +52,8 @@ float  barSensorCurrentValue;
 float  barError;
 float  barDrive;
 
-static int waitbarError = 20;
+static int shortWaitBarError = 70;
+static int longWaitBarError = 150;
 //#endregion
 
 

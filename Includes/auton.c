@@ -83,7 +83,7 @@ void r5PointZone()
   barRequestedValue=drop;
   goalRequest(in,true);
   unityStraight(-42);
-  liftRequest(low,true);
+  //liftRequest(low,true);
   setIntakeMotors(-127);
   wait1Msec(200);
   liftRequest(goal);
@@ -174,7 +174,7 @@ void lConeScore()
   setIntakeMotors(30);
   liftRequest(goal);
   barRequest(drop,true);
-  liftRequest(low,true,80) // drop second cone
+  liftRequest(low,true,80); // drop second cone
   setIntakeMotors(-127);
   wait1Msec(300);
   unityStraight(8);
@@ -217,7 +217,7 @@ void l5PointZone()
   barRequestedValue=drop;
   goalRequest(in,true);
   unityStraight(-37);
-  liftRequest(low,true);
+  //liftRequest(low,true);
   setIntakeMotors(-127);
   wait1Msec(200);
   liftRequest(goal);
@@ -234,10 +234,12 @@ void l5PointZone()
 
 void testAuton()
 {
-  goalRequest(middle);
-  liftRequestedValue=1200:
-  while(true)
-  {}
+  liftRequest(para);
+  while(true){
+  goalRequest(out,true);
+  wait1Msec(500);
+  goalRequest(in, true);
+  wait1Msec(500);}
 }
 //#endregion
 
@@ -271,7 +273,7 @@ void skills()
                             // score first 20 pt goal
   unityStraight(-17);
   wait1Msec(350);
-  goalRequest(in);
+  goalRequest(middle);
   wait1Msec(1500);
   unityTurn(900,1);
   wait1Msec(1600);
@@ -323,9 +325,9 @@ void skills()
   goalRequest(out,true);
   unityStraight(60,true);
   goalRequest(middle,true);
-  unityStraight(70,true);
+  unityStraight(68,true);
   goalRequest(out,true);
-  unityStraight(-10);
+  unityStraight(-20);
 
 
 }
