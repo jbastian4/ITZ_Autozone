@@ -19,7 +19,7 @@ long timers[] = {0, 0, 0};
 #define barStillDown -15
 #define autoBarTime 750
 
-#define intakeStill 20
+#define intakeStill 25
 
 //#region drive ramp values
 int lPower = 0;
