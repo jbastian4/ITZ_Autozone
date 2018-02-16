@@ -10,7 +10,7 @@ int goalVal[] = {450, 1605, 2660};
 enum barPos {drop, down};
 int barVal[] = {2100, 3995};
 
-enum timeType {mgl, lift, bar};
+enum timeType {mgl, lift, BART};
 long timers[] = {0, 0, 0};
 
 #define liftStillSpeed 15

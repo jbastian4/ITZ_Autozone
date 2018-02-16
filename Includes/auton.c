@@ -234,18 +234,34 @@ void l5PointZone()
 
 void testAuton()
 {
-  liftRequest(para);
-  while(true){
-  goalRequest(out,true);
-  wait1Msec(500);
-  goalRequest(in, true);
-  wait1Msec(500);}
+
 }
 //#endregion
 
 //#region skills
 void skills()
 {
+
+  setIntakeMotors(15);
+  liftRequest(goal);
+  goalRequest(out);           //go for first mgl
+  unityStraight(30,true);
+  goalRequest(out,true);
+  unityStraight(15,true);
+  barRequest(drop);
+  goalRequest(in,true);
+  unityStraight(-40);
+  liftRequest(low,true);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  liftRequest(goal);
+  setIntakeMotors(0);
+  wait1Msec(1000);
+  unityTurn(450,-1);
+  wait1Msec(1200);
+  unityTurn(900,1);
+  wait1Msec(1200);
+  /*
   setIntakeMotors(15);
   liftRequest(goal);
   goalRequest(out);           //go for first mgl
@@ -269,7 +285,7 @@ void skills()
   unityStraight(16,true);
   goalRequest(out);
   wellIReckon(100,750);
-  goalRequest(out,true,160)
+  goalRequest(out,true,160);
                             // score first 20 pt goal
   unityStraight(-17);
   wait1Msec(350);
@@ -315,7 +331,7 @@ void skills()
   unityStraight(-31,true);
   unityTurn(1780,1);
   wait1Msec(2000);
-  wellIReckon(40,750)
+  wellIReckon(40,750);
   goalRequest(out,true);
   unityStraight(-10,true);
   goalRequest(out,true);
@@ -327,7 +343,7 @@ void skills()
   goalRequest(middle,true);
   unityStraight(68,true);
   goalRequest(out,true);
-  unityStraight(-20);
+  unityStraight(-20);*/
 
 
 }

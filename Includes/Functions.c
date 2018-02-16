@@ -45,7 +45,7 @@ void wellIReckon(int power, int time)
 void setLiftMotors(int power)
 {
 	motor[rLiftMot] = power;
-	motor[mLiftMot] = power;
+	//motor[mLiftMot] = power;
 	motor[lLiftMot] = power;
 }
 
@@ -53,16 +53,16 @@ void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifie
 {
   liftRequestedValue = liftVal[lift] + modifier;
 	timers[lift] = resetTimer();
+
 	if(nowWaitJustASecondThere)
-	while((liftSensorCurrentValue >= liftRequestedValue + shortWaitLiftError
-		|| liftSensorCurrentValue <= liftRequestedValue - shortWaitLiftError)
-		|| ((liftSensorCurrentValue >= liftRequestedValue + longWaitLiftError
-		|| liftSensorCurrentValue <= liftRequestedValue - longWaitLiftError)
-		&& timer >= 0 && time(timers[lift] >= timer))){}
+		while(fabs(liftSensorCurrentValue - liftRequestedValue) > shortWaitLiftError
+		      || (abs(liftSensorCurrentValue - liftRequestedValue) > longWaitLiftError
+					    && timer >= 0 && time(timers[lift]) >= timer)) EndTimeSlice();
 }
+
 //#endregion
 
-//#region bar functions
+//#region lift functions
 void setBarMotors(int power)
 {
 	motor[barMot] = power;
@@ -76,13 +76,12 @@ void setBarMotors(int power)
 void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)
 {
   barRequestedValue = barVal[bar] + modifier;
-	timers[bar] = resetTimer();
+	timers[BART] = resetTimer();
+
 	if(nowWaitJustASecondThere)
-	while((barSensorCurrentValue >= barRequestedValue + shortWaitBarError
-		|| barSensorCurrentValue <= barRequestedValue - shortWaitBarError)
-		|| ((barSensorCurrentValue >= barRequestedValue + longWaitBarError
-		|| barSensorCurrentValue <= barRequestedValue - longWaitBarError)
-		&& timer >= 0 && time(timers[bar] >= timer))){}
+		while(fabs(barSensorCurrentValue - barRequestedValue) > shortWaitBarError
+		      || (abs(barSensorCurrentValue - barRequestedValue) > longWaitBarError
+					    && timer >= 0 && time(timers[bar]) >= timer)) EndTimeSlice();
 }
 
 //#endregion
@@ -100,19 +99,18 @@ void setIntakeMotors(int power)
 void setGoalMotors(int power)
 {
 	motor[goalMot] = power;
-	//motor[mLiftMot] = power;
+	motor[mLiftMot] = power;
 }
 
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)
 {
   goalRequestedValue = goalVal[goal] + modifier;
 	timers[mgl] = resetTimer();
+
 	if(nowWaitJustASecondThere)
-	while((goalSensorCurrentValue >= goalRequestedValue + shortWaitGoalError
-		|| goalSensorCurrentValue <= goalRequestedValue - shortWaitGoalError)
-		|| ((goalSensorCurrentValue >= goalRequestedValue + longWaitGoalError
-		|| goalSensorCurrentValue <= goalRequestedValue - longWaitGoalError)
-		&& timer >= 0 && time(timers[mgl] >= timer))){}
+		while(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
+		      || (abs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError
+					    && timer >= 0 && time(timers[goal]) >= timer)) EndTimeSlice();
 }
 //#endregion
 

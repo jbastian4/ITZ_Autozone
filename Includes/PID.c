@@ -16,7 +16,7 @@ float  liftError;
 float  liftDrive;
 
 static int shortWaitLiftError = 70;
-static int longWaitLiftError = 150;
+static int longWaitLiftError = 175;
 
 //////////////////////////////////////////////////////
 
@@ -33,7 +33,7 @@ float  goalSensorCurrentValue;
 float  goalError;
 float  goalDrive;
 static int shortWaitGoalError = 70;
-static int longWaitGoalError = 150;
+static int longWaitGoalError = 175;
 
 bool goalPID;
 
@@ -53,7 +53,7 @@ float  barError;
 float  barDrive;
 
 static int shortWaitBarError = 70;
-static int longWaitBarError = 150;
+static int longWaitBarError = 175;
 //#endregion
 
 
@@ -86,7 +86,7 @@ task liftController()
 		// send to motor
 
 		motor[ lLiftMot ] = liftDrive;
-		motor[ mLiftMot ] = liftDrive;
+	//	motor[ mLiftMot ] = liftDrive;
 		motor[ rLiftMot ] = liftDrive;
 		lastliftError = liftError;
 
