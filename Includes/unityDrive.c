@@ -104,6 +104,12 @@ float  waitGyroError = 50;
 
 //<editor-fold Functions
 //#region Drive Functions
+void drivewaity(int distance)
+{
+  int ticks = abs(countsToInches(distance));
+  while(abs(SensorValue[lEnc]) <= ticks - stopError){}
+  wait1Msec(stopTime);
+}
 void unityStraight(int distance, bool waity = false) //this void sends appropriate values to the main drive task
 {
   int direction = sgn(distance);
