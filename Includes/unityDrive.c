@@ -106,8 +106,8 @@ float  waitGyroError = 50;
 //#region Drive Functions
 void drivewaity(int distance)
 {
-  int ticks = abs(countsToInches(distance));
-  while(abs(SensorValue[lEnc]) <= ticks - stopError){}
+  int ticks = fabs(countsToInches(distance));
+  while(fabs(SensorValue[lEnc]) <= ticks - stopError){}
   wait1Msec(stopTime);
 }
 void unityStraight(int distance, bool waity = false) //this void sends appropriate values to the main drive task
@@ -122,8 +122,8 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
 
   if(waity)
   {
-    int ticks = abs(countsToInches(distance));
-  	while(abs(SensorValue[lEnc]) <= ticks - stopError){}
+    int ticks = fabs(countsToInches(distance));
+  	while(fabs(SensorValue[lEnc]) <= ticks - stopError){}
     wait1Msec(stopTime);
   }
 }
