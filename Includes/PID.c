@@ -2,7 +2,7 @@
 #define PID
 
 //#region vars
-static float  lift_Kp = 0.5;
+static float  lift_Kp = 0.7;
 static float  liftRequestedValue;
 static float  lift_Kd = 1.5;
 
@@ -15,8 +15,8 @@ float  liftSensorCurrentValue;
 float  liftError;
 float  liftDrive;
 
-static int shortWaitLiftError = 70;
-static int longWaitLiftError = 175;
+static int shortWaitLiftError = 125;
+static int longWaitLiftError = 225;
 
 //////////////////////////////////////////////////////
 
@@ -86,7 +86,7 @@ task liftController()
 		// send to motor
 
 		motor[ lLiftMot ] = liftDrive;
-		motor[ mLiftMot ] = liftDrive;
+		//motor[ mLiftMot ] = liftDrive;
 		motor[ rLiftMot ] = liftDrive;
 		lastliftError = liftError;
 
@@ -125,7 +125,7 @@ task goalController()
 				goalDrive = (-127);
 
 			// send to motor
-
+			motor[ mLiftMot ] = -goalDrive;
 			motor[ goalMot ] = -goalDrive;
 			lastgoalError = goalError;
 

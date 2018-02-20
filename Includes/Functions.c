@@ -45,7 +45,7 @@ void wellIReckon(int power, int time)
 void setLiftMotors(int power)
 {
 	motor[rLiftMot] = power;
-	motor[mLiftMot] = power;
+	//motor[mLiftMot] = power;
 	motor[lLiftMot] = power;
 }
 
@@ -99,7 +99,7 @@ void setIntakeMotors(int power)
 void setGoalMotors(int power)
 {
 	motor[goalMot] = power;
-	//motor[mLiftMot] = power;
+	motor[mLiftMot] = power;
 }
 
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)

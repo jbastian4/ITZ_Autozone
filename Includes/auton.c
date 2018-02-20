@@ -249,22 +249,56 @@ void skills()
   setIntakeMotors(15);
   liftRequest(goal);
   goalRequest(out);           //go for first mgl
-  unityStraight(30,true);
+  unityStraight(48,true);
   goalRequest(out,true);
-  unityStraight(15,true);
-  barRequest(drop);
+  barRequestedValue=drop;
+  goalRequest(in);
+  wait1Msec(200);
+  unityStraight(-47);
   goalRequest(in,true);
-  unityStraight(-40);
-  liftRequest(low,true);
+  liftRequest(low);
+  wait1Msec(750);
   setIntakeMotors(-127);
   wait1Msec(200);
   liftRequest(goal);
   setIntakeMotors(0);
-  wait1Msec(1000);
+  drivewaity(-40);
   unityTurn(450,-1);
+  wait1Msec(1000);
+  unityStraight(-20,true);
+  unityTurn(900,-1);
   wait1Msec(1200);
-  unityTurn(900,1);
-  wait1Msec(1200);
+  wellIReckon(127,750);
+  wait1Msec(250);
+  goalRequest(out,true,200);
+  wellIReckon(127,750);
+  wellIReckon(75,250);
+  unityStraight(-35,true);
+  unityTurn(900,-1);
+  wait1Msec(1000);
+  unityStraight(20,true);
+  unityTurn(900,-1);
+  wait1Msec(1000);
+  wellIReckon(-75,750);
+  unityStraight(30,);
+  goalRequest(middle);
+  unityTurn(900,-1);
+  wait1Msec(900);
+  unityTurn(900,-1);
+  unityStraight(20,true);
+  goalRequest(out,true);
+  unityStraight(-10,true);
+
+
+
+
+
+
+
+
+
+
+
   /*
   setIntakeMotors(15);
   liftRequest(goal);
