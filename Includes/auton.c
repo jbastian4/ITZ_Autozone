@@ -278,17 +278,18 @@ void skills()
   wait1Msec(1000);
   unityTurn(870,-1);
   wait1Msec(1000);
-  unityStraight(16,true);
+  unityStraight(17,true);
   unityTurn(870,-1);
   wait1Msec(900);
-  wellIReckon(-50,750);
+  wellIReckon(-75,750);
   goalRequest(out,true);
   wellIReckon(50,150);
   unityStraight(35,true);
   goalRequest(middle);
+  wait1msec(150);
   unityTurn(900,-1); //score second goal in 10
   wait1Msec(900);
-  unityTurn(900,-1);
+  unityTurn(870,-1);
   wait1Msec(1000);
   unityStraight(35,true);
   wellIReckon(60,300);
@@ -301,20 +302,22 @@ void skills()
   unityTurn(900,1);
   wait1Msec(1000);
   goalRequest(out,true);
-  unityStraight(32,true);
+  unityStraight(30,true);
+  wait1msec(150);
   goalRequest(middle);
   unityTurn(920,-1);
   wait1Msec(1000);
   unityStraight(40,true); //score third goal in 10
   goalRequest(out,true);
   wellIReckon(50,250);
-  unityStraight(-3,true);
-  unityTurn(1800,-1);
+  unityStraight(-10,true);
+  unityTurn(1850,1);
   wait1msec(1800);
-  wellIReckon(-50,1000);
-  unityStraight(50,true);
-  goalRequest(middle);
-  unityStraight(40,true);
+  wellIReckon(-50,1200);
+  unityStraight(65,true);
+  goalRequest(middle,true);
+  unityStraight(60,true);
+  wait1Msec(1000);
   goalRequest(out,true);
   unityStraight(-8,true);
 
