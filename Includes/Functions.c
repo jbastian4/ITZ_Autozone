@@ -153,7 +153,7 @@ task userDrive()
 		AAmainR = vexRT[Ch2];
 		AApartR = vexRT[Ch2Xmtr2];
 
-		/*if(vexRT[Ch3] <= 5 && vexRT[Ch3] >= -5)
+		if(vexRT[Ch3] <= 5 && vexRT[Ch3] >= -5)
 			lPowerReq = vexRT[Ch3Xmtr2];
 		else
 			lPowerReq = vexRT[Ch3];
@@ -161,10 +161,10 @@ task userDrive()
 		if(vexRT[Ch2] <= 5 && vexRT[Ch2] >= -5)
 			rPowerReq = vexRT[Ch2Xmtr2];
 		else
-			rPowerReq = vexRT[Ch2];*/
+			rPowerReq = vexRT[Ch2];
 
-		lPowerReq = vexRT[Ch3];
-		rPowerReq = vexRT[Ch2];
+		//lPowerReq = vexRT[Ch3];
+		//rPowerReq = vexRT[Ch2];
 
 		if(lPower >= 30)
 		{

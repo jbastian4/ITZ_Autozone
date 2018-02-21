@@ -8,42 +8,35 @@
 //#region right
 void rGoalScore()
 {
-  setIntakeMotors(intakeStill);
-  setBarMotors(20);
-  liftRequest(para);
-  setGoalMotors(-127);
-  unityStraight(57);
-  wait1Msec(1500);
-  setGoalMotors(-35);
-  wait1Msec(1000);
-  setGoalMotors(100);
-  wait1Msec(1500);
-  setGoalMotors(35);
-  wait1Msec(500);
-  setGoalMotors(0);
-  liftRequest(low);
-  wait1Msec(500);
-  setIntakeMotors(-127);
-  wait1Msec(1500);
-  setIntakeMotors(0);
-
-  /*liftRequest(para);
+  setIntakeMotors(15);  //go for first mgl
+  liftRequest(goal);
   goalRequest(out);
-  unityStraight(57,true);
-  goalRequest(in,true);
-  //barRequest(drop);
-  //liftRequest(low);
-  wait1Msec(500);
-  wait1Msec(500);
-  //liftRequest(para);
-  unityStraight(-58);
-  wait1Msec(3000);
-  unityTurn(1700,-1); //correcting for gyro inaccuracies, should be 1800
-  wait1Msec(2000);
-  unityStraight(23,true);
+  unityStraight(51,true);
   goalRequest(out,true);
-  wait1Msec(50);
-  unityStraight(-20, true);*/
+  barRequestedValue=drop;
+  goalRequest(in);
+  wait1Msec(250);
+  unityStraight(-47);     //drive back
+  goalRequest(in,true);
+  liftRequest(low);
+  wait1Msec(750);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  liftRequest(goal);
+  setIntakeMotors(0);
+  drivewaity(-47);
+  unityTurn(450,-1);
+  wait1Msec(840);
+  unityStraight(-22,true);
+  unityTurn(900,-1);
+  wait1Msec(1000);
+  wellIReckon(127,800); //score first goal in 20
+  wait1Msec(200);
+  wellIReckon(-50,150);
+  goalRequest(out,true,300);
+  wellIReckon(127,750);
+  wellIReckon(75,250);
+  unityStraight(-20,true);
 }
 
 void rPairWithE()
@@ -345,7 +338,7 @@ void skills()
   wellIReckon(127,750);
   wellIReckon(75,250);
   unityStraight(-20,true);
-  
+
 
 
 
