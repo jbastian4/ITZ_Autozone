@@ -257,9 +257,82 @@ void skills()
   setIntakeMotors(0);
   drivewaity(-47);
   unityTurn(450,-1);
-  wait1Msec(840);
-  unityStraight(-22,true);
+  wait1Msec(500);
+  unityStraight(-25,true);
   unityTurn(900,-1);
+  wait1Msec(900);
+  goalRequest(middle);
+  unityStraight(24,true);
+  wellIReckon(-50,100);
+  goalRequest(out,true,600);//score first goal in 20
+  goalRequest(out);
+
+  wellIReckon(127,750);
+  unityStraight(-20,true);
+  goalRequest(middle);
+  wait1Msec(890);
+  unityTurn(870,-1);
+  wait1Msec(1000);
+  unityStraight(17,true);
+  unityTurn(870,-1);
+  wait1Msec(900);
+  wellIReckon(-75,750);
+  wellIReckon(-40,150);
+  goalRequest(out);
+  wellIReckon(50,150);
+  unityStraight(35,true);// go for the second mobile goal
+  goalRequest(middle);
+  wait1msec(150);
+  unityTurn(1760,-1);
+  wait1Msec(1800);
+  unityStraight(35,true);
+  goalRequest(out,true); //drop second mobile goal
+
+  wellIReckon(60,500);
+  unityStraight(-10,true);
+  wait1Msec(250);
+  goalRequest(middle);
+  unityStraight(-30, true);
+  unityTurn(900,1);
+  wait1Msec(1000);
+  goalRequest(out,true);
+  unityStraight(29,true);//go for third goal
+  goalRequest(middle);
+  wait1msec(150);
+  unityTurn(925,-1);
+  wait1Msec(1000);
+  unityStraight(42,true);
+  goalRequest(out,true);//score third goal in 10
+  wellIReckon(60,250);
+  unityStraight(-15,true);
+  wait1Msec(750);
+  unityTurn(1770,1);
+  wait1msec(1800);
+  wellIReckon(-50,1200);
+  unityStraight(70,true);
+  goalRequest(middle);
+  unityStraight(45,true);
+  wellIReckon(90,750);
+  wait1Msec(1000);
+  goalRequest(out,true);
+  unityStraight(-8,true);
+  wait1Msec(500);
+  goalRequest(middle);
+  unityTurn(1200,-1);
+  wait1Msec(1200);
+
+  goalRequest(out);
+  unityStraight(48,true);
+  goalRequest(out,true);
+  goalRequest(in);
+  wait1Msec(250);
+  unityStraight(-62);     //drive back
+  goalRequest(in,true);
+  drivewaity(-62);
+  unityTurn(450,1);
+  wait1Msec(840);
+  unityStraight(-8,true);
+  unityTurn(900,1);
   wait1Msec(1000);
   wellIReckon(127,800); //score first goal in 20
   wait1Msec(200);
@@ -267,8 +340,7 @@ void skills()
   goalRequest(out,true,300);
   wellIReckon(127,750);
   wellIReckon(75,250);
-  unityStraight(-20,true); //go for second goal
-  wait1Msec(1000);
+  unityStraight(-20,true);
   unityTurn(870,-1);
   wait1Msec(1000);
   unityStraight(17,true);
@@ -280,64 +352,14 @@ void skills()
   unityStraight(35,true);
   goalRequest(middle);
   wait1msec(150);
-  unityTurn(900,-1); //score second goal in 10
-  wait1Msec(900);
-  unityTurn(900,-1);
-  wait1Msec(1000);
+  unityTurn(1800,-1); //score second goal in 10
+  wait1Msec(1800);
   unityStraight(35,true);
   wellIReckon(60,300);
   goalRequest(out,true);
   wellIReckon(60,500);
-  unityStraight(-10,true);
-  wait1Msec(250);
-  goalRequest(middle);      //go for third goal
-  unityStraight(-30, true);
-  unityTurn(900,1);
-  wait1Msec(1000);
-  goalRequest(out,true);
-  unityStraight(30,true);
-  wait1msec(150);
-  goalRequest(middle);
-  unityTurn(925,-1);
-  wait1Msec(1000);
-  unityStraight(42,true); //score third goal in 10
-  goalRequest(out,true);
-  wellIReckon(60,250);
-  unityStraight(-15,true);
-  wait1Msec(750);
-  unityTurn(1850,1);
-  wait1msec(1800);
-  wellIReckon(-50,1200);
-  unityStraight(65,true);
-  goalRequest(middle,true);
-  unityStraight(60,true);
-  wait1Msec(1000);
-  goalRequest(out,true);
-  unityStraight(-8,true);
-  wait1Msec(500);
-  goalRequest(middle);
-  unityTurn(1250,-1);
-  wait1Msec(1200);
 
-  unityStraight(51,true);
-  goalRequest(out,true);
-  goalRequest(in);
-  wait1Msec(250);
-  unityStraight(-47);     //drive back
-  goalRequest(in,true);
-  drivewaity(-47);
-  unityTurn(450,1);
-  wait1Msec(840);
-  unityStraight(-22,true);
-  unityTurn(900,1);
-  wait1Msec(1000);
-  wellIReckon(127,800); //score first goal in 20
-  wait1Msec(200);
-  wellIReckon(-50,150);
-  goalRequest(out,true,300);
-  wellIReckon(127,750);
-  wellIReckon(75,250);
-  unityStraight(-20,true);
+  unityStraight(-10,true);
 
 
 
