@@ -242,12 +242,12 @@ void skills()
   setIntakeMotors(15);  //go for first mgl
   liftRequest(goal);
   goalRequest(out);
-  unityStraight(51,true);
+  unityStraight(50,true);
   goalRequest(out,true);
   barRequestedValue=drop;
   goalRequest(in);
   wait1Msec(250);
-  unityStraight(-48);     //drive back
+  unityStraight(-51);     //drive back
   goalRequest(in,true);
   liftRequest(low);
   wait1Msec(750);
@@ -255,10 +255,10 @@ void skills()
   wait1Msec(200);
   liftRequest(goal);
   setIntakeMotors(0);
-  drivewaity(-48);
+  drivewaity(-51);
   unityTurn(450,-1);
   wait1Msec(500);
-  unityStraight(-25,true);
+  unityStraight(-22,true);
   unityTurn(900,-1);
   wait1Msec(900);
   unityStraight(24,true);
@@ -268,22 +268,20 @@ void skills()
   goalRequest(out);
 
   wellIReckon(127,750);
-  unityStraight(-20,true);
+  unityStraight(-20);
+  wait1Msec(150);
   goalRequest(middle);
-  wait1Msec(890);
+  drivewaity(-20);
   unityTurn(870,-1);
   wait1Msec(1000);
-  unityStraight(17,true);
-  unityTurn(870,-1);
+  unityStraight(16,true);
+  unityTurn(880,-1);
   wait1Msec(900);
-  wellIReckon(-75,750);
-  wellIReckon(-40,150);
   goalRequest(out);
-  wellIReckon(50,150);
-  unityStraight(35,true);// go for the second mobile goal
+  unityStraight(29,true);// go for the second mobile goal
   goalRequest(middle);
   wait1msec(150);
-  unityTurn(1755,-1);
+  unityTurn(1745,-1);
   wait1Msec(1800);
   unityStraight(35,true);
   goalRequest(out,true); //drop second mobile goal
@@ -296,70 +294,80 @@ void skills()
   unityTurn(880,1);
   wait1Msec(1000);
   goalRequest(out,true);
-  unityStraight(29,true);//go for third goal
+  unityStraight(31,true);//go for third goal
   goalRequest(middle);
   wait1msec(150);
-  unityTurn(925,-1);
+  unityTurn(920,-1);
   wait1Msec(1000);
   unityStraight(42,true);
   goalRequest(out,true);//score third goal in 10
   wellIReckon(60,250);
   unityStraight(-15,true);
   wait1Msec(750);
-  unityTurn(1770,1);
+  unityTurn(1760,1);
   wait1msec(1800);
-  wellIReckon(-50,1200);
-  unityStraight(70,true);
-  goalRequest(middle);
-  unityStraight(45,true);
-  wellIReckon(90,750);
+  unityStraight(65,true);// go for fourth mobile goal
+  goalRequest(in);
+  unityStraight(32,true);
   wait1Msec(1000);
-  goalRequest(out,true);
-  unityStraight(-8,true);
-  wait1Msec(500);
+  unityTurn(900,-1);
+  wait1Msec(1000);
+  unityStraight(-16,true);
+  unityTurn(900,1);
+  wait1Msec(1000);
+  unityStraight(17,true);
+  wellIReckon(-50,100);
   goalRequest(middle);
-  unityTurn(1200,-1);
+  goalRequest(out,true,600);//score fourth goal in 20
+  goalRequest(out);
+
+  wellIReckon(127,750);
+  unityStraight(-20);
+  wait1Msec(250);
+  goalRequest(middle);
+
+  drivewaity(-20);
+  goalRequest(middle);
+
+  unityTurn(1125,-1);
   wait1Msec(1200);
 
   goalRequest(out);
-  unityStraight(48,true);
+  unityStraight(68,true);
   goalRequest(out,true);
   goalRequest(in);
   wait1Msec(250);
   unityStraight(-62);     //drive back
   goalRequest(in,true);
   drivewaity(-62);
-  unityTurn(450,1);
+  unityTurn(1320,1);
   wait1Msec(840);
+  unityStraight(12,true);
+  goalRequest(out);
+  wellIReckon(50,1000);
+  goalRequest(out,true);
   unityStraight(-8,true);
   unityTurn(900,1);
-  wait1Msec(1000);
-  wellIReckon(127,800); //score first goal in 20
-  wait1Msec(200);
-  wellIReckon(-50,150);
-  goalRequest(out,true,300);
-  wellIReckon(127,750);
-  wellIReckon(75,250);
-  unityStraight(-20,true);
-  unityTurn(870,-1);
-  wait1Msec(1000);
-  unityStraight(17,true);
-  unityTurn(870,-1);
   wait1Msec(900);
-  wellIReckon(-75,750);
-  goalRequest(out,true);
-  wellIReckon(50,150);
-  unityStraight(35,true);
+  unityStraight(25,true);
+  unityTurn(920,1);
+  wait1Msec(900);
+  unityStraight(27,true);
   goalRequest(middle);
-  wait1msec(150);
-  unityTurn(1800,-1); //score second goal in 10
+  wait1Msec(150);
+  unityTurn(1750,1);
   wait1Msec(1800);
   unityStraight(35,true);
-  wellIReckon(60,300);
+  drivewaity(35);
+  goalRequest(out);
+  wellIReckon(50,750);
   goalRequest(out,true);
-  wellIReckon(60,500);
+  unityStraight(-9,true);
+  unityTurn(400,-1);
+  wait1Msec(450);
+  unityStraight(-80);
 
-  unityStraight(-10,true);
+
 
 
 

@@ -8,7 +8,7 @@ enum goalPos {out, middle, in};
 int goalVal[] = {415, 1605, 2660};
 
 enum barPos {drop, down};
-int barVal[] = {2100, 3995};
+int barVal[] = {1800, 3995};
 
 enum timeType {mgl, lift, BART};
 long timers[] = {0, 0, 0};

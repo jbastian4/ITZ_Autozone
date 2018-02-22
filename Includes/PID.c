@@ -39,7 +39,7 @@ bool goalPID;
 
 //////////////////////////////////////////////////////
 
-static float  bar_Kp = 0.35;
+static float  bar_Kp = 0.6;
 static float  barRequestedValue;
 static float  bar_Kd =.6;
 
