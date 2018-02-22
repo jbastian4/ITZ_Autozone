@@ -247,7 +247,7 @@ void skills()
   barRequestedValue=drop;
   goalRequest(in);
   wait1Msec(250);
-  unityStraight(-47);     //drive back
+  unityStraight(-48);     //drive back
   goalRequest(in,true);
   liftRequest(low);
   wait1Msec(750);
@@ -255,15 +255,15 @@ void skills()
   wait1Msec(200);
   liftRequest(goal);
   setIntakeMotors(0);
-  drivewaity(-47);
+  drivewaity(-48);
   unityTurn(450,-1);
   wait1Msec(500);
   unityStraight(-25,true);
   unityTurn(900,-1);
   wait1Msec(900);
-  goalRequest(middle);
   unityStraight(24,true);
   wellIReckon(-50,100);
+  goalRequest(middle);
   goalRequest(out,true,600);//score first goal in 20
   goalRequest(out);
 
@@ -283,7 +283,7 @@ void skills()
   unityStraight(35,true);// go for the second mobile goal
   goalRequest(middle);
   wait1msec(150);
-  unityTurn(1760,-1);
+  unityTurn(1755,-1);
   wait1Msec(1800);
   unityStraight(35,true);
   goalRequest(out,true); //drop second mobile goal
@@ -292,8 +292,8 @@ void skills()
   unityStraight(-10,true);
   wait1Msec(250);
   goalRequest(middle);
-  unityStraight(-30, true);
-  unityTurn(900,1);
+  unityStraight(-32, true);
+  unityTurn(880,1);
   wait1Msec(1000);
   goalRequest(out,true);
   unityStraight(29,true);//go for third goal
