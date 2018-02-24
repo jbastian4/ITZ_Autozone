@@ -78,11 +78,11 @@ task autonomous()
 
   //fix the freaking gyro
   SensorType[gyro] = sensorNone;
-  wait1Msec(500);
+  wait1Msec(125);
   SensorType[gyro] = sensorGyro;
-  wait1Msec(250);
+  wait1Msec(125);
   SensorScale[gyro] = 147; //Tunes the gyro value, can be tuned to 90 degrees (147) OR 180 degrees (160)
-  wait1Msec(250);
+  wait1Msec(125);
   //#endregion
 
   //#region left routines
