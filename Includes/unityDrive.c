@@ -35,9 +35,9 @@ static float  gyro_Kp = 0.35; //.08
 static float  gyro_Kd = 1.8; //.2
 
 //Drive ramp values
-int rampInterval = 1;
-int normalRampSpeed = 9; //was 7
-int highRampSpeed = 35; //was 30
+int rampTime = 1;
+int normRampSpeed = 9; //was 7
+int hiRampSpeed = 35; //was 30
 int nullPower = 10;
 //#endregion
 
@@ -52,7 +52,6 @@ int driveModifier = 0; //Ls drive distance or turn angle
 bool newDriveCommand = false; //signals to the task when a new drive command has been given
 bool driveEncoderPID = true; //enables/disables encoder pid
 bool gyroPID = false; //enables/disables gyro pid
-bool waitForCompletion = false; //enables the voids to wait for drive completion
 bool enableEverything = true;
 
 bool isDriving = false; //records if the drivestraight is actually running;
@@ -98,7 +97,7 @@ float gyroDF;
 float  gyroCurrentValue;
 float  gyroError;
 float  gyroDrive;
-float  waitGyroError = 50;
+float  turnError = 50;
 //#endregion
 //</editor-fold>
 
@@ -136,6 +135,12 @@ void unityTurn(int degrees, int direction,bool waity=false)
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = false; //sets PID tasks to not run drivestraight
 
+  if(waity)
+  {
+  	while(fabs(SensorValue[gyro]) <= fabs(degrees) - turnError){}
+    wait1Msec(stopTime);
+  }
+
 }
 //#endregion
 //#region set motor functions
@@ -157,7 +162,7 @@ if(leftPower >= 30)
 {
 	if(leftPowerReq > leftPower)
 	{
-		leftPower += normalRampSpeed;
+		leftPower += normRampSpeed;
 	}
 	else if(leftPowerReq < leftPower)
 	{
@@ -168,7 +173,7 @@ else if(leftPower <= -30)
 {
 	if(leftPowerReq < leftPower)
 	{
-		leftPower -= normalRampSpeed;
+		leftPower -= normRampSpeed;
 	}
 	else if(leftPowerReq > leftPower)
 	{
@@ -179,7 +184,7 @@ else if((leftPower > -30 && leftPower < -10) || (leftPower < 30 && leftPower > 1
 {
 	if(leftPowerReq > leftPower)
 	{
-		leftPower += highRampSpeed;
+		leftPower += hiRampSpeed;
 	}
 	if(leftPowerReq < leftPower)
 	{
@@ -190,7 +195,7 @@ else
 {
 	if(leftPowerReq > leftPower)
 	{
-		leftPower += normalRampSpeed;
+		leftPower += normRampSpeed;
 	}
 	if(leftPowerReq < leftPower)
 	{
@@ -206,7 +211,7 @@ if(abs(leftPowerReq) < nullPower)
 if(enableEverything)
   setLDriveMotors(leftPower);
 
-wait1Msec(rampInterval);
+wait1Msec(rampTime);
 }
 
 void rightDriveRamp(int rightPowerReq) //ramping
@@ -215,7 +220,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq > rightPower)
   	{
-  		rightPower += normalRampSpeed;
+  		rightPower += normRampSpeed;
   	}
   	else if(rightPowerReq < rightPower)
   	{
@@ -226,7 +231,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq < rightPower)
   	{
-  		rightPower -= normalRampSpeed;
+  		rightPower -= normRampSpeed;
   	}
   	else if(rightPowerReq > rightPower)
   	{
@@ -237,7 +242,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq > rightPower)
   	{
-  		rightPower += highRampSpeed;
+  		rightPower += hiRampSpeed;
   	}
   	if(rightPowerReq < rightPower)
   	{
@@ -248,7 +253,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq > rightPower)
   	{
-  		rightPower += normalRampSpeed;
+  		rightPower += normRampSpeed;
   	}
   	if(rightPowerReq < rightPower)
   	{
@@ -264,7 +269,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   if(enableEverything)
     setRDriveMotors(rightPower);
 
-  wait1Msec(rampInterval);
+  wait1Msec(rampTime);
 }
 //#endregion
 //</editor-fold>
