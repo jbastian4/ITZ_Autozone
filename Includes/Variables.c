@@ -11,6 +11,7 @@ long timers[] = {0, 0, 0};
 int LDriveRampRequest;
 int LDriveRampSgn;
 int LDriveRampCurrent;
+int goalstill;
 
 int RDriveRampRequest;
 int RDriveRampSgn;

@@ -19,11 +19,14 @@ void setLMotors(int power)
 {
 	motor[lfDriveMot] = power;
 	motor[lbDriveMot] = power;
+	motor[lmDriveMot] = power;
 }
 void setRMotors(int power)
 {
 	motor[rfDriveMot] = power;
 	motor[rbDriveMot] = power;
+	motor[rmDriveMot] = power;
+
 }
 void setDriveMotors(int power)
 {
