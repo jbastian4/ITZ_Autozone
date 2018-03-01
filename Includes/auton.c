@@ -12,25 +12,22 @@ while(1==1){}
 void skills()
 {
   motor[clawMot] = 20;
-  goalRequest(out);         //go for first mgl
-  unityStraight(30,true);
-  goalRequest(out,true);
-  unityStraight(28,true);
+  goalRequest(out);
+  wait1Msec(100);      //go for first mgl
+  unityStraight(52,true);
   wait1Msec(100);
   goalRequest(in);
   wait1Msec(500);
-  unityStraight(-53);     //drive back
+  unityStraight(-48);     //drive back
   goalRequest(in,true);
-  drivewaity(-53);
+  drivewaity(-48);
   wait1Msec(500);
   motor[clawMot] = -60;
   wait1Msec(300);
   motor[clawMot] = 0;
-  unityTurn(430,-1);
-  wait1Msec(430);
-  unityStraight(-19,true);
-  unityTurn(900,-1);
-  wait1Msec(800);
+  unityTurn(430,-1,true);
+  unityStraight(-27,true);
+  unityTurn(900,-1,true);
   unityStraight(23,true);
   goalRequest(out);
   wellIReckon(-50,100);
@@ -38,33 +35,34 @@ void skills()
   goalRequest(out);
 
   wellIReckon(127,300);
-  unityStraight(-20);
+  unityStraight(-25);
   wait1Msec(150);
   goalRequest(middle);
-  drivewaity(-20);
-  unityTurn(870,-1);
-  wait1Msec(850);
+  drivewaity(-25);
+  unityTurn(915,-1,true);
   unityStraight(18,true);
-  unityTurn(920,-1);
   goalRequest(out);
-  wait1Msec(1000);
+  unityTurn(910,-1,true);
   goalRequest(out,true);
-  unityStraight(24,true);// go for the second mobile goal
+  unityStraight(30,true);// go for the second mobile goal
   goalRequest(middle);
   wait1Msec(150);
-  unityTurn(1750,-1);
-  wait1Msec(1650);
-  unityStraight(35,true);
-  goalRequest(out,true); //drop second mobile goal
-
-  wellIReckon(60,500);
-  unityStraight(-10,true);
-  wait1Msec(250);
-  unityStraight(-32, true);
-  unityTurn(880,1);
-  wait1Msec(860);
+  unityTurn(1750,-1,true);
+  unityStraight(39);
+  drivewaity(25);
+goalRequest(out);
+  drivewaity(39);
   goalRequest(out,true);
-  unityStraight(28,true);//go for third goal
+//  goalRequest(out,true); //drop second mobile goal
+
+  //wellIReckon(60,500);
+  unityStraight(-36);
+  drivewaity(-10);
+  goalRequest(middle);
+  drivewaity(-36);
+  unityTurn(880,1,true);
+  goalRequest(out,true);
+  unityStraight(30,true);//go for third goal
   goalRequest(middle);
   wait1Msec(150);
   unityTurn(920,-1);

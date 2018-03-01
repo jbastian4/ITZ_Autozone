@@ -33,8 +33,8 @@ static float  rEnc_Kp = 0.6;
 static float  rEnc_Kd = 0.03;
 
 //Gyro PID Values
-static float  gyro_Kp = 0.35; //.08
-static float  gyro_Kd = 1.8; //.2
+static float  gyro_Kp = 0.4; //.08
+static float  gyro_Kd = 1.2; //.2
 
 //Drive ramp values
 int rampTime = 1;
