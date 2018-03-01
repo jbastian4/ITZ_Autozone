@@ -4,21 +4,28 @@
 //#region right
 void testAuton()
 {
-
+while(1==1){}
 }
 //#endregion
 
 //#region skills
 void skills()
 {
+  motor[clawMot] = 20;
   goalRequest(out);         //go for first mgl
-  unityStraight(51,true);
+  unityStraight(30,true);
   goalRequest(out,true);
+  unityStraight(28,true);
+  wait1Msec(100);
   goalRequest(in);
-  wait1Msec(250);
+  wait1Msec(500);
   unityStraight(-53);     //drive back
   goalRequest(in,true);
   drivewaity(-53);
+  wait1Msec(500);
+  motor[clawMot] = -60;
+  wait1Msec(300);
+  motor[clawMot] = 0;
   unityTurn(430,-1);
   wait1Msec(430);
   unityStraight(-19,true);
@@ -27,7 +34,7 @@ void skills()
   unityStraight(23,true);
   goalRequest(out);
   wellIReckon(-50,100);
-  goalRequest(out,true,600);//score first goal in 20
+  goalRequest(out,true,-600);//score first goal in 20
   goalRequest(out);
 
   wellIReckon(127,300);
@@ -81,7 +88,7 @@ void skills()
   unityStraight(17,true);
   wellIReckon(-50,100);
   goalRequest(middle);
-  goalRequest(out,true,600);//score fourth goal in 20
+  goalRequest(out,true,-600);//score fourth goal in 20
   goalRequest(out);
 
   wellIReckon(127,750);

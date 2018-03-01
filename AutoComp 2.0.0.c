@@ -1,14 +1,12 @@
-#pragma config(Sensor, in1,    GoalPot,        sensorPotentiometer)
-#pragma config(Sensor, in2,    barPot,         sensorPotentiometer)
-#pragma config(Sensor, in3,    gyro,           sensorGyro)
-#pragma config(Sensor, in4,    lPot,           sensorPotentiometer)
+#pragma config(Sensor, in1,    goalPot,        sensorPotentiometer)
+#pragma config(Sensor, in2,    gyro,           sensorGyro)
+#pragma config(Sensor, in3,    lPot,           sensorPotentiometer)
 #pragma config(Sensor, dgtl1,  lEnc,           sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  rEnc,           sensorQuadEncoder)
 #pragma config(Motor,  port1,           rbDriveMot,    tmotorVex393_HBridge, openLoop, reversed)
 #pragma config(Motor,  port2,           rmDriveMot,    tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           rfDriveMot,    tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port5,           rollerMot,     tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port6,           chainMot,      tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port5,           clawMot,       tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           goalMot,       tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port8,           lfDriveMot,    tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port9,           lmDriveMot,    tmotorVex393_MC29, openLoop, reversed)
@@ -46,9 +44,12 @@ void pre_auton()
 
 task autonomous()
 {
+	SensorValue[lEncPort] = 0;
+  SensorValue[rEncPort] = 0;
   //#region initialization
 	startTask(unityDrive);
   startTask(goalController);
+   goalRequest(in);
 
   //fix the freaking gyro
   SensorType[gyro] = sensorNone;
@@ -77,38 +78,27 @@ task autonomous()
 
 task usercontrol()
 {
-  startTask(barController);
-  barRequestedValue=1000;
   while(true)
   {
   	setLMotors(vexRT[Ch3]);
   	setRMotors(vexRT[Ch2]);
     if(vexRT[Btn6U] == 1){
       setGoalMotors(127);
-      barRequestedValue=1350;
-    	goalstill=15;}
+    	goalStill=15;
+    	}
     else if(vexRT[Btn6D] == 1){
       setGoalMotors(-127);
-      barRequestedValue=1350;
-    	goalstill=-15;}
+    	goalStill=-15;
+    	}
     else
-      setGoalMotors(goalstill);
-    if(vexRT[Btn5U] == 1){
-    	barRequestedValue=2380; //drop
-    }
-    else if(vexRT[Btn5D] == 1){
-    	barRequestedValue=1150; //cone
-    }
-        if(vexRT[Btn5U] == 1){
-    	motor[rollerMot]=127;
-    }
-    else if(vexRT[Btn5D] == 1){
-    	motor[rollerMot]=-127;
-    }
-    else
-    {
-    	motor[rollerMot]=10;
-    }
+      setGoalMotors(goalStill);
+
+    if(vexRT[Btn5U] == 1)
+    	motor[clawMot] = 127;
+   	if(vexRT[Btn5D] == 1)
+    	motor[clawMot] = -127;
+   	else
+   		motor[clawMot] = 10;
   }
 }
 //#endregion

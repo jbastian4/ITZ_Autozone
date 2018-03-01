@@ -58,13 +58,13 @@ void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifie
 	if(nowWaitJustASecondThere)
 		while(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
 		      || (fabs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError
-					    && timer >= 0 && time(timers[goal]) >= timer)) EndTimeSlice();
+					    && timer >= 0 && time(timers[mgl]) >= timer)) EndTimeSlice();
 }
 //#endregion
 
 //#region tasks
 
-task userDrive()
+/*task userDrive()
 {
 	while(true)
 	{
@@ -103,7 +103,7 @@ task userDrive()
 	 	setRMotors(RDriveRampCurrent);
 	 	wait1Msec(rampInterval);
 	}
-}
+}*/
 
 //#endregion
 
