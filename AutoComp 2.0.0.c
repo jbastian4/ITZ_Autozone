@@ -1,6 +1,7 @@
+#pragma config(Sensor, in1,    GoalPot,        sensorPotentiometer)
+#pragma config(Sensor, in2,    barPot,         sensorPotentiometer)
 #pragma config(Sensor, in3,    gyro,           sensorGyro)
-#pragma config(Sensor, in4,    GoalPot,        sensorPotentiometer)
-#pragma config(Sensor, in5,    lPot,           sensorPotentiometer)
+#pragma config(Sensor, in4,    lPot,           sensorPotentiometer)
 #pragma config(Sensor, dgtl1,  lEnc,           sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  rEnc,           sensorQuadEncoder)
 #pragma config(Motor,  port1,           rbDriveMot,    tmotorVex393_HBridge, openLoop, reversed)
@@ -76,38 +77,37 @@ task autonomous()
 
 task usercontrol()
 {
-  //startTask(userDrive);
+  startTask(barController);
+  barRequestedValue=1000;
   while(true)
   {
   	setLMotors(vexRT[Ch3]);
   	setRMotors(vexRT[Ch2]);
     if(vexRT[Btn6U] == 1){
       setGoalMotors(127);
+      barRequestedValue=1350;
     	goalstill=15;}
     else if(vexRT[Btn6D] == 1){
       setGoalMotors(-127);
+      barRequestedValue=1350;
     	goalstill=-15;}
     else
       setGoalMotors(goalstill);
     if(vexRT[Btn5U] == 1){
-    	motor[chainMot]=127;
+    	barRequestedValue=2380; //drop
     }
     else if(vexRT[Btn5D] == 1){
-    	motor[chainMot]=-127;
+    	barRequestedValue=1150; //cone
     }
-    else
-    {
-    	motor[chainMot]=0;
-    }
-        if(vexRT[Btn8U] == 1){
+        if(vexRT[Btn5U] == 1){
     	motor[rollerMot]=127;
     }
-    else if(vexRT[Btn8D] == 1){
+    else if(vexRT[Btn5D] == 1){
     	motor[rollerMot]=-127;
     }
     else
     {
-    	motor[rollerMot]=20;
+    	motor[rollerMot]=10;
     }
   }
 }
