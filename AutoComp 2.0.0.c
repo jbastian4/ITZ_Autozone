@@ -29,10 +29,24 @@
 //#endregion
 
 //#region PreAuton
+int debug;
+int cumBias;
+
 void pre_auton()
-{
-  bStopTasksBetweenModes = true;
+{bStopTasksBetweenModes = true;
+
+	/*SensorType[gyro] = sensorNone;
+	for(int i = 0; i<2000; i++)
+	{
+		cumBias += SensorValue[gyro];
+		wait1Msec(1);
+	}
+
+	debug = cumBias / 2000;*/
+
+	SensorBias[gyro] = 1927;
 }
+
 //#endregion
 
 //#region Auton
@@ -52,12 +66,12 @@ task autonomous()
    goalRequest(in);
 
   //fix the freaking gyro
-  SensorType[gyro] = sensorNone;
-  wait1Msec(60);
+  /*SensorType[gyro] = sensorNone;
+  wait1Msec(500);
   SensorType[gyro] = sensorGyro;
-  wait1Msec(60);
-  SensorScale[gyro] = 147; //Tunes the gyro value, can be tuned to 90 degrees (147) OR 180 degrees (160)
-  wait1Msec(60);
+  wait1Msec(500);*/
+  SensorScale[gyro] = 144; //Tunes the gyro value, can be tuned to 90 degrees (147) OR 180 degrees (160)
+  /*wait1Msec(500);*/
   //#endregion
 
   //#region auton routines
@@ -98,7 +112,7 @@ task usercontrol()
    	if(vexRT[Btn5D] == 1)
     	motor[clawMot] = -127;
    	else
-   		motor[clawMot] = 10;
+   		motor[clawMot] = 15;
   }
 }
 //#endregion

@@ -18,7 +18,7 @@ float wheelDiameter = 3.25;
 int dontHog = 25; //don't hog cpu wait time
 
 int stopError = 80; //allowed variation distance for drivestraight stop (inches)
-int stopTime = 350;
+int stopTime = 150;
 
 int driveStraightError = 50;
 
@@ -34,7 +34,7 @@ static float  rEnc_Kd = 0.03;
 
 //Gyro PID Values
 static float  gyro_Kp = 0.4; //.08
-static float  gyro_Kd = 1.2; //.2
+static float  gyro_Kd = 1; //.2
 
 //Drive ramp values
 int rampTime = 1;
@@ -99,7 +99,7 @@ float gyroDF;
 float  gyroCurrentValue;
 float  gyroError;
 float  gyroDrive;
-float  turnError = 50;
+float  turnError = 60;
 //#endregion
 //</editor-fold>
 
@@ -125,7 +125,7 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
   if(waity)
   {
       wait1Msec(stopTime);
-    int ticks = fabs(countsToInches(distance));
+    //int ticks = fabs(countsToInches(distance));
   	//while(fabs(SensorValue[lEnc]) <= ticks - stopError){}
     drivewaity(distance);
   }
@@ -142,7 +142,7 @@ void unityTurn(int degrees, int direction,bool waity=false)
   if(waity)
   {
   	while(fabs(SensorValue[gyroPort]) <= fabs(degrees) - turnError){}
-    wait1Msec(stopTime);
+    wait1Msec(stopTime*2);
   }
 
 }
