@@ -303,10 +303,10 @@ task lEncController()
 		lEncDrive = lEncP + lEncDF;
 
 		// limit drive
-		if(lEncDrive > 127)
-			lEncDrive = 127;
-		if(lEncDrive < -127)
-			lEncDrive = -127;
+		if(lEncDrive > 100)
+			lEncDrive = 100;
+		if(lEncDrive < -100)
+			lEncDrive = -100;
 
     //correct for drivestraight
     if(isDriving == true)
@@ -318,10 +318,10 @@ task lEncController()
     }
 
     // limit drive again
-		if(lEncDrive > 127)
-			lEncDrive = 127;
-		if(lEncDrive < -127)
-			lEncDrive = -127;
+		if(lEncDrive > 100)
+			lEncDrive = 100;
+		if(lEncDrive < -100)
+			lEncDrive = -100;
 
 		// send to motor
 
@@ -356,10 +356,10 @@ task rEncController()
 		rEncDrive = rEncP + rEncDF;
 
 		// limit drive
-		if(rEncDrive > 127)
-			rEncDrive = 127;
-		if(rEncDrive < -127)
-			rEncDrive = -127;
+		if(rEncDrive > 100)
+			rEncDrive = 100;
+		if(rEncDrive < -100)
+			rEncDrive = -100;
 
     //correct for drivestraight
     if(isDriving == true)
@@ -371,10 +371,10 @@ task rEncController()
     }
 
     // limit drive again
-    if(rEncDrive > 127)
-      rEncDrive = 127;
-    if(rEncDrive < -127)
-      rEncDrive = -127;
+    if(rEncDrive > 100)
+      rEncDrive = 100;
+    if(rEncDrive < -100)
+      rEncDrive = -100;
 
 		// send to motor
 
@@ -409,10 +409,10 @@ task gyroController()
 		gyroDrive = gyroP + gyroDF;
 
 		// limit drive
-		if(gyroDrive > 127)
-			gyroDrive = 127;
-		if(gyroDrive < (-127))
-			gyroDrive = (-127);
+		if(gyroDrive > 75)
+			gyroDrive = 75;
+		if(gyroDrive < (-75))
+			gyroDrive = (-75);
 
 		// send to motor
 

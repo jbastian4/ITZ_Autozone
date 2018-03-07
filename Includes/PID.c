@@ -14,8 +14,8 @@ float goalDF;
 float  goalSensorCurrentValue;
 float  goalError;
 float  goalDrive;
-static int shortWaitGoalError = 70;
-static int longWaitGoalError = 175;
+static int shortWaitGoalError = 200;
+static int longWaitGoalError = 250;
 //#endregion
 
 //#region goal

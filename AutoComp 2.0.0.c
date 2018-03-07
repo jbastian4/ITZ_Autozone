@@ -29,8 +29,8 @@
 //#endregion
 
 //#region PreAuton
-int debug;
-int cumBias;
+//int debug;
+//int cumBias;
 
 void pre_auton()
 {bStopTasksBetweenModes = true;
@@ -44,7 +44,6 @@ void pre_auton()
 
 	debug = cumBias / 2000;*/
 
-	SensorBias[gyro] = 1927;
 }
 
 //#endregion
@@ -72,6 +71,7 @@ task autonomous()
   wait1Msec(500);*/
   SensorScale[gyro] = 144; //Tunes the gyro value, can be tuned to 90 degrees (147) OR 180 degrees (160)
   /*wait1Msec(500);*/
+  SensorBias[gyro] = 1927;
   //#endregion
 
   //#region auton routines
