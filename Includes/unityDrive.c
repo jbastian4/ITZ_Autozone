@@ -312,20 +312,20 @@ task lEncController()
     if(isDriving == true)
     {
       if(SensorValue[lEncPort] > (SensorValue[rEncPort] + driveStraightError) && direction == 1)
-        lEncDrive -= 17;
+        lEncDrive -= 45;
       else if(SensorValue[lEncPort] < (SensorValue[rEncPort] - driveStraightError) && direction == -1)
-        lEncDrive += 17;
+        lEncDrive += 10;
     }
 
     // limit drive again
-		if(lEncDrive > 100)
-			lEncDrive = 100;
-		if(lEncDrive < -100)
-			lEncDrive = -100;
+		if(lEncDrive > 127)
+			lEncDrive = 127;
+		if(lEncDrive < -127)
+			lEncDrive = -127;
 
 		// send to motor
-
-		leftDriveRamp(lEncDrive);
+    setLDriveMotors(lEncDrive);
+		//leftDriveRamp(lEncDrive);
 
 		lastlEncError = lEncError;
     }
@@ -365,20 +365,20 @@ task rEncController()
     if(isDriving == true)
     {
       if(SensorValue[rEncPort] > (SensorValue[lEncPort] + driveStraightError) && direction == 1)
-        rEncDrive -= 17;
+        rEncDrive -= 45;
       else if(SensorValue[rEncPort] < (SensorValue[lEncPort] - driveStraightError) && direction == -1)
-        rEncDrive += 17;
+        rEncDrive += 10;
     }
 
     // limit drive again
-    if(rEncDrive > 100)
-      rEncDrive = 100;
-    if(rEncDrive < -100)
-      rEncDrive = -100;
+    if(rEncDrive > 127)
+      rEncDrive = 127;
+    if(rEncDrive < -127)
+      rEncDrive = -127;
 
 		// send to motor
-
-		rightDriveRamp(rEncDrive);
+    setRDriveMotors(rEncDrive);
+		//rightDriveRamp(rEncDrive);
 
 		lastrEncError = rEncError;
     }
@@ -409,10 +409,10 @@ task gyroController()
 		gyroDrive = gyroP + gyroDF;
 
 		// limit drive
-		if(gyroDrive > 75)
-			gyroDrive = 75;
-		if(gyroDrive < (-75))
-			gyroDrive = (-75);
+		if(gyroDrive > 80)
+			gyroDrive = 80;
+		if(gyroDrive < (-80))
+			gyroDrive = (-80);
 
 		// send to motor
 

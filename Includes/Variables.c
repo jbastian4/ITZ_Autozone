@@ -2,7 +2,7 @@
 #define Variables
 
 enum goalPos {out, middle, in};
-int goalVal[] = {3100, 1800, 780};
+int goalVal[] = {3000, 1800, 780};
 
 enum timeType {mgl, lift, BART};
 long timers[] = {0, 0, 0};
