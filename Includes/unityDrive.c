@@ -18,9 +18,9 @@ float wheelDiameter = 3.25;
 int dontHog = 25; //don't hog cpu wait time
 
 int stopError = 80; //allowed variation distance for drivestraight stop (inches)
-int stopTime = 150;
+int stopTime = 200;
 
-int driveStraightError = 50;
+int driveStraightError = 20;
 
 int gyroCoeff = 1;
 int gyroDriveCoeff = -1;
@@ -312,9 +312,9 @@ task lEncController()
     if(isDriving == true)
     {
       if(SensorValue[lEncPort] > (SensorValue[rEncPort] + driveStraightError) && direction == 1)
-        lEncDrive -= 45;
+        lEncDrive -= 65;
       else if(SensorValue[lEncPort] < (SensorValue[rEncPort] - driveStraightError) && direction == -1)
-        lEncDrive += 10;
+        lEncDrive += 20;
     }
 
     // limit drive again
@@ -365,9 +365,9 @@ task rEncController()
     if(isDriving == true)
     {
       if(SensorValue[rEncPort] > (SensorValue[lEncPort] + driveStraightError) && direction == 1)
-        rEncDrive -= 45;
+        rEncDrive -= 65;
       else if(SensorValue[rEncPort] < (SensorValue[lEncPort] - driveStraightError) && direction == -1)
-        rEncDrive += 10;
+        rEncDrive += 20;
     }
 
     // limit drive again
