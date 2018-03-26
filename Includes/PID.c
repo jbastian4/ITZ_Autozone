@@ -37,9 +37,9 @@ static int longWaitGoalError = 175;
 
 //////////////////////////////////////////////////////
 
-static float  bar_Kp = 0.6;
+static float  bar_Kp = 0.2;
 static float  barRequestedValue;
-static float  bar_Kd =.6;
+static float  bar_Kd =.1;
 
 float barD;
 float barP;
