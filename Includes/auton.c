@@ -1,10 +1,6 @@
 #ifndef Auton
 #define Auton
 
-#include "unityDrive.c"
-#include "/Includes/Variables.c"
-#include "/Includes/Functions.c"
-
 //#region right
 void rGoalScore()
 {
@@ -97,7 +93,6 @@ void r5PointZone()
 //#region left
 void lGoalScore()
 {
-  setBarMotors(20);
   liftRequest(para);
   goalRequest(out);
   wait1Msec(750);
@@ -282,7 +277,7 @@ void skills()
   goalRequest(out,true);
   unityStraight(24,true);// go for the second mobile goal
   goalRequest(middle);
-  wait1msec(150);
+  wait1Msec(150);
   unityTurn(1750,-1);
   wait1Msec(1650);
   unityStraight(35,true);
@@ -297,7 +292,7 @@ void skills()
   goalRequest(out,true);
   unityStraight(28,true);//go for third goal
   goalRequest(middle);
-  wait1msec(150);
+  wait1Msec(150);
   unityTurn(920,-1);
   wait1Msec(900);
   unityStraight(42,true);
@@ -306,7 +301,7 @@ void skills()
   unityStraight(-15,true);
   wait1Msec(750);
   unityTurn(1700,1);
-  wait1msec(1700);
+  wait1Msec(1700);
   unityStraight(92);// go for fourth mobile goal
   drivewaity(50);
   goalRequest(in);

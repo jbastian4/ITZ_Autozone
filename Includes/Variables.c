@@ -2,13 +2,13 @@
 #define Variables
 
 enum liftPos {low, goal, para, high};
-int liftVal[] = {750, 1020, 1120, 1840};
+int liftVal[] = {490, 790, 1135, 2215};
 
 enum goalPos {out, middle, in};
-int goalVal[] = {415, 1605, 2660};
+int goalVal[] = {3400, 1590, 563};
 
 enum barPos {drop, down};
-int barVal[] = {1, 0};
+int barVal[] = {2111, 111};
 
 enum timeType {mgl, lift, BART};
 long timers[] = {0, 0, 0};
@@ -19,7 +19,7 @@ long timers[] = {0, 0, 0};
 #define barStillDown -15
 #define autoBarTime 750
 
-#define intakeStill 25
+#define intakeStill 30
 
 //#region drive ramp values
 int lPower = 0;

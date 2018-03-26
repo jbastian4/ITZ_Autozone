@@ -35,8 +35,6 @@ float  goalDrive;
 static int shortWaitGoalError = 70;
 static int longWaitGoalError = 175;
 
-bool goalPID;
-
 //////////////////////////////////////////////////////
 
 static float  bar_Kp = 0.6;
@@ -86,8 +84,7 @@ task liftController()
 		// send to motor
 
 		motor[ tLiftMot ] = liftDrive;
-		motor[ rbLiftMot ] = liftDrive;
-		motor[ lbLiftMot ] = liftDrive;
+		motor[ bLiftMot ] = liftDrive;
 		lastliftError = liftError;
 
 		// Don't hog cpu
@@ -126,7 +123,8 @@ task goalController()
 
 			// send to motor
 			//motor[ rbLiftMot ] = -goalDrive;
-			motor[ goalMot ] = -goalDrive;
+			motor[ rGoalMot ] = goalDrive;
+			motor[ lGoalMot ] = goalDrive;
 			lastgoalError = goalError;
 
 			// Don't hog cpu
@@ -184,7 +182,7 @@ task barController()
 
 		// send to motor
 
-		//motor[ barMot ] = -barDrive;
+		motor[ barMot ] = barDrive;
 		lastbarError = barError;
 
 		// Don't hog cpu

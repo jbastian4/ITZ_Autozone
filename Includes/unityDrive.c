@@ -52,7 +52,6 @@ int driveModifier = 0; //Ls drive distance or turn angle
 bool newDriveCommand = false; //signals to the task when a new drive command has been given
 bool driveEncoderPID = true; //enables/disables encoder pid
 bool gyroPID = false; //enables/disables gyro pid
-bool waitForCompletion = false; //enables the voids to wait for drive completion
 bool enableEverything = true;
 
 bool isDriving = false; //records if the drivestraight is actually running;
@@ -98,7 +97,6 @@ float gyroDF;
 float  gyroCurrentValue;
 float  gyroError;
 float  gyroDrive;
-float  waitGyroError = 50;
 //#endregion
 //</editor-fold>
 
