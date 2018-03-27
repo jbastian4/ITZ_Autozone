@@ -55,7 +55,8 @@ bool gyroPID = false; //enables/disables gyro pid
 bool enableEverything = true;
 
 bool isDriving = false; //records if the drivestraight is actually running;
-
+int  goalfree = 0 //records wether on not a drive or turn is in progress to properly set the goal motors
+int movecount = 0; // gets set wqual to the current drive or turn requierment
 int countsToInches(float value) //converts drive encoder counts into inches
 {
   return (value * 360)/(PI * wheelDiameter);
@@ -107,32 +108,45 @@ void drivewaity(int distance)
   int ticks = fabs(countsToInches(distance));
   while(fabs(SensorValue[lEnc]) <= ticks - stopError){}
   wait1Msec(stopTime);
+  ticks = 0;
 }
 void unityStraight(int distance, bool waity = false) //this void sends appropriate values to the main drive task
 {
   int direction = sgn(distance);
+  movecount = distance;
   funcDriveMode = 0; //drive straight
   funcDriveModifier = abs(distance); //sets drive distance
   funcDirection = direction; //set drive direction
 
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = true; //sets PID tasks to run drivestraight
+  goalfree = 1;
 
   if(waity)
   {
-    int ticks = fabs(countsToInches(distance));
-  	while(fabs(SensorValue[lEnc]) <= ticks - stopError){}
     wait1Msec(stopTime);
+    drivewaity(distance);
   }
 }
+void turnwaity(degrees)
+  {
+    while(fabs(SensorValue[gyroPort]) <= fabs(degrees) - turnError){}
+    wait1Msec(stopTime*2);
+  }
 void unityTurn(int degrees, int direction,bool waity=false)
 {
   funcDriveMode = 1; //turn
+  movecount = degrees;
   funcDriveModifier = degrees; //sets number of degrees to turn
   funcDirection = direction; //set turn direction
 
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = false; //sets PID tasks to not run drivestraight
+  goalfree = 2;
+  if(waity)
+  {
+    turnwaity(degrees);
+  }
 
 }
 //#endregion
@@ -201,9 +215,14 @@ if(abs(leftPowerReq) < nullPower)
 	leftPower = 0;
 }
 
-if(enableEverything)
-  setLDriveMotors(leftPower);
-
+  if(enableEverything)
+  {
+    setLDriveMotors(leftPower);
+    if(goalfree==1||goalfree==2)
+    {
+      motor[lGoalMot]=leftPower;
+    }
+  }
 wait1Msec(rampInterval);
 }
 
@@ -260,8 +279,13 @@ void rightDriveRamp(int rightPowerReq) //ramping
   }
 
   if(enableEverything)
+  {
     setRDriveMotors(rightPower);
-
+    if(goalfree==1||goalfree==2)
+    {
+      motor[rGoalMot]=rightPower;
+    }
+  }
   wait1Msec(rampInterval);
 }
 //#endregion
@@ -269,7 +293,16 @@ void rightDriveRamp(int rightPowerReq) //ramping
 task goalDriveController()
 { while(true)
   {
-  if
+    if(goalfree==1)
+    {
+      drivewaity(movecount);
+      goalfree=0;
+    }
+    if(goalfree==2)
+    {
+      turnwaity(movecount);
+      goalfree=0;
+    }
   }
 }
 //<editor-fold Tasks
