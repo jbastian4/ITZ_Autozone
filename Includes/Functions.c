@@ -2,7 +2,7 @@
 #define Functions
 
 #include "PID.c"
-#include "unityDrive.c"
+//#include "unityDrive.c"
 
 //#region misc Functions
 long resetTimer() {
@@ -23,6 +23,8 @@ void setGoalMotors(int power)
 
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)
 {
+	goalhold = goalfree;
+	goalfree = 4;
   goalRequestedValue = goalVal[goal] + modifier;
 	timers[mgl] = resetTimer();
 
@@ -30,6 +32,28 @@ void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifie
 		while(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
 		      || (fabs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError
 					    && timer >= 0 && time(timers[goal]) >= timer)) EndTimeSlice();
+}
+task goalDriveController()
+{ while(true)
+  {
+    if(goalfree==1)
+    {
+      drivewaity(movecount);
+      goalfree=0;
+    }
+    if(goalfree==2)
+    {
+      turnwaity(movecount);
+      goalfree=0;
+    }
+		if(goalfree==4)
+		{
+			while(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
+			      || (fabs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError))
+			EndTimeSlice();
+			goalfree=goalhold;
+		}
+  }
 }
 //#endregion
 
@@ -286,10 +310,10 @@ void lockDrive(bool lock = true)
 		lEncRequestedValue = 0;
 		rEncRequestedValue = 0;
 	}
-	else
+	else{
 		stopTask(lEncController);
 		stopTask(rEncController);
-		startTask(userDrive);
+		startTask(userDrive);}
 }
 
 //#endregion

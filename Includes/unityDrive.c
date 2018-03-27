@@ -1,5 +1,6 @@
 #ifndef unity_Drive
 #define unity_Drive
+//#include "Functions.c"
 //<editor-fold Variables
 //#region User Variables
 #define gyroPort in3
@@ -55,7 +56,7 @@ bool gyroPID = false; //enables/disables gyro pid
 bool enableEverything = true;
 
 bool isDriving = false; //records if the drivestraight is actually running;
-int  goalfree = 0 //records wether on not a drive or turn is in progress to properly set the goal motors
+int  goalfree = 0; //records wether on not a drive or turn is in progress to properly set the goal motors
 int movecount = 0; // gets set wqual to the current drive or turn requierment
 int countsToInches(float value) //converts drive encoder counts into inches
 {
@@ -128,9 +129,9 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
     drivewaity(distance);
   }
 }
-void turnwaity(degrees)
+void turnwaity(int degrees)
   {
-    while(fabs(SensorValue[gyroPort]) <= fabs(degrees) - turnError){}
+    while(fabs(SensorValue[gyroPort]) <= fabs(degrees) - 100){}
     wait1Msec(stopTime*2);
   }
 void unityTurn(int degrees, int direction,bool waity=false)
@@ -290,21 +291,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
 }
 //#endregion
 //</editor-fold>
-task goalDriveController()
-{ while(true)
-  {
-    if(goalfree==1)
-    {
-      drivewaity(movecount);
-      goalfree=0;
-    }
-    if(goalfree==2)
-    {
-      turnwaity(movecount);
-      goalfree=0;
-    }
-  }
-}
+
 //<editor-fold Tasks
 //#region PID Controllers
 task lEncController()

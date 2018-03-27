@@ -1,6 +1,8 @@
 #ifndef PID
 #define PID
 
+#include "unityDrive.c"
+
 //#region vars
 static float  lift_Kp = 0.7;
 static float  liftRequestedValue;
@@ -123,8 +125,10 @@ task goalController()
 
 			// send to motor
 			//motor[ rbLiftMot ] = -goalDrive;
+			if (goalfree==0||goalfree==4){
 			motor[ rGoalMot ] = goalDrive;
 			motor[ lGoalMot ] = goalDrive;
+				}
 			lastgoalError = goalError;
 
 			// Don't hog cpu
@@ -179,14 +183,14 @@ task barController()
 			barDrive = 127;
 		if( barDrive < (-127) )
 			barDrive = (-127);
-		if (barDrive  < 100 && barDrive > 30)
-			barDrive = 25;
-		if (barDrive  > -100 && barDrive < 30)
-			barDrive = -25;
-		if (barDrive  < 20 && barDrive > 10)
+		if (barDrive  < 100 && barDrive > 40)
+			barDrive = 40;
+		if (barDrive  > -100 && barDrive < 40)
+			barDrive = -40;
+		/*if (barDrive  < 20 && barDrive > 10)
 			barDrive = 10;
 		if (barDrive  > -20 && barDrive < 10)
-			barDrive = -10;
+			barDrive = -10;*/
 		// send to motor
 
 		motor[ barMot ] = barDrive;

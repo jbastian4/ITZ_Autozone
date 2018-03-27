@@ -8,7 +8,7 @@ enum goalPos {out, middle, in};
 int goalVal[] = {3400, 1590, 563};
 
 enum barPos {drop, down};
-int barVal[] = {2165, 73};
+int barVal[] = {2215, 180};
 
 enum timeType {mgl, lift, BART};
 long timers[] = {0, 0, 0};
@@ -35,7 +35,7 @@ int normRampSpeed = 7;
 int hiRampSpeed = 30;
 int nullVal = 10;
 //#endregion
-
+int goalhold;
 int lastLiftBtnPressed = 1;
 int lastBarBtnPressed = 1;
 

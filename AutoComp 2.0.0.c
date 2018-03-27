@@ -71,6 +71,7 @@ task autonomous()
   startTask(liftController);
   startTask(goalController);
   startTask(barController);
+  startTask(goalDriveController);
   SensorValue[lEnc] = 0;
   SensorValue[rEnc] = 0;
 
@@ -237,20 +238,20 @@ task usercontrol()
     {
       waitVar=1;
     }
-    if (vexRT[Btn7L] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
+    if (vexRT[Btn7L] == 1 && skillsFlip==true && waitVar == 1) //Disable skills flip
     {
        skillsFlip = false;
        waitVar=0;
        lockDrive(false);
     }
-    	else if (vexRT[Btn7L]==1 && !skillsFlip && waitVar == 1) //Enable skills flip
+    	else if (vexRT[Btn7L]==1 && skillsFlip == false && waitVar == 1) //Enable skills flip
    	 {
        skillsFlip = true;
        waitVar=0;
        lockDrive();
    	 }
 
-    if (vexRT[Btn7LXmtr2] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
+    /*if (vexRT[Btn7LXmtr2] == 1 && skillsFlip && waitVar == 1) //Disable skills flip
     {
       skillsFlip = false;//golinetrackyourself
       waitVar=0;
@@ -261,7 +262,7 @@ task usercontrol()
        skillsFlip = true;
        waitVar=0;
        lockDrive();
-    }
+    }*/
 
     //#endregion
     }
