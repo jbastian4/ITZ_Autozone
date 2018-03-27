@@ -266,7 +266,12 @@ void rightDriveRamp(int rightPowerReq) //ramping
 }
 //#endregion
 //</editor-fold>
-
+task goalDriveController()
+{ while(true)
+  {
+  if
+  }
+}
 //<editor-fold Tasks
 //#region PID Controllers
 task lEncController()

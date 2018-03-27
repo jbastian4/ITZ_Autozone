@@ -82,8 +82,8 @@ task liftController()
 			liftDrive = (-127);
 
 		// send to motor
-
-		motor[ tLiftMot ] = liftDrive;
+		motor[ rtLiftMot ] = liftDrive;
+		motor[ ltLiftMot ] = liftDrive;
 		motor[ bLiftMot ] = liftDrive;
 		lastliftError = liftError;
 
@@ -179,7 +179,14 @@ task barController()
 			barDrive = 127;
 		if( barDrive < (-127) )
 			barDrive = (-127);
-
+		if (barDrive  < 100 && barDrive > 30)
+			barDrive = 25;
+		if (barDrive  > -100 && barDrive < 30)
+			barDrive = -25;
+		if (barDrive  < 20 && barDrive > 10)
+			barDrive = 10;
+		if (barDrive  > -20 && barDrive < 10)
+			barDrive = -10;
 		// send to motor
 
 		motor[ barMot ] = barDrive;

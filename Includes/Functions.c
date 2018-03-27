@@ -63,7 +63,8 @@ void wellIReckon(int power, int time)
 //#region lift functions
 void setLiftMotors(int power)
 {
-	motor[tLiftMot] = power;
+	motor[ltLiftMot] = power;
+	motor[rtLiftMot] = power;
 	motor[bLiftMot] = power;
 }
 
