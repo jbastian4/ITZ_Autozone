@@ -226,6 +226,7 @@ void l5PointZone()
 
 void testAuton()
 {
+unityStraight(48,true);
 
 }
 //#endregion

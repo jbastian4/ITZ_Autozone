@@ -40,11 +40,15 @@ task goalDriveController()
     {
       drivewaity(movecount);
       goalfree=0;
+			motor[rGoalMot]=0;
+			motor[lGoalMot]=0;
     }
     if(goalfree==2)
     {
       turnwaity(movecount);
       goalfree=0;
+			motor[rGoalMot]=0;
+			motor[lGoalMot]=0;
     }
 		if(goalfree==4)
 		{
@@ -300,20 +304,21 @@ task userDrive()
 
 //#region end voids
 
-void lockDrive(bool lock = true)
+task lockDrive()
 {
-	if(lock)
+	while(true)
 	{
-		stopTask(userDrive);
-		startTask(lEncController);
+
+		setRMotors(-SensorValue[rEnc]*1.25);
+		setLMotors(-SensorValue[lEnc]*1.25);
+		/*startTask(lEncController);
 		startTask(rEncController);
+		SensorValue[lEnc] = 0;
+		SensorValue[rEnc] = 0;
 		lEncRequestedValue = 0;
-		rEncRequestedValue = 0;
+		rEncRequestedValue = 0;*/
 	}
-	else{
-		stopTask(lEncController);
-		stopTask(rEncController);
-		startTask(userDrive);}
+
 }
 
 //#endregion

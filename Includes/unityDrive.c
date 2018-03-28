@@ -3,14 +3,14 @@
 //#include "Functions.c"
 //<editor-fold Variables
 //#region User Variables
-#define gyroPort in3
-#define lEncPort dgtl1
-#define rEncPort dgtl3
+#define gyroPort in1
+#define lEncPort dgtl3
+#define rEncPort dgtl8
 
-#define lDrivePort1 port5
-#define lDrivePort2 port3
-#define rDrivePort1 port1
-#define rDrivePort2 port2
+#define lDrivePort1 port10
+#define lDrivePort2 port9
+#define rDrivePort1 port4
+//#define rDrivePort2 port12
 
 float wheelDiameter = 4;
 
@@ -113,6 +113,7 @@ void drivewaity(int distance)
 }
 void unityStraight(int distance, bool waity = false) //this void sends appropriate values to the main drive task
 {
+
   int direction = sgn(distance);
   movecount = distance;
   funcDriveMode = 0; //drive straight
@@ -160,7 +161,7 @@ void setLDriveMotors(int power)
 void setRDriveMotors(int power)
 {
 	motor[rDrivePort1] = power;
-	motor[rDrivePort2] = power;
+//	motor[rDrivePort2] = power;
 }
 //#endregion
 //#region Ramp Functions
@@ -374,7 +375,7 @@ task rEncController()
 			rEncDrive = -127;
 
     //correct for drivestraight
-    if(isDriving == true)
+    if (isDriving == true)
     {
       if(SensorValue[rEncPort] > (SensorValue[lEncPort] + driveStraightError) && direction == 1)
         rEncDrive -= 17;
@@ -443,9 +444,9 @@ task gyroController()
 task unityDrive()
 {
   //SensorType[gyro]= sensorNone; //Fix *most* gyro drift
-  wait1Msec(250);
+  /*wait1Msec(250);
   SensorType[gyro]=sensorGyro;
-  wait1Msec(250);
+  wait1Msec(250);*/
 
   startTask(lEncController); //start drivestraight tasks
   startTask(rEncController);
@@ -473,7 +474,6 @@ task unityDrive()
         gyroPID = false; //disables turn PID
         driveEncoderPID = true; //allows encoder PID tasks to run
 
-        clearTimer(T1);
       }
 
   //#endregion
