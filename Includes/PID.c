@@ -17,8 +17,8 @@ float  liftSensorCurrentValue;
 float  liftError;
 float  liftDrive;
 
-static int shortWaitLiftError = 125;
-static int longWaitLiftError = 225;
+static int shortWaitLiftError = 200;
+static int longWaitLiftError = 200;
 
 //////////////////////////////////////////////////////
 

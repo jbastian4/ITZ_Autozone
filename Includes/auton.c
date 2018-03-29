@@ -191,27 +191,62 @@ void lConeScore()
 void l5PointZone()
 {
   setIntakeMotors(15);
-  liftRequest(goal);
+  liftRequest(para);
+  barRequest(drop);
   goalRequest(out,true);           //go for first mgl
-  unityStraight(50,true);
-  barRequestedValue=drop;
+  unityStraight(53);
+  drivewaity(42);
   goalRequest(in,true);
-  unityStraight(-37);
+  drivewaity(51);
+  unityStraight(9);
   liftRequest(low);
-  wait1Msec(750);
+  wait1Msec(500);
   setIntakeMotors(-127);
   wait1Msec(200);
-  drivewaity(-37);
   liftRequest(goal);
-  setIntakeMotors(0);
-  wait1Msec(1000);
-  unityTurn(1400,1);
-  wait1Msec(1600);
+  barRequest(down);
+  wait1Msec(150);
+  setIntakeMotors(127);
+  liftRequest(low);
+  wait1Msec(750);
+  setIntakeMotors(20);
+  unityStraight(9);
+  liftRequest(goal,true);
+  liftRequest(para);
+  barRequest(drop);
+  liftRequest(para,true);
+  liftRequest(low,true,100);
+  setIntakeMotors(-127);
+  wait1Msec(250);
+  liftRequest(goal);
+  barRequest(down);
+  wait1Msec(250);
+  setIntakeMotors(127);
+  liftRequest(low);
+  wait1Msec(750);
+  setIntakeMotors(20);
+  unityStraight(-65);
+  liftRequest(goal,true);
+  liftRequest(para);
+  barRequest(drop);
+  liftRequest(para,true);
+  liftRequest(low,true,100);
+  setIntakeMotors(-127);
+  wait1Msec(250);
+  liftRequest(para);
+  drivewaity(-65);
+  unityTurn(1350,1,true);
   goalRequest(out,true);
-  unityStraight(-48,true);
-  unityTurn(950,1);
-  wait1Msec(1500);
-  unityStraight(15,true);
+  liftRequest(low);
+  unitystraight(-30,true);
+  unityTurn(220,1,true);
+  unitystraight(-40,true);
+  unityTurn(760,1,true);
+  unityStraight(15);
+
+
+
+
 }
 
 void testAuton()

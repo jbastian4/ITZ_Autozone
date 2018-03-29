@@ -93,7 +93,7 @@ task autonomous()
   /*wait1Msec(500);*/
   SensorBias[gyro] = 1870;
   //#endregion
-			testAuton();
+			l5PointZone();
   //#region left routines
 /*	if (SensorValue[lPot]<1300)
 	{

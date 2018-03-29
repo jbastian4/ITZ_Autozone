@@ -321,9 +321,9 @@ task lEncController()
     if(isDriving == true)
     {
       if(SensorValue[lEncPort] > (SensorValue[rEncPort] + driveStraightError) && direction == 1)
-        lEncDrive -= 27;
+        lEncDrive -= 37;
       else if(SensorValue[lEncPort] < (SensorValue[rEncPort] - driveStraightError) && direction == -1)
-        lEncDrive += 27;
+        lEncDrive += 37;
     }
 
     // limit drive again
@@ -374,9 +374,9 @@ task rEncController()
     if (isDriving == true)
     {
       if(SensorValue[rEncPort] > (SensorValue[lEncPort] + driveStraightError) && direction == 1)
-        rEncDrive -= 27;
+        rEncDrive -= 37;
       else if(SensorValue[rEncPort] < (SensorValue[lEncPort] - driveStraightError) && direction == -1)
-        rEncDrive += 27;
+        rEncDrive += 37;
     }
 
     // limit drive again
