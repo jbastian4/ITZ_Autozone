@@ -19,13 +19,13 @@ int dontHog = 25; //don't hog cpu wait time
 int stopError = 20; //allowed variation distance for drivestraight stop (inches)
 int stopTime = 350;
 
-int driveStraightError = 50;
+int driveStraightError = 8;
 
 int gyroCoeff = 1;
 int gyroDriveCoeff = -1;
 
 //Encoder PID Values
-static float  lEnc_Kp = 0.45;
+static float  lEnc_Kp = 0.8; //.45
 static float  lEnc_Kd = 0.03;
 
 static float  rEnc_Kp = 0.45;
@@ -33,12 +33,13 @@ static float  rEnc_Kd = 0.03;
 
 //Gyro PID Values
 static float  gyro_Kp = 0.35; //.08
-static float  gyro_Kd = 1.8; //.2
+static float  gyro_Kd = .8; //.2
 
 //Drive ramp values
-int rampInterval = 1;
+int rampInterval = 10;
 int normalRampSpeed = 9; //was 7
-int highRampSpeed = 35; //was 30
+int lHighRampSpeed = 16; //was 30
+int rHighRampSpeed = 9;//was 35
 int nullPower = 10;
 //#endregion
 
@@ -189,7 +190,7 @@ else if((leftPower > -30 && leftPower < -10) || (leftPower < 30 && leftPower > 1
 {
 	if(leftPowerReq > leftPower)
 	{
-		leftPower += highRampSpeed;
+		leftPower += lHighRampSpeed;
 	}
 	if(leftPowerReq < leftPower)
 	{
@@ -218,10 +219,11 @@ if(abs(leftPowerReq) < nullPower)
     setLDriveMotors(leftPower);
     if(goalfree==0)
     {
-      motor[lGoalMot]=leftPower;
+      motor[lGoalMot]=leftPower+10;
     }
   }
 wait1Msec(rampInterval);
+//setLDriveMotors(leftPowerReq);
 }
 
 void rightDriveRamp(int rightPowerReq) //ramping
@@ -252,7 +254,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq > rightPower)
   	{
-  		rightPower += highRampSpeed;
+  		rightPower += rHighRampSpeed;
   	}
   	if(rightPowerReq < rightPower)
   	{
@@ -281,10 +283,11 @@ void rightDriveRamp(int rightPowerReq) //ramping
     setRDriveMotors(rightPower);
     if(goalfree==0)
     {
-      motor[rGoalMot]=rightPower;
+      motor[rGoalMot]=rightPower+10;
     }
   }
   wait1Msec(rampInterval);
+  //setRDriveMotors(rightPowerReq);
 }
 //#endregion
 //</editor-fold>
@@ -321,9 +324,9 @@ task lEncController()
     if(isDriving == true)
     {
       if(SensorValue[lEncPort] > (SensorValue[rEncPort] + driveStraightError) && direction == 1)
-        lEncDrive -= 37;
+        lEncDrive -= (SensorValue[lEncPort] - SensorValue[rEncPort]);
       else if(SensorValue[lEncPort] < (SensorValue[rEncPort] - driveStraightError) && direction == -1)
-        lEncDrive += 37;
+        lEncDrive += (SensorValue[rEncPort] - SensorValue[lEncPort]);
     }
 
     // limit drive again
@@ -334,7 +337,7 @@ task lEncController()
 
 		// send to motor
 
-		leftDriveRamp(lEncDrive);
+		leftDriveRamp(lEncDrive+10);
 
 		lastlEncError = lEncError;
     }
@@ -374,16 +377,16 @@ task rEncController()
     if (isDriving == true)
     {
       if(SensorValue[rEncPort] > (SensorValue[lEncPort] + driveStraightError) && direction == 1)
-        rEncDrive -= 37;
+        rEncDrive -= (SensorValue[rEncPort] - SensorValue[lEncPort]);
       else if(SensorValue[rEncPort] < (SensorValue[lEncPort] - driveStraightError) && direction == -1)
-        rEncDrive += 37;
+        rEncDrive += (SensorValue[lEncPort] - SensorValue[rEncPort]);
     }
 
     // limit drive again
-    if(rEncDrive > 127)
-      rEncDrive = 127;
-    if(rEncDrive < -127)
-      rEncDrive = -127;
+    if(rEncDrive > 117)
+      rEncDrive = 117;
+    if(rEncDrive < -117)
+      rEncDrive = -117;
 
 		// send to motor
 

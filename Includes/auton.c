@@ -57,30 +57,69 @@ void rPairWithE()
   unityStraight(70,true);
 }
 
-void r5PointZone()
+void r10PointZone()
 {
   setIntakeMotors(15);
-  liftRequest(goal);
+  liftRequest(para);
+  barRequest(drop);
   goalRequest(out,true);           //go for first mgl
-  unityStraight(55,true);
-  barRequestedValue=drop;
+  unityStraight(52,true);
+  stoptask(lEncController);
+  stoptask(rEncController);
+  setLDriveMotors(40);
+  setRDriveMotors(40);
   goalRequest(in,true);
-  unityStraight(-42);
+  unityStraight(0);
+  starttask(lEncController);
+  starttask(rEncController);
   liftRequest(low);
-  wait1Msec(750);
+  wait1Msec(500);
   setIntakeMotors(-127);
   wait1Msec(200);
-  drivewaity(-42);
   liftRequest(goal);
+  barRequest(down);
+  wait1Msec(150);
+  setIntakeMotors(127);
+  liftRequest(low);
+  wait1Msec(750);
+  setIntakeMotors(20);
+  unityStraight(6);
+  liftRequest(goal,true);
+  liftRequest(para);
+  barRequest(drop);
+  liftRequest(para,true);
+  liftRequest(low,true,100);
+  setIntakeMotors(-127);
+  wait1Msec(250);
+  liftRequest(goal);
+  barRequest(down);
+  wait1Msec(250);
+  setIntakeMotors(127);
+  liftRequest(low);
+  wait1Msec(750);
+  setIntakeMotors(20);
+  unityStraight(-55);
+  liftRequest(goal,true);
+  liftRequest(para);
+  barRequest(drop);
+  liftRequest(para,true);
+  liftRequest(low,true,100);
+  setIntakeMotors(-127);
+  wait1Msec(250);
+  liftRequest(para);
+  drivewaity(-55);
+  unityTurn(220,-1);
+  wait1Msec(500);
   setIntakeMotors(0);
-  wait1Msec(1000);
-  unityTurn(1400,-1);
-  wait1Msec(1600);
+  unityStraight(-15,true);
+  unityTurn(1350,-1,true);
   goalRequest(out,true);
-  unityStraight(-48,true);
-  unityTurn(1090,-1);
-  wait1Msec(1500);
-  unityStraight(15,true);
+  liftRequest(low);
+  unitystraight(-30,true);
+  unityTurn(26,-1,true);
+  unitystraight(-40,true);
+  unityTurn(700,-1,true);
+  unityStraight(15);
 }
 //#endregion
 
@@ -188,17 +227,21 @@ void lConeScore()
   liftRequest(para);
 }
 
-void l5PointZone()
+void l10PointZone()
 {
   setIntakeMotors(15);
   liftRequest(para);
   barRequest(drop);
   goalRequest(out,true);           //go for first mgl
-  unityStraight(53);
-  drivewaity(42);
+  unityStraight(52,true);
+  stoptask(lEncController);
+  stoptask(rEncController);
+  setLDriveMotors(40);
+  setRDriveMotors(40);
   goalRequest(in,true);
-  drivewaity(51);
-  unityStraight(9);
+  unityStraight(0);
+  starttask(lEncController);
+  starttask(rEncController);
   liftRequest(low);
   wait1Msec(500);
   setIntakeMotors(-127);
@@ -210,7 +253,7 @@ void l5PointZone()
   liftRequest(low);
   wait1Msec(750);
   setIntakeMotors(20);
-  unityStraight(9);
+  unityStraight(6);
   liftRequest(goal,true);
   liftRequest(para);
   barRequest(drop);
@@ -225,7 +268,7 @@ void l5PointZone()
   liftRequest(low);
   wait1Msec(750);
   setIntakeMotors(20);
-  unityStraight(-65);
+  unityStraight(-55);
   liftRequest(goal,true);
   liftRequest(para);
   barRequest(drop);
@@ -234,14 +277,18 @@ void l5PointZone()
   setIntakeMotors(-127);
   wait1Msec(250);
   liftRequest(para);
-  drivewaity(-65);
+  drivewaity(-55);
+  unityTurn(220,1);
+  wait1Msec(500);
+  setIntakeMotors(0);
+  unityStraight(-15,true);
   unityTurn(1350,1,true);
   goalRequest(out,true);
   liftRequest(low);
   unitystraight(-30,true);
-  unityTurn(220,1,true);
+  unityTurn(26,1,true);
   unitystraight(-40,true);
-  unityTurn(760,1,true);
+  unityTurn(700,1,true);
   unityStraight(15);
 
 
