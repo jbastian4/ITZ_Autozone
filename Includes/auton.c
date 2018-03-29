@@ -6,14 +6,11 @@ void rGoalScore()
 {
   setIntakeMotors(15);  //go for first mgl
   liftRequest(goal);
-  goalRequest(out);
-  unityStraight(51,true);
   goalRequest(out,true);
+  unityStraight(51,true);
   barRequestedValue=drop;
-  goalRequest(in);
-  wait1Msec(250);
-  unityStraight(-47);     //drive back
   goalRequest(in,true);
+  unityStraight(-47);     //drive back
   liftRequest(low);
   wait1Msec(750);
   setIntakeMotors(-127);
@@ -38,8 +35,7 @@ void rGoalScore()
 void rPairWithE()
 {
   liftRequest(para);
-  goalRequest(out);
-  wait1Msec(500);
+  goalRequest(out,true);
   unityStraight(57,true);
   goalRequest(in,true);
   //barRequest(drop);
@@ -51,11 +47,11 @@ void rPairWithE()
   wait1Msec(2000);
   unityTurn(1200,1); //correcting for gyro inaccuracies, should be 1800
   wait1Msec(2000);
-  unityStraight(10);
+  unityStraight(10,true);
   goalRequest(out,true);
   wait1Msec(50);
   unityStraight(-10, true);
-  goalRequest(in);
+  goalRequest(in,true);
   unityTurn(2450, -1);
   wait1Msec(2000);
   unityStraight(70,true);
@@ -65,10 +61,8 @@ void r5PointZone()
 {
   setIntakeMotors(15);
   liftRequest(goal);
-  goalRequest(out);           //go for first mgl
-  unityStraight(40,true);
-  goalRequest(out,true);
-  unityStraight(15,true);
+  goalRequest(out,true);           //go for first mgl
+  unityStraight(55,true);
   barRequestedValue=drop;
   goalRequest(in,true);
   unityStraight(-42);
@@ -146,10 +140,8 @@ void lConeScore()
 {
   setIntakeMotors(15);
   liftRequest(goal);
-  goalRequest(out);           //go for first mgl
-  unityStraight(35,true);
-  goalRequest(out,true);
-  unityStraight(15,true);
+  goalRequest(out,true);           //go for first mgl
+  unityStraight(50,true);
   barRequestedValue=drop;
   goalRequest(in,true);
   unityStraight(7);
@@ -200,10 +192,8 @@ void l5PointZone()
 {
   setIntakeMotors(15);
   liftRequest(goal);
-  goalRequest(out);           //go for first mgl
-  unityStraight(35,true);
-  goalRequest(out,true);
-  unityStraight(15,true);
+  goalRequest(out,true);           //go for first mgl
+  unityStraight(50,true);
   barRequestedValue=drop;
   goalRequest(in,true);
   unityStraight(-37);
@@ -226,7 +216,17 @@ void l5PointZone()
 
 void testAuton()
 {
-unityStraight(48,true);
+
+  liftRequest(goal);
+  goalRequest(out,true);
+  unityStraight(48)
+  drivewaity(25);
+  goalRequest(in,true);
+  drivewaity(48);
+  goalRequest(in,true);
+  unityStraight(-48);
+  liftRequest(low,true);
+
 
 }
 //#endregion

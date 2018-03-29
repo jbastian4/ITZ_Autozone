@@ -23,8 +23,6 @@ void setGoalMotors(int power)
 
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)
 {
-	goalhold = goalfree;
-	goalfree = 4;
   goalRequestedValue = goalVal[goal] + modifier;
 	timers[mgl] = resetTimer();
 
@@ -34,29 +32,13 @@ void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifie
 					    && timer >= 0 && time(timers[goal]) >= timer)) EndTimeSlice();
 }
 task goalDriveController()
-{ while(true)
-  {
-    if(goalfree==1)
-    {
-      drivewaity(movecount);
-      goalfree=0;
-			motor[rGoalMot]=0;
-			motor[lGoalMot]=0;
-    }
-    if(goalfree==2)
-    {
-      turnwaity(movecount);
-      goalfree=0;
-			motor[rGoalMot]=0;
-			motor[lGoalMot]=0;
-    }
-		if(goalfree==4)
-		{
-			while(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
-			      || (fabs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError))
-			EndTimeSlice();
-			goalfree=goalhold;
-		}
+{
+	while(true) {
+		if(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
+				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError))
+					goalfree=1;
+		else
+					goalfree=0;
   }
 }
 //#endregion
@@ -308,15 +290,8 @@ task lockDrive()
 {
 	while(true)
 	{
-
 		setRMotors(-SensorValue[rEnc]*1.25);
 		setLMotors(-SensorValue[lEnc]*1.25);
-		/*startTask(lEncController);
-		startTask(rEncController);
-		SensorValue[lEnc] = 0;
-		SensorValue[rEnc] = 0;
-		lEncRequestedValue = 0;
-		rEncRequestedValue = 0;*/
 	}
 
 }

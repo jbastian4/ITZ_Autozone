@@ -4,9 +4,9 @@
 #include "unityDrive.c"
 
 //#region vars
-static float  lift_Kp = 0.7;
+static float  lift_Kp = 0.4;
 static float  liftRequestedValue;
-static float  lift_Kd = 1.5;
+static float  lift_Kd = 1.75;
 
 float liftD;
 float liftP;
@@ -125,7 +125,7 @@ task goalController()
 
 			// send to motor
 			//motor[ rbLiftMot ] = -goalDrive;
-			if (goalfree==0||goalfree==4){
+			if (goalfree==1){
 			motor[ rGoalMot ] = goalDrive;
 			motor[ lGoalMot ] = goalDrive;
 				}

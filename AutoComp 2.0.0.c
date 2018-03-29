@@ -33,6 +33,7 @@
 #include "/Includes/auton.c"
  float debug;
  float cumbias;
+ int barflip;
 //#endregion
 //#region PreAuton
 /*---------------------------------------------------------------------------*/
@@ -163,10 +164,10 @@ task usercontrol()
 {
   startTask(liftController);
   startTask(liftBtnTracker);
-  startTask(barController);
-  startTask(barBtnTracker);
+  //startTask(barController);
+  //startTask(barBtnTracker);
   startTask(userDrive);
-  barRequest(drop);
+  //barRequest(drop);
   while(true)
   {
 
@@ -202,12 +203,38 @@ task usercontrol()
 
       //<editor-fold bar
       	if(vexRT[Btn8D] == 1)
-   	    //setBarMotors(127);
-     		barRequest(drop,false);
+      	{
+					barflip=0;
+     		}
 				else if(vexRT[Btn8R] == 1)
-   	    //setBarMotors(-127);
-				barRequest(down);
-   	    else if(vexRT[Btn6UXmtr2] == 1)
+				{
+					barflip=1;
+				}
+
+				if(barflip==1)
+				{
+					if (SensorValue[barPot]>400 )
+					{
+						motor[ barMot ] = -127;
+					}
+					else
+					{
+						motor[ barMot ] = -15;
+					}
+				}
+				else if(barflip==0)
+				{
+					      		if (SensorValue[barPot]< 1885)
+					{
+						motor[ barMot ] = 127;
+					}
+					else
+					{
+						motor[ barMot ] = 15;
+					}
+
+				}
+   	    /*else if(vexRT[Btn6UXmtr2] == 1)
    	    //setBarMotors(127);
    	    barRequest(drop,false);
   	    else if(vexRT[Btn6DXmtr2] == 1)
@@ -215,7 +242,7 @@ task usercontrol()
   	    	barRequest(down);
      	 	/*else
      	 		setBarMotors(lastBarBtnPressed == 1 ? barStillUp : barStillDown);*/
-      //</editor-fold>
+      //</editor-fold>*/
 
       //<editor-fold goal
       if(vexRT[Btn7U] == 1)

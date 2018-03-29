@@ -4,8 +4,8 @@
 //<editor-fold Variables
 //#region User Variables
 #define gyroPort in1
-#define lEncPort dgtl3
-#define rEncPort dgtl8
+#define lEncPort dgtl8
+#define rEncPort dgtl3
 
 #define lDrivePort1 port10
 #define lDrivePort2 port9
@@ -115,14 +115,12 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
 {
 
   int direction = sgn(distance);
-  movecount = distance;
   funcDriveMode = 0; //drive straight
   funcDriveModifier = abs(distance); //sets drive distance
   funcDirection = direction; //set drive direction
 
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = true; //sets PID tasks to run drivestraight
-  goalfree = 1;
 
   if(waity)
   {
@@ -138,13 +136,11 @@ void turnwaity(int degrees)
 void unityTurn(int degrees, int direction,bool waity=false)
 {
   funcDriveMode = 1; //turn
-  movecount = degrees;
   funcDriveModifier = degrees; //sets number of degrees to turn
   funcDirection = direction; //set turn direction
 
   newDriveCommand = true; //tells the task that it has new instructions
   isDriving = false; //sets PID tasks to not run drivestraight
-  goalfree = 2;
   if(waity)
   {
     turnwaity(degrees);
@@ -220,7 +216,7 @@ if(abs(leftPowerReq) < nullPower)
   if(enableEverything)
   {
     setLDriveMotors(leftPower);
-    if(goalfree==1||goalfree==2)
+    if(goalfree==0)
     {
       motor[lGoalMot]=leftPower;
     }
@@ -283,7 +279,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   if(enableEverything)
   {
     setRDriveMotors(rightPower);
-    if(goalfree==1||goalfree==2)
+    if(goalfree==0)
     {
       motor[rGoalMot]=rightPower;
     }
@@ -316,18 +312,18 @@ task lEncController()
 		lEncDrive = lEncP + lEncDF;
 
 		// limit drive
-		if(lEncDrive > 127)
-			lEncDrive = 127;
-		if(lEncDrive < -127)
-			lEncDrive = -127;
+		if(lEncDrive > 100)
+			lEncDrive = 100;
+		if(lEncDrive < -100)
+			lEncDrive = -100;
 
     //correct for drivestraight
     if(isDriving == true)
     {
       if(SensorValue[lEncPort] > (SensorValue[rEncPort] + driveStraightError) && direction == 1)
-        lEncDrive -= 17;
+        lEncDrive -= 27;
       else if(SensorValue[lEncPort] < (SensorValue[rEncPort] - driveStraightError) && direction == -1)
-        lEncDrive += 17;
+        lEncDrive += 27;
     }
 
     // limit drive again
@@ -369,18 +365,18 @@ task rEncController()
 		rEncDrive = rEncP + rEncDF;
 
 		// limit drive
-		if(rEncDrive > 127)
-			rEncDrive = 127;
-		if(rEncDrive < -127)
-			rEncDrive = -127;
+		if(rEncDrive > 100)
+			rEncDrive = 100;
+		if(rEncDrive < -100)
+			rEncDrive = -100;
 
     //correct for drivestraight
     if (isDriving == true)
     {
       if(SensorValue[rEncPort] > (SensorValue[lEncPort] + driveStraightError) && direction == 1)
-        rEncDrive -= 17;
+        rEncDrive -= 27;
       else if(SensorValue[rEncPort] < (SensorValue[lEncPort] - driveStraightError) && direction == -1)
-        rEncDrive += 17;
+        rEncDrive += 27;
     }
 
     // limit drive again

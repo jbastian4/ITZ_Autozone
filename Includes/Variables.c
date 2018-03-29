@@ -5,7 +5,7 @@ enum liftPos {low, goal, para, high};
 int liftVal[] = {490, 790, 1135, 2215};
 
 enum goalPos {out, middle, in};
-int goalVal[] = {3400, 1590, 563};
+int goalVal[] = {3500, 1590, 617};
 
 enum barPos {drop, down};
 int barVal[] = {2150, 180};
