@@ -2,13 +2,13 @@
 #define Variables
 
 enum liftPos {low, goal, para, high};
-int liftVal[] = {490, 790, 1135, 2215};
+int liftVal[] = {375, 790, 1135, 2215};
 
 enum goalPos {out, middle, in};
 int goalVal[] = {3500, 1590, 617};
 
 enum barPos {drop, down};
-int barVal[] = {2150, 180};
+int barVal[] = {2350, 240};
 
 enum timeType {mgl, lift, BART};
 long timers[] = {0, 0, 0};

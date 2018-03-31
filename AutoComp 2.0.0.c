@@ -21,6 +21,7 @@
 // This code is for the VEX cortex platform
 #pragma platform(VEX2)
 
+
 // Select Download method as "competition"
 #pragma competitionControl(Competition)
 
@@ -79,6 +80,7 @@ void pre_auton()
 
 task autonomous()
 {
+	startTask (killmeplz);
   //#region initialization
 	startTask(unityDrive);
   startTask(liftController);
@@ -93,7 +95,7 @@ task autonomous()
   /*wait1Msec(500);*/
   SensorBias[gyro] = 1870;
   //#endregion
-			r10PointZone();
+			lConeScore();
   //#region left routines
 /*	if (SensorValue[lPot]<1300)
 	{

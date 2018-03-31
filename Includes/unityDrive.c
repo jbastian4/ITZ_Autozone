@@ -17,7 +17,7 @@ float wheelDiameter = 4;
 int dontHog = 25; //don't hog cpu wait time
 
 int stopError = 20; //allowed variation distance for drivestraight stop (inches)
-int stopTime = 350;
+int stopTime = 500;
 
 int driveStraightError = 8;
 
@@ -33,13 +33,13 @@ static float  rEnc_Kd = 0.03;
 
 //Gyro PID Values
 static float  gyro_Kp = 0.35; //.08
-static float  gyro_Kd = .8; //.2
+static float  gyro_Kd = 1; //.2
 
 //Drive ramp values
 int rampInterval = 10;
-int normalRampSpeed = 9; //was 7
-int lHighRampSpeed = 16; //was 30
-int rHighRampSpeed = 9;//was 35
+int normalRampSpeed = 12; //was 7
+int lHighRampSpeed = 21; //was 30
+int rHighRampSpeed = 13;//was 35
 int nullPower = 10;
 //#endregion
 
@@ -132,7 +132,7 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
 void turnwaity(int degrees)
   {
     while(fabs(SensorValue[gyroPort]) <= fabs(degrees) - 100){}
-    wait1Msec(stopTime*2);
+    wait1Msec(stopTime);
   }
 void unityTurn(int degrees, int direction,bool waity=false)
 {
@@ -383,10 +383,10 @@ task rEncController()
     }
 
     // limit drive again
-    if(rEncDrive > 117)
-      rEncDrive = 117;
-    if(rEncDrive < -117)
-      rEncDrive = -117;
+    if(rEncDrive > 120)
+      rEncDrive = 120;
+    if(rEncDrive < -120)
+      rEncDrive = -120;
 
 		// send to motor
 

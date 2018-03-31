@@ -12,6 +12,12 @@ long resetTimer() {
 int time(long timer) {
 	return nPgmTime - timer;
 }
+task killmeplz()
+{
+	wait1Msec(15000);
+	stopAllTasks();
+	stopAllMotors();
+}
 //#endregion
 
 //#region goal functions
@@ -21,15 +27,13 @@ void setGoalMotors(int power)
 	motor[lGoalMot] = power;
 }
 
-void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)
+void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
   goalRequestedValue = goalVal[goal] + modifier;
-	timers[mgl] = resetTimer();
 
 	if(nowWaitJustASecondThere)
-		while(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
-		      || (fabs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError
-					    && timer >= 0 && time(timers[goal]) >= timer)) EndTimeSlice();
+		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 150)
+		{}
 }
 task goalDriveController()
 {
@@ -78,15 +82,14 @@ void setLiftMotors(int power)
 	motor[bLiftMot] = power;
 }
 
-void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)
+void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
   liftRequestedValue = liftVal[lift] + modifier;
 	timers[lift] = resetTimer();
 
 	if(nowWaitJustASecondThere)
-		while(fabs(liftSensorCurrentValue - liftRequestedValue) > shortWaitLiftError
-		      || (abs(liftSensorCurrentValue - liftRequestedValue) > longWaitLiftError
-					    && timer >= 0 && time(timers[lift]) >= timer)) EndTimeSlice();
+		while(fabs(liftSensorCurrentValue - liftRequestedValue) > 150)
+		{}
 }
 
 //#endregion
@@ -102,15 +105,14 @@ void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifie
 	wait1Msec(autoBarTime);
 	setBarMotors(0);
 }*/
-void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier = 0, int timer = -1)
+void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
 	barRequestedValue = barVal[bar] + modifier;
 	timers[BART] = resetTimer();
 
 	if(nowWaitJustASecondThere)
-		while(fabs(barSensorCurrentValue - barRequestedValue) > shortWaitBarError
-		      || (abs(barSensorCurrentValue - barRequestedValue) > longWaitBarError
-					    && timer >= 0 && time(timers[bar]) >= timer)) EndTimeSlice();
+		while(fabs(barSensorCurrentValue - barRequestedValue) > 150)
+		{}
 }
 
 //#endregion
