@@ -2,8 +2,8 @@
 #pragma config(Sensor, in2,    liftPot,        sensorPotentiometer)
 #pragma config(Sensor, in3,    GoalPot,        sensorPotentiometer)
 #pragma config(Sensor, in4,    barPot,         sensorPotentiometer)
-#pragma config(Sensor, in5,    lPot,           sensorPotentiometer)
-#pragma config(Sensor, in6,    rPot,           sensorPotentiometer)
+#pragma config(Sensor, in6,    lPot,           sensorPotentiometer)
+#pragma config(Sensor, in7,    rPot,           sensorPotentiometer)
 #pragma config(Sensor, dgtl3,  rEnc,           sensorQuadEncoder)
 #pragma config(Sensor, dgtl8,  lEnc,           sensorQuadEncoder)
 #pragma config(Motor,  port1,           rtLiftMot,     tmotorVex393_HBridge, openLoop)
@@ -80,8 +80,8 @@ void pre_auton()
 
 task autonomous()
 {
-	startTask (killmeplz);
   //#region initialization
+	startTask (killmeplz);
 	startTask(unityDrive);
   startTask(liftController);
   startTask(goalController);
@@ -95,58 +95,81 @@ task autonomous()
   /*wait1Msec(500);*/
   SensorBias[gyro] = 1870;
   //#endregion
-			lConeScore();
-  //#region left routines
-/*	if (SensorValue[lPot]<1300)
-	{
-		if(SensorValue[rPot]<300)//Mobile goal in 20 and preload
-		{
-			//pot 1-pot 1
-			lGoalScore();
 
-		}
-		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800)//nothing
+  //#region left routines
+	if(SensorValue[lPot]<1300)
+	{
+		if(SensorValue[rPot]<300) //Mobile goal in 20 and 2 cones
 		{
-			//pot 1-pot2
-		    l5PointZone();
+		  //pot 1-pot 1
+		    l20PtZone();
 		}
-		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
+		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //Goal in 10 and 3 cones
 		{
-			//pot 1-pot 3
-		    testAuton();
+		  //pot 1-pot2
+		    l10PointZone();
 		}
-	if(SensorValue[rPot]>3700)//Mobile goal in 10 and preload
+		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //Goal in 5, 1 cone, setup
 		{
-			//pot 1-pot 4
-			lConeScore();
+		  //pot 1-pot 3
+		    l5GoalScore();
+		}
+	  if(SensorValue[rPot]>3700) //3-5 cones
+		{
+		  //pot 1-pot 4
+		    lConeScore();
 		}
 	}
   //#endregion
 
-  //#region right routines
-	if (SensorValue[lPot]>2500)
-	{
-		if(SensorValue[rPot]<300) //Mobile goal in 20 and preload
+  //#region middle routines
+  if(SensorValue[lPot] >= 1300 && SensorValue[lPot] <= 2500)
+  {
+    if(SensorValue[rPot]<300) //Goal in 10, 1 cone, defensive
 		{
-			//pot 3-pot1
-			   rGoalScore();
+		  //pot 2-pot 1
+        lDefensive();
 		}
-		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //Skills (or lack thereof)
+		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //nothing
 		{
-			//pot 3-pot2
-        r5PointZone();
+		  //pot 2-pot2
 		}
 		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
 		{
-			//pot 3-pot3
-		    skills();
-	}
-	if(SensorValue[rPot]>3700) //Mobile goal in 10 and preload
-		{
-			//pot 3-pot4
-			rPairWithE();
+		  //pot 2-pot 3
 		}
-	}*/
+	  if(SensorValue[rPot]>3700) //Goal in 10, 1 cone, defensive
+		{
+		  //pot 2-pot 4
+		    rDefensive();
+		}
+  }
+  //#endregion
+
+  //#region right routines
+	if(SensorValue[lPot]>2500)
+	{
+		if(SensorValue[rPot]<300) //Mobile goal in 20 and 2 cones
+		{
+		  //pot 3-pot1
+		    r20PtZone();
+		}
+		if(SensorValue[rPot]>300 && SensorValue[rPot]<1800) //Goal in 10 and 3 cones
+		{
+		  //pot 3-pot2
+        r10PointZone();
+		}
+		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //Goal in 5, 1 cone, setup
+		{
+		  //pot 3-pot3
+		    r5GoalScore();
+	  }
+	  if(SensorValue[rPot]>3700) //3-5 cones
+		{
+		  //pot 3-pot4
+		    rConeScore();
+		}
+	}
   //#endregion
 }
 //#endregion

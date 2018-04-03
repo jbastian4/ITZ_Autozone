@@ -32,14 +32,36 @@ void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifie
   goalRequestedValue = goalVal[goal] + modifier;
 
 	if(nowWaitJustASecondThere)
-		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 150)
+		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 90)
 		{}
 }
+
+void goalManeuver(int distance,byte speed = 40)
+{
+	unityStraight(distance);
+  stopTask(lEncController);
+  stopTask(rEncController);
+  setLDriveMotors(speed * sgn(distance));
+  setRDriveMotors(speed * sgn(distance));
+  wait1Msec(250);
+	switch (sgn(distance)) {
+		case -1:
+			goalRequest(out,true);
+			break;
+		case 1:
+			goalRequest(in,true);
+			break;
+	}
+  startTask(lEncController);
+  startTask(rEncController);
+  driveWaity(distance);
+}
+
 task goalDriveController()
 {
 	while(true) {
-		if(fabs(goalSensorCurrentValue - goalRequestedValue) > shortWaitGoalError
-				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > longWaitGoalError))
+		if(fabs(goalSensorCurrentValue - goalRequestedValue) > 60
+				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > 60))
 					goalfree=1;
 		else
 					goalfree=0;
@@ -136,18 +158,6 @@ task liftBtnTracker()
 			if(vexRT[Btn5D] == 1 ||vexRT[Btn5DXmtr2] == 1 )
 				lastLiftBtnPressed = -1;
 		wait1Msec(25);
-	}
-}
-
-task barBtnTracker()
-{
-	while(true)
-	{
-			if(vexRT[Btn8D] == 1||vexRT[Btn6UXmtr2] == 1)
-				lastBarBtnPressed = 1;
-			if(vexRT[Btn8R] == 1||vexRT[Btn6DXmtr2] == 1)
-				lastBarBtnPressed = -1;
-		EndTimeSlice();
 	}
 }
 

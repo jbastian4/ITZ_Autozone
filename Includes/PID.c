@@ -17,12 +17,12 @@ float  liftSensorCurrentValue;
 float  liftError;
 float  liftDrive;
 
-static int shortWaitLiftError = 200;
-static int longWaitLiftError = 200;
+//static int shortWaitLiftError = 200;
+//static int longWaitLiftError = 200;
 
 //////////////////////////////////////////////////////
 
-static float  goal_Kp = 0.25;
+static float  goal_Kp = 0.28;
 static float  goalRequestedValue;
 static float  goal_Kd = 0.2;
 
@@ -52,8 +52,8 @@ float  barSensorCurrentValue;
 float  barError;
 float  barDrive;
 
-static int shortWaitBarError = 70;
-static int longWaitBarError = 175;
+//static int shortWaitBarError = 70;
+//static int longWaitBarError = 175;
 //#endregion
 
 

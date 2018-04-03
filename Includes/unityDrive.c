@@ -16,8 +16,8 @@ float wheelDiameter = 4;
 
 int dontHog = 25; //don't hog cpu wait time
 
-int stopError = 20; //allowed variation distance for drivestraight stop (inches)
-int stopTime = 500;
+int stopError = 17; //allowed variation distance for drivestraight stop (inches)
+int stopTime = 100;
 
 int driveStraightError = 8;
 
@@ -36,7 +36,7 @@ static float  gyro_Kp = 0.35; //.08
 static float  gyro_Kd = 1; //.2
 
 //Drive ramp values
-int rampInterval = 10;
+int rampInterval = 7;
 int normalRampSpeed = 12; //was 7
 int lHighRampSpeed = 21; //was 30
 int rHighRampSpeed = 13;//was 35
@@ -58,7 +58,6 @@ bool enableEverything = true;
 
 bool isDriving = false; //records if the drivestraight is actually running;
 int  goalfree = 0; //records wether on not a drive or turn is in progress to properly set the goal motors
-int movecount = 0; // gets set wqual to the current drive or turn requierment
 int countsToInches(float value) //converts drive encoder counts into inches
 {
   return (value * 360)/(PI * wheelDiameter);
@@ -105,7 +104,7 @@ float  gyroDrive;
 
 //<editor-fold Functions
 //#region Drive Functions
-void drivewaity(int distance)
+void driveWaity(int distance)
 {
   int ticks = fabs(countsToInches(distance));
   while(fabs(SensorValue[lEnc]) <= ticks - stopError){}
@@ -126,7 +125,7 @@ void unityStraight(int distance, bool waity = false) //this void sends appropria
   if(waity)
   {
     wait1Msec(stopTime);
-    drivewaity(distance);
+    driveWaity(distance);
   }
 }
 void turnwaity(int degrees)

@@ -35,8 +35,6 @@ int normRampSpeed = 7;
 int hiRampSpeed = 30;
 int nullVal = 10;
 //#endregion
-int goalhold;
 int lastLiftBtnPressed = 0;
-int lastBarBtnPressed = 1;
 
 #endif
