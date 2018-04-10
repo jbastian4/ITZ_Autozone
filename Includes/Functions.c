@@ -60,8 +60,8 @@ void goalManeuver(int distance,byte speed = 40)
 task goalDriveController()
 {
 	while(true) {
-		if(fabs(goalSensorCurrentValue - goalRequestedValue) > 60
-				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > 60))
+		if(fabs(goalSensorCurrentValue - goalRequestedValue) > 70
+				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > 70))
 					goalfree=1;
 		else
 					goalfree=0;
@@ -110,7 +110,7 @@ void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifie
 	timers[lift] = resetTimer();
 
 	if(nowWaitJustASecondThere)
-		while(fabs(liftSensorCurrentValue - liftRequestedValue) > 150)
+		while(fabs(liftSensorCurrentValue - liftRequestedValue) > 250)
 		{}
 }
 

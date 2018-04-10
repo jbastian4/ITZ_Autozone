@@ -2,7 +2,7 @@
 #define Variables
 
 enum liftPos {low, goal, para, high};
-int liftVal[] = {375, 790, 1135, 2215};
+int liftVal[] = {375, 890, 1135, 2215};
 
 enum goalPos {out, middle, in};
 int goalVal[] = {3500, 1590, 617};

@@ -4,9 +4,9 @@
 #include "unityDrive.c"
 
 //#region vars
-static float  lift_Kp = 0.4;
+static float  lift_Kp = 0.3;
 static float  liftRequestedValue;
-static float  lift_Kd = 1.75;
+static float  lift_Kd = 1.8;
 
 float liftD;
 float liftP;
@@ -34,8 +34,8 @@ float goalDF;
 float  goalSensorCurrentValue;
 float  goalError;
 float  goalDrive;
-static int shortWaitGoalError = 70;
-static int longWaitGoalError = 175;
+//static int shortWaitGoalError = 70;
+//static int longWaitGoalError = 175;
 
 //////////////////////////////////////////////////////
 

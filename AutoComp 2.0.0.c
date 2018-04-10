@@ -81,7 +81,7 @@ void pre_auton()
 task autonomous()
 {
   //#region initialization
-	startTask (killmeplz);
+	//startTask (killmeplz);
 	startTask(unityDrive);
   startTask(liftController);
   startTask(goalController);
@@ -174,8 +174,7 @@ task autonomous()
 }
 //#endregion
 
-//#region user control
-/*---------------------------------------------------------------------------*/
+//#region user control-------------*/
 /*                                                                           */
 /*                              User Control Task                            */
 /*                                                                           */
@@ -192,6 +191,7 @@ task usercontrol()
   //startTask(barController);
   //startTask(barBtnTracker);
   startTask(userDrive);
+
   //barRequest(drop);
   while(true)
   {
