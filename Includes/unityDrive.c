@@ -38,8 +38,8 @@ static float  gyro_Kd = 1; //.2
 //Drive ramp values
 int rampInterval = 7;
 int normalRampSpeed = 12; //was 7
-int lHighRampSpeed = 21; //was 30
-int rHighRampSpeed = 13;//was 35
+int lHighRampSpeed = 15; //was 30
+int rHighRampSpeed = 15;//was 35
 int nullPower = 10;
 //#endregion
 
@@ -329,14 +329,19 @@ task lEncController()
     }
 
     // limit drive again
-		if(lEncDrive > 127)
+	   if(lEncDrive > 127)
 			lEncDrive = 127;
 		if(lEncDrive < -127)
 			lEncDrive = -127;
+      setLDriveMotors(lEncDrive);
+      if(goalfree==0)
+      {
+        motor[LGoalMot]=lEncDrive+10;
+      }
 
 		// send to motor
 
-		leftDriveRamp(lEncDrive+10);
+		//leftDriveRamp(lEncDrive+10);
 
 		lastlEncError = lEncError;
     }
@@ -367,10 +372,10 @@ task rEncController()
 		rEncDrive = rEncP + rEncDF;
 
 		// limit drive
-		if(rEncDrive > 100)
-			rEncDrive = 100;
-		if(rEncDrive < -100)
-			rEncDrive = -100;
+		if(rEncDrive > 90)
+			rEncDrive = 90;
+		if(rEncDrive < -90)
+			rEncDrive = -90;
 
     //correct for drivestraight
     if (isDriving == true)
@@ -382,14 +387,19 @@ task rEncController()
     }
 
     // limit drive again
-    if(rEncDrive > 120)
-      rEncDrive = 120;
-    if(rEncDrive < -120)
-      rEncDrive = -120;
+   if(rEncDrive > 100)
+      rEncDrive = 100;
+    if(rEncDrive < -100)
+      rEncDrive = -100;
+      setRDriveMotors(rEncDrive);
+      if(goalfree==0)
+      {
+        motor[rGoalMot]=rEncDrive+10;
+      }
 
 		// send to motor
 
-		rightDriveRamp(rEncDrive);
+		//rightDriveRamp(rEncDrive);
 
 		lastrEncError = rEncError;
     }
