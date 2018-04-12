@@ -5,18 +5,17 @@
 //#include "unityDrive.c"
 
 //#region misc Functions
-long resetTimer() {
+long timerReset() {
 	return nPgmTime;
 }
 
 int time(long timer) {
 	return nPgmTime - timer;
 }
-task killmeplz()
+
+void resetTimer(timeType timer)
 {
-	wait1Msec(15000);
-	stopAllTasks();
-	stopAllMotors();
+	timers[timer] = timerReset();
 }
 //#endregion
 
@@ -26,7 +25,13 @@ void setGoalMotors(int power)
 	motor[rGoalMot] = power;
 	motor[lGoalMot] = power;
 }
-
+void goalQueryHandler()
+{
+	resetTimer(cringeTime);
+	while(SensorValue[cancer]>3020)
+	{
+	}
+}
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
   goalRequestedValue = goalVal[goal] + modifier;
@@ -107,7 +112,7 @@ void setLiftMotors(int power)
 void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
   liftRequestedValue = liftVal[lift] + modifier;
-	timers[lift] = resetTimer();
+	timers[lift] = timerReset();
 
 	if(nowWaitJustASecondThere)
 		while(fabs(liftSensorCurrentValue - liftRequestedValue) > 250)
@@ -130,7 +135,7 @@ void liftRequest(liftPos lift, bool nowWaitJustASecondThere = false, int modifie
 void barRequest(barPos bar, bool nowWaitJustASecondThere = false, int modifier = 0)
 {
 	barRequestedValue = barVal[bar] + modifier;
-	timers[BART] = resetTimer();
+	timers[BART] = timerReset();
 
 	if(nowWaitJustASecondThere)
 		while(fabs(barSensorCurrentValue - barRequestedValue) > 150)

@@ -4,7 +4,7 @@
 #include "unityDrive.c"
 
 //#region vars
-static float  lift_Kp = 0.3;
+static float  lift_Kp = 0.60;
 static float  liftRequestedValue;
 static float  lift_Kd = 1.8;
 

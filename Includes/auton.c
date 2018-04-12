@@ -1,6 +1,71 @@
 #ifndef Auton
 #define Auton
 
+//#region tasks
+
+task lPainPt1()
+{
+  setIntakeMotors(15);
+  barRequest(drop);
+  liftRequest(goal);
+  goalRequest(out,true);           //go for first mgl
+  unityStraight(46);
+  liftRequest(low,false,150);
+  driveWaity(36);
+  liftRequest(para);
+  driveWaity(46);
+  unityStraight(12);
+  stopTask(lEncController);
+  stopTask(rEncController);
+  setLDriveMotors(40);
+  setRDriveMotors(40);
+  wait1Msec(250);
+  liftRequest(goal);
+  goalRequest(in,true);
+  startTask(lEncController);
+  startTask(rEncController);
+  barRequest(drop);
+  liftRequest(low,true);
+  wait1Msec(250);
+  setIntakeMotors(-127);
+  wait1Msec(100);
+  liftRequest(goal);
+  barRequest(down,true);
+  wait1Msec(100);
+  setIntakeMotors(127);
+  liftRequest(low,true);
+  wait1Msec(500);
+  setIntakeMotors(20);
+  liftRequest(goal,true);
+  liftRequest(para);
+  barRequest(drop);
+  liftRequest(para,true);
+  liftRequest(low,true,100);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  unityStraight(12);
+  liftRequest(goal);
+  barRequest(down,true);
+  wait1Msec(100);
+  driveWaity(12);
+  setIntakeMotors(127);
+  liftRequest(low,true);
+  wait1Msec(500);
+  setIntakeMotors(20);
+  liftRequest(goal,true);
+  liftRequest(para);
+  barRequest(drop);
+  liftRequest(para,true);
+  liftRequest(low,true,100);
+  setIntakeMotors(-127);
+  wait1Msec(200);
+  liftRequest(goal);
+  setIntakeMotors(-20);
+  timers[3] = pain20MoveOnTime;
+}
+
+//#endregion
+
 //#region right
 void rDefensive()
 {
@@ -111,7 +176,7 @@ void rConeScore()
   setIntakeMotors(127);
   barRequest(down,true);
   liftRequest(low,true,100);
-  wait(250);
+  wait1Msec(250);
   liftRequest(para,true);
   barRequest(drop);
   setIntakeMotors(30);
@@ -399,7 +464,7 @@ void lConeScore()
   setIntakeMotors(127);
   barRequest(down,true);
   liftRequest(low,true,100);
-  wait(250);
+  wait1Msec(250);
   liftRequest(para,true);
   barRequest(drop);
   setIntakeMotors(30);
@@ -558,6 +623,32 @@ void l20PtZone()
   wait1Msec(200);
   liftRequest(goal);
   setIntakeMotors(20);
+  unityTurn(200,1,true);
+  unityStraight(-54);
+  wait1Msec(200);
+  liftRequest(para);
+  setIntakeMotors(127);
+  driveWaity(-54);
+  unityTurn(450,1,true);
+  unityStraight(-17,true);
+  unityTurn(770,1,true);
+  unityStraight(13,true);
+  goalRequest(out,true);
+  liftRequest(low,false,150);
+  wellIReckon(127,250);
+  unityStraight(-20);
+  wait1Msec(200);
+  liftRequest(goal,true);
+  goalRequest(in);
+}
+
+void lPain20()
+{
+  resetTimer(auton);
+  startTask(lPainPt1);
+  while(time(auton) < pain20MoveOnTime) {}
+  stopTask(lPainPt1);
+
   unityTurn(200,1,true);
   unityStraight(-54);
   wait1Msec(200);
@@ -814,4 +905,5 @@ void skills()
   unityStraight(-20);*/
 //}
 //#endregion
+
 #endif

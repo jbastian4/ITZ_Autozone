@@ -2,6 +2,7 @@
 #pragma config(Sensor, in2,    liftPot,        sensorPotentiometer)
 #pragma config(Sensor, in3,    GoalPot,        sensorPotentiometer)
 #pragma config(Sensor, in4,    barPot,         sensorPotentiometer)
+#pragma config(Sensor, in5,    cancer,         sensorLineFollower)
 #pragma config(Sensor, in6,    lPot,           sensorPotentiometer)
 #pragma config(Sensor, in7,    rPot,           sensorPotentiometer)
 #pragma config(Sensor, dgtl3,  rEnc,           sensorQuadEncoder)
