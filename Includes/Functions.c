@@ -37,7 +37,7 @@ void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifie
   goalRequestedValue = goalVal[goal] + modifier;
 
 	if(nowWaitJustASecondThere)
-		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 90)
+		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 100)
 		{}
 }
 

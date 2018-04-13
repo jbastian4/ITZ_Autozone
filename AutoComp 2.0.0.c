@@ -250,7 +250,7 @@ task usercontrol()
 				}
 				else if(barflip==0)
 				{
-					      		if (SensorValue[barPot]< 1885)
+					if (SensorValue[barPot]< 1885)
 					{
 						motor[ barMot ] = 127;
 					}
