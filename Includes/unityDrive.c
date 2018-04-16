@@ -38,7 +38,7 @@ static float  gyro_Kd = 1; //.2
 //Drive ramp values
 int rampInterval = 7;
 int normalRampSpeed = 12; //was 7
-int lHighRampSpeed = 30; //was 30
+int lHighRampSpeed = 50; //was 30
 int rHighRampSpeed = 15;//was 35
 int nullPower = 10;
 //#endregion

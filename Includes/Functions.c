@@ -303,6 +303,12 @@ task userDrive()
 
 //#region end voids
 
+ task killmeplz()
+ {
+	 wait1Msec(15000);
+	 stopAllTasks();
+	 allMotorsOff();
+ }
 task lockDrive()
 {
 	while(true)
