@@ -38,7 +38,7 @@ static float  gyro_Kd = 1; //.2
 //Drive ramp values
 int rampInterval = 7;
 int normalRampSpeed = 12; //was 7
-int lHighRampSpeed = 15; //was 30
+int lHighRampSpeed = 30; //was 30
 int rHighRampSpeed = 15;//was 35
 int nullPower = 10;
 //#endregion
@@ -333,15 +333,11 @@ task lEncController()
 			lEncDrive = 127;
 		if(lEncDrive < -127)
 			lEncDrive = -127;
-      setLDriveMotors(lEncDrive);
-      if(goalfree==0)
-      {
-        motor[LGoalMot]=lEncDrive+10;
-      }
+
 
 		// send to motor
 
-		//leftDriveRamp(lEncDrive+10);
+		leftDriveRamp(lEncDrive+10);
 
 		lastlEncError = lEncError;
     }
@@ -391,15 +387,10 @@ task rEncController()
       rEncDrive = 100;
     if(rEncDrive < -100)
       rEncDrive = -100;
-      setRDriveMotors(rEncDrive);
-      if(goalfree==0)
-      {
-        motor[rGoalMot]=rEncDrive+10;
-      }
 
 		// send to motor
 
-		//rightDriveRamp(rEncDrive);
+		rightDriveRamp(rEncDrive);
 
 		lastrEncError = rEncError;
     }

@@ -87,7 +87,7 @@ task autonomous()
   startTask(liftController);
   startTask(goalController);
   startTask(barController);
-  startTask(goalDriveController);
+  startTask(goalDriveHandler);
   SensorValue[lEnc] = 0;
   SensorValue[rEnc] = 0;
 
@@ -250,7 +250,7 @@ task usercontrol()
 				}
 				else if(barflip==0)
 				{
-					if (SensorValue[barPot]< 1885)
+					      		if (SensorValue[barPot]< 1885)
 					{
 						motor[ barMot ] = 127;
 					}

@@ -37,7 +37,7 @@ void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifie
   goalRequestedValue = goalVal[goal] + modifier;
 
 	if(nowWaitJustASecondThere)
-		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 100)
+		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 130)
 		{}
 }
 
@@ -62,11 +62,11 @@ void goalManeuver(int distance,byte speed = 40)
   driveWaity(distance);
 }
 
-task goalDriveController()
+task goalDriveHandler()
 {
 	while(true) {
-		if(fabs(goalSensorCurrentValue - goalRequestedValue) > 70
-				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > 70))
+		if(fabs(goalSensorCurrentValue - goalRequestedValue) > 110
+				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > 110))
 					goalfree=1;
 		else
 					goalfree=0;

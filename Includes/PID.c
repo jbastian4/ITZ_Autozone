@@ -22,7 +22,7 @@ float  liftDrive;
 
 //////////////////////////////////////////////////////
 
-static float  goal_Kp = 0.28;
+static float  goal_Kp = .6999999999999;
 static float  goalRequestedValue;
 static float  goal_Kd = 0.2;
 
@@ -39,9 +39,9 @@ float  goalDrive;
 
 //////////////////////////////////////////////////////
 
-static float  bar_Kp = 0.8;
+static float  bar_Kp = 0.7;
 static float  barRequestedValue;
-static float  bar_Kd =.3;
+static float  bar_Kd =1.5;
 
 float barD;
 float barP;
