@@ -69,36 +69,59 @@ task lPainPt1()
 //#region right
 void rDefensive()
 {
+  rampInterval = 7;
   setIntakeMotors(20);
-  liftRequest(low,false,150);
+  liftRequest(low,false,170);
   barRequest(drop);
-  unityStraight(15,true);
-  unityTurn(490,1,true);
+  unityStraight(10,true);
+  unityTurn(440,1,true);
   unityStraight(70,true);
-  liftRequest(low,false,150);
-  unityStraight(-6,true);
-  goalRequest(out);
   liftRequest(goal);
-  goalManeuver(-25);
+  unityStraight(-35);
+  stopTask(lEncController);
+  stopTask(rEncController);
+  setLDriveMotors(-100);
+  setRDriveMotors(-100);
+  wait1Msec(250);
+  liftRequest(goal);
+  goalRequest(out,true,-500);
+  startTask(lEncController);
+  startTask(rEncController);
+  driveWaity(-17);
   liftRequest(low,false,150);
-  unityTurn(240,1,true);//240
+  driveWaity(-35);
+  goalRequest(out,true);
+  unityTurn(300,1);//240
+  wait1Msec(300);
+  turnwaity(280);
   unityStraight(20,true);
   liftRequest(goal);
-  goalManeuver(9);
+  unityStraight(10);
+  stopTask(lEncController);
+  stopTask(rEncController);
+  setLDriveMotors(100);
+  setRDriveMotors(100);
+  wait1Msec(250);
+  liftRequest(goal);
+  goalRequest(in,true,500);
+  startTask(lEncController);
+  startTask(rEncController);
+  driveWaity(10);
+  goalRequest(in);
   goalQueryHandler();
   liftRequest(low,false,150);
   unityTurn(200,1,true);
   unityStraight(-33,true);
-  liftRequest(low,false,150);
-  unityTurn(1300,1,true);
-  unityStraight(30,false);
+  unityTurn(1250,1,true);
+  unityStraight(45,false);
   setIntakeMotors(-127);
   wait1Msec(250);
   liftRequest(goal);
-  driveWaity(30);
+  driveWaity(31);
   goalRequest(out,true);
-  unityStraight(-12,true);
+  unityStraight(-30,true);
   unityTurn(1250,1,true);
+  unityStraight(20);
 }
 
 void rConeScore()
@@ -134,7 +157,7 @@ void rConeScore()
   liftRequest(low,true);
   wait1Msec(200);
   setIntakeMotors(20);
-  unityStraight(7);
+  unityStraight(8);
   liftRequest(goal,true);
   liftRequest(para);
   barRequest(drop,true);

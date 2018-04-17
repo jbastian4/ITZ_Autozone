@@ -17,7 +17,7 @@ float wheelDiameter = 4;
 int dontHog = 25; //don't hog cpu wait time
 
 int stopError = 17; //allowed variation distance for drivestraight stop (inches)
-int stopTime = 100;
+int stopTime = 200;
 
 int driveStraightError = 8;
 
@@ -37,9 +37,9 @@ static float  gyro_Kd = 1; //.2
 
 //Drive ramp values
 int rampInterval = 7;
-int lNormalRampSpeed = 25; //was 7
-int rNormalRampSpeed = 12;
-int lHighRampSpeed = 23; //was 30
+int lNormalRampSpeed = 12; //was 7
+int rNormalRampSpeed = 13;
+int lHighRampSpeed = 22; //was 30
 int rHighRampSpeed = 15;//was 35
 int nullPower = 10;
 //#endregion
