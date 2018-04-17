@@ -37,8 +37,9 @@ static float  gyro_Kd = 1; //.2
 
 //Drive ramp values
 int rampInterval = 7;
-int normalRampSpeed = 12; //was 7
-int lHighRampSpeed = 50; //was 30
+int lNormalRampSpeed = 25; //was 7
+int rNormalRampSpeed = 12;
+int lHighRampSpeed = 23; //was 30
 int rHighRampSpeed = 15;//was 35
 int nullPower = 10;
 //#endregion
@@ -148,6 +149,7 @@ void unityTurn(int degrees, int direction,bool waity=false)
 
 }
 //#endregion
+
 //#region set motor functions
 void setLDriveMotors(int power)
 {
@@ -160,6 +162,7 @@ void setRDriveMotors(int power)
 //	motor[rDrivePort2] = power;
 }
 //#endregion
+
 //#region Ramp Functions
 void leftDriveRamp(int leftPowerReq) //ramping
 {
@@ -167,7 +170,7 @@ if(leftPower >= 30)
 {
 	if(leftPowerReq > leftPower)
 	{
-		leftPower += normalRampSpeed;
+		leftPower += lNormalRampSpeed;
 	}
 	else if(leftPowerReq < leftPower)
 	{
@@ -178,7 +181,7 @@ else if(leftPower <= -30)
 {
 	if(leftPowerReq < leftPower)
 	{
-		leftPower -= normalRampSpeed;
+		leftPower -= lNormalRampSpeed;
 	}
 	else if(leftPowerReq > leftPower)
 	{
@@ -200,7 +203,7 @@ else
 {
 	if(leftPowerReq > leftPower)
 	{
-		leftPower += normalRampSpeed;
+		leftPower += lNormalRampSpeed;
 	}
 	if(leftPowerReq < leftPower)
 	{
@@ -231,7 +234,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq > rightPower)
   	{
-  		rightPower += normalRampSpeed;
+  		rightPower += rNormalRampSpeed;
   	}
   	else if(rightPowerReq < rightPower)
   	{
@@ -242,7 +245,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq < rightPower)
   	{
-  		rightPower -= normalRampSpeed;
+  		rightPower -= rNormalRampSpeed;
   	}
   	else if(rightPowerReq > rightPower)
   	{
@@ -264,7 +267,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
   {
   	if(rightPowerReq > rightPower)
   	{
-  		rightPower += normalRampSpeed;
+  		rightPower += rNormalRampSpeed;
   	}
   	if(rightPowerReq < rightPower)
   	{
@@ -439,6 +442,7 @@ task gyroController()
 	}
 }
 //#endregion
+
 //#region Main Drive Task
 task unityDrive()
 {
