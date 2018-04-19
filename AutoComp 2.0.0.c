@@ -82,7 +82,7 @@ void pre_auton()
 task autonomous()
 {
   //#region initialization
-	startTask (killmeplz);
+	//startTask (killmeplz);
 	startTask(unityDrive);
   startTask(liftController);
   startTask(goalController);
@@ -114,6 +114,7 @@ task autonomous()
 		{
 		  //pot 1-pot 3
 		    l5GoalScore();
+
 		}
 	  if(SensorValue[rPot]>3700) //3-5 cones
 		{
@@ -138,6 +139,7 @@ task autonomous()
 		if(SensorValue[rPot]>1800 && SensorValue[rPot]<3700) //nothing
 		{
 		  //pot 2-pot 3
+
 		}
 	  if(SensorValue[rPot]>3700) //Goal in 10, 1 cone, defensive
 		{

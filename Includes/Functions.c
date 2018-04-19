@@ -28,8 +28,10 @@ void setGoalMotors(int power)
 void goalQueryHandler()
 {
 	resetTimer(cringeTime);
-	while(SensorValue[cancer]>3020)
-	{
+	for (int i = 0; i < 19; i++) {
+		if(SensorValue[cancer]<3010)
+			i = 0;
+			wait1Msec(5);
 	}
 }
 void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifier = 0)
@@ -180,12 +182,12 @@ task userDrive()
 		AAmainR = vexRT[Ch2];
 		AApartR = vexRT[Ch2Xmtr2];
 
-		if(vexRT[Ch3] <= 5 && vexRT[Ch3] >= -5)
+		if(vexRT[Ch3] <= 15 && vexRT[Ch3] >= -15)
 			lPowerReq = vexRT[Ch3Xmtr2];
 		else
 			lPowerReq = vexRT[Ch3];
 
-		if(vexRT[Ch2] <= 5 && vexRT[Ch2] >= -5)
+		if(vexRT[Ch2] <= 15 && vexRT[Ch2] >= -15)
 			rPowerReq = vexRT[Ch2Xmtr2];
 		else
 			rPowerReq = vexRT[Ch2];
