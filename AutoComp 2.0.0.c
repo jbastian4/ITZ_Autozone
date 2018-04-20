@@ -82,7 +82,7 @@ void pre_auton()
 task autonomous()
 {
   //#region initialization
-	//startTask (killmeplz);
+	startTask (killmeplz);
 	startTask(unityDrive);
   startTask(liftController);
   startTask(goalController);

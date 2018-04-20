@@ -36,11 +36,11 @@ static float  gyro_Kp = 0.35; //.08
 static float  gyro_Kd = 1; //.2
 
 //Drive ramp values
-int rampInterval = 7;
-int lNormalRampSpeed = 12; //was 7
-int rNormalRampSpeed = 13;
-int lHighRampSpeed = 22; //was 30
-int rHighRampSpeed = 15;//was 35
+int rampInterval = 5;
+int lNormalRampSpeed = 15; //was 7
+int rNormalRampSpeed = 10;
+int lHighRampSpeed = 15.; //was 30
+int rHighRampSpeed = 9;//was 35
 int nullPower = 10;
 //#endregion
 
@@ -221,7 +221,7 @@ if(abs(leftPowerReq) < nullPower)
     setLDriveMotors(leftPower);
     if(goalfree==0)
     {
-      motor[lGoalMot]=leftPower+10;
+      motor[lGoalMot]=leftPower-20;
     }
   }
 wait1Msec(rampInterval);
@@ -285,7 +285,7 @@ void rightDriveRamp(int rightPowerReq) //ramping
     setRDriveMotors(rightPower);
     if(goalfree==0)
     {
-      motor[rGoalMot]=rightPower+10;
+      motor[rGoalMot]=rightPower-20;
     }
   }
   wait1Msec(rampInterval);

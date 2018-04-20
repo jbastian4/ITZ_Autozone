@@ -4,9 +4,9 @@
 #include "unityDrive.c"
 
 //#region vars
-static float  lift_Kp = 0.60;
+static float  lift_Kp = 0.5;
 static float  liftRequestedValue;
-static float  lift_Kd = 1.8;
+static float  lift_Kd = 1.2;
 
 float liftD;
 float liftP;
@@ -22,9 +22,9 @@ float  liftDrive;
 
 //////////////////////////////////////////////////////
 
-static float  goal_Kp = .6999999999999;
+static float  goal_Kp = .3;
 static float  goalRequestedValue;
-static float  goal_Kd = 0.2;
+static float  goal_Kd = .8;
 
 float goalD;
 float goalP;
@@ -102,6 +102,7 @@ task goalController()
 
 	while( true )
 	{
+			datalogAddValueWithTimeStamp(0, SensorValue[GoalPot]);
 
 			// Read the sensor value and scale
 			goalSensorCurrentValue = SensorValue[ GoalPot ];

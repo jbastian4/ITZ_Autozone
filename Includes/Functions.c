@@ -29,7 +29,7 @@ void goalQueryHandler()
 {
 	resetTimer(cringeTime);
 	for (int i = 0; i < 19; i++) {
-		if(SensorValue[cancer]<3010)
+		if(SensorValue[cancer]>3010)
 			i = 0;
 			wait1Msec(5);
 	}
@@ -39,7 +39,7 @@ void goalRequest(goalPos goal, bool nowWaitJustASecondThere = false, int modifie
   goalRequestedValue = goalVal[goal] + modifier;
 
 	if(nowWaitJustASecondThere)
-		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 130)
+		while(fabs(goalSensorCurrentValue - goalRequestedValue) > 60)
 		{}
 }
 
@@ -67,8 +67,8 @@ void goalManeuver(int distance,byte speed = 40)
 task goalDriveHandler()
 {
 	while(true) {
-		if(fabs(goalSensorCurrentValue - goalRequestedValue) > 110
-				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > 110))
+		if(fabs(goalSensorCurrentValue - goalRequestedValue) > 10
+				|| (fabs(goalSensorCurrentValue - goalRequestedValue) > 10))
 					goalfree=1;
 		else
 					goalfree=0;
