@@ -82,7 +82,7 @@ void pre_auton()
 task autonomous()
 {
   //#region initialization
-	startTask (killmeplz);
+	//startTask (killmeplz);
 	startTask(unityDrive);
   startTask(liftController);
   startTask(goalController);
@@ -310,6 +310,22 @@ task usercontrol()
        stopTask (lockDrive);
     }
     	else if (vexRT[Btn7L]==1 && skillsFlip == false && waitVar == 1) //Enable skills flip
+   	 {
+   	   stopTask(userDrive);
+	   	SensorValue[lEnc] = 0;
+			SensorValue[rEnc] = 0;
+       skillsFlip = true;
+       waitVar=0;
+       startTask (lockDrive);
+   	 }
+   	   else if (vexRT[Btn7LXmtr2] == 1 && skillsFlip==true && waitVar == 1) //Disable skills flip
+    {
+    	startTask(userDrive);
+       skillsFlip = false;
+       waitVar=0;
+       stopTask (lockDrive);
+    }
+    	else if (vexRT[Btn7LXmtr2]==1 && skillsFlip == false && waitVar == 1) //Enable skills flip
    	 {
    	   stopTask(userDrive);
 	   	SensorValue[lEnc] = 0;

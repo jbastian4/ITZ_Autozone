@@ -151,7 +151,6 @@ void rConeScore()
   liftRequest(low,true);
   wait1Msec(350);
   setIntakeMotors(-127);
-  wait1Msec(100);
   liftRequest(goal);
   barRequest(down,true);
   setIntakeMotors(127);
