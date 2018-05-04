@@ -231,37 +231,21 @@ task usercontrol()
 
       //<editor-fold bar
       	if(vexRT[Btn8D] == 1)
-      	{
 					barflip=0;
-     		}
 				else if(vexRT[Btn8R] == 1)
-				{
 					barflip=1;
-				}
-
-				if(barflip==1)
-				{
-					if (SensorValue[barPot]>400 )
-					{
-						motor[ barMot ] = -127;
-					}
-					else
-					{
-						motor[ barMot ] = -15;
-					}
-				}
-				else if(barflip==0)
-				{
-					      		if (SensorValue[barPot]< 1885)
-					{
-						motor[ barMot ] = 127;
-					}
-					else
-					{
-						motor[ barMot ] = 15;
-					}
-
-				}
+				if(barflip==1){
+					if (SensorValue[barPot]>400 ){
+						motor[ barMot ] = -127;}
+					else{
+						motor[ barMot ] = -15;}
+            }
+				else if(barflip==0){
+					  if (SensorValue[barPot]< 1885){
+						motor[ barMot ] = 127;}
+					else{
+						motor[ barMot ] = 15;}
+          }
    	    /*else if(vexRT[Btn6UXmtr2] == 1)
    	    //setBarMotors(127);
    	    barRequest(drop,false);
